@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next mist use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,7 +93,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/zijun.github.io/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -187,6 +187,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/zijun.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/zijun.github.io/archives/" rel="section">
             
@@ -274,6 +284,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/zijun.github.io/2019/04/10/first-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/10/first-blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -299,54 +319,15 @@
 
       
         
-          
-            <p>  起因，在论坛闲逛的时候发现一个老哥把很多知识点，问题都记录在自己的个人博客里，知识罗列的很清楚。<br>虽然我平时也会把一些问题和有趣的东西记录在MacDown里，可时如果要看的话还需要打开mac，很不方便。so～在网上找了一篇搭建博客的教程，干了一晚上终于成了，中间碰到很多曲折的问题，所以在这里记录一下。</p>
-<p><strong>一、搭建条件及环境</strong><br>    Github Pages + Hexo + Node.js Mac电脑的OSX系统/windows<br><strong>二、搭建步骤</strong></p>
-<ol>
-<li><p>首先你得有个github账号(作为新时代的码农，这是必备的)，创建一个新的repository，项目名称格式为<code>yourname.github.io</code>，如图<br> <img src="/zijun.github.io/2019/04/10/first-blog/img1.jpg" alt></p>
-</li>
-<li><p>全局安装Hexo，<code>npm install -g hexo-cli</code></p>
-</li>
-<li><p>创建一个空文件夹，进入该文件夹，依次执行以下命令</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p> 在所有依赖都安装完成后，就可以在本地环境看一下hexo的博客内容啦，执行以下命令</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate  </span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p> 这两条命令可以缩写成<code>hexo g</code> <code>hexo s</code>作用分别是：将md文件生成html，css文件；启动本地hexo。打开<a href="http://localhost:4000就能看到本地效果啦。" target="_blank" rel="noopener">http://localhost:4000就能看到本地效果啦。</a></p>
-</li>
-<li><p>修改 _config.yml 文件，这是博客网站 的配置文件，在这里你可以更改你的网页title，description等，最主要的是修改你在github上的仓库地址。<br> 在最下面一行</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository: git@github.com:BiYangJun/zijun.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
-<p> 写上自己的仓库地址。至于是SSH公钥方式提交还是https方式提交，看个人喜好啦。</p>
-</li>
-<li><p>在写完自己的博客后，执行以下命令</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<p> <code>hexo deploy</code> 可以缩写成 <code>hexo d</code>意思为部署<br> 接着你会上传文件到github上。接着就可以在线访问啦。</p>
-</li>
-</ol>
-<p><strong>三、遇到的坑</strong></p>
-<ol>
-<li><p>如果发现线上博客一直是404，看一下repository中的setting，在GitHub Pages 这一栏中Source有没有选中master分支</p>
-<p> <img src="/zijun.github.io/2019/04/10/first-blog/img2.jpg" alt></p>
-</li>
-<li><p>能打开线上博客后，如果发现样式没有加载出来，在_config.yml修改root为自己的项目名称</p>
-<p> <img src="/zijun.github.io/2019/04/10/first-blog/img3.jpg" alt></p>
-</li>
-<li><p>其他hexo命令。<code>hexo clean</code>#缓存，在网页不正常的时候可以使用。<code>hexo new ‘我的博客’</code>#新建我的博客，<code>hexo server -p 5000</code>#更改端口</p>
-</li>
-<li><p>如何插入图片。</p>
-<ul>
-<li>在主题的source下面新建一个文件夹images专门放置图片资源，使用markdown的语法 <code>![](/images/test.jpg)</code></li>
-<li>Hexo方式，设置_config.yml文件中<code>post_asset_folder</code>为true，之后新建一个文章后，会同时创建一个同名的空文件夹用来放图片资源，执行命令<code>npm install hexo-asset-image --save</code>，下载安装一个可以上传本地图片的插件，之后使用的时候，只需要图片名<code>![](test.jpg)</code></li>
-<li>网络图片插入‘#’</li>
-<li><p>Hexo 支持使用特定的语法，插入指定大小的图片，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 语法</span><br><span class="line">&#123;% img [class names] /path/to/image [width] [height] [title text [alt text]] %&#125;</span><br><span class="line">// 实例</span><br><span class="line">&#123;% img full-image /hexo-experiences/PL01.jpg 180 180 hello %&#125;</span><br><span class="line">// 生成的代码</span><br><span class="line">&lt;img src=&quot;/blog/hexo-experiences/PL01.jpg&quot; class=&quot;full-image&quot; width=&quot;180&quot; height=&quot;180&quot; title=&quot;hello&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果发现怎么都不行，看下你这个博客是不是在二级域名下的，如果是，要设置_config.yml文件中的url与root。<br><img src="/zijun.github.io/2019/04/10/first-blog/img4.jpg" alt></p>
-</li>
-</ul>
-</li>
-</ol>
-
-          
+          <p>  起因，在论坛闲逛的时候发现一个老哥把很多知识点，问题都记录在自己的个人博客里，知识罗列的很清楚。<br>虽然我平时也会把一些问题和有趣的东西记录在MacDown里，可时如果要看的话还需要打开mac，很不方便。so～在网上找了一篇搭建博客的教程，干了一晚上终于成了，中间碰到很多曲折的问题，所以在这里记录一下。</p>
+<p><strong>一、搭建条件及环境</strong><br>    Github Pages + Hexo + Node.js Mac电脑的OSX系统/windows<br><strong>二、搭建步骤</strong><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/zijun.github.io/2019/04/10/first-blog/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -485,7 +466,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -599,6 +580,14 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://zijun.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
 
 
 
@@ -611,10 +600,6 @@
   
 
 
-
-
-
-  
 
 
 

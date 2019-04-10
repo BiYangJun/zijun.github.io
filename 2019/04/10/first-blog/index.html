@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang>
+<html class="theme-next mist use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/10/first-blog/img2.jpg">
 <meta property="og:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/10/first-blog/img3.jpg">
 <meta property="og:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/10/first-blog/img4.jpg">
-<meta property="og:updated_time" content="2019-04-10T06:47:15.445Z">
+<meta property="og:updated_time" content="2019-04-10T12:00:40.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一下搭建第一个博客的经历">
 <meta name="twitter:description" content="起因，在论坛闲逛的时候发现一个老哥把很多知识点，问题都记录在自己的个人博客里，知识罗列的很清楚。虽然我平时也会把一些问题和有趣的东西记录在MacDown里，可时如果要看的话还需要打开mac，很不方便。so～在网上找了一篇搭建博客的教程，干了一晚上终于成了，中间碰到很多曲折的问题，所以在这里记录一下。 一、搭建条件及环境    Github Pages + Hexo + Node.js Mac电">
@@ -102,7 +102,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/zijun.github.io/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -195,6 +195,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/zijun.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/zijun.github.io/archives/" rel="section">
             
@@ -280,6 +290,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/zijun.github.io/2019/04/10/first-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/10/first-blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -305,7 +325,7 @@
 
       
         <p>  起因，在论坛闲逛的时候发现一个老哥把很多知识点，问题都记录在自己的个人博客里，知识罗列的很清楚。<br>虽然我平时也会把一些问题和有趣的东西记录在MacDown里，可时如果要看的话还需要打开mac，很不方便。so～在网上找了一篇搭建博客的教程，干了一晚上终于成了，中间碰到很多曲折的问题，所以在这里记录一下。</p>
-<p><strong>一、搭建条件及环境</strong><br>    Github Pages + Hexo + Node.js Mac电脑的OSX系统/windows<br><strong>二、搭建步骤</strong></p>
+<p><strong>一、搭建条件及环境</strong><br>    Github Pages + Hexo + Node.js Mac电脑的OSX系统/windows<br><strong>二、搭建步骤</strong><br><a id="more"></a></p>
 <ol>
 <li><p>首先你得有个github账号(作为新时代的码农，这是必备的)，创建一个新的repository，项目名称格式为<code>yourname.github.io</code>，如图<br> <img src="/zijun.github.io/2019/04/10/first-blog/img1.jpg" alt></p>
 </li>
@@ -349,7 +369,21 @@
 </ul>
 </li>
 </ol>
-
+<p><div id="container"></div></p>
+<p><link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css"></p>
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '', // 可选。默认为 location.href
+  owner: 'zijun',  //改你自己的名字
+  repo: 'Comments',  //专门储存评论一个GitHub仓库
+  oauth: {
+    client_id: '7970cb114f22ce2015b3', //改为你自己的，下同
+    client_secret: '41d2b41411abdd7d693f42a526ed03918aae76de', 
+  },
+})
+gitment.render('container')
+</script>
       
     </div>
     
@@ -393,6 +427,16 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -492,7 +536,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -610,6 +654,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://zijun.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://biyangjun.github.io/zijun.github.io/2019/04/10/first-blog/';
+          this.page.identifier = '2019/04/10/first-blog/';
+          this.page.title = '记录一下搭建第一个博客的经历';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zijun.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -622,10 +686,6 @@
   
 
 
-
-
-
-  
 
 
 
