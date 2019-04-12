@@ -87,7 +87,7 @@
 <meta property="og:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/12/interview/vue.png">
-<meta property="og:updated_time" content="2019-04-12T05:39:54.454Z">
+<meta property="og:updated_time" content="2019-04-12T07:00:03.822Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试">
 <meta name="twitter:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
@@ -334,6 +334,10 @@
 <p><strong>beforeCreate</strong>: 初始化之前的函数，vue实例不可访问，data未定义，一个基本不怎么用的函数<br><strong>created</strong>: 初始化函数，data已被定义，可以访问data里的数据，可以进行绑定，判断是否有<code>el</code>选项，有则继续进行，没有则停止编译(生命周期停止)，直到在该vue实例上调用vm.$mount(el)。接着判断是否有<code>template</code>选项，如果有，则会将<code>template</code>作为模板编译成render函数，如果没有，则将外部HTML作为模板编译。如果同时存在，<code>template</code>模版优先级是高于外部HTML的。同时vue对象中还有一个<code>render</code>函数，以createElement作为参数，然后做渲染操作，而且我们可以直接嵌入JSX，这个优先级是最高的。综上所述，模版优先级：<code>render</code>函数&gt;<code>template</code>模版&gt;外部HTML。<br><strong>beforeMount</strong>: 给vue添加$el成员，并且替换挂载的DOM元素。建立虚拟dom，data还是以参数名的方式挂载在节点中，没有注入数据。<br><strong>mounted</strong>: 第一次对组件进行渲染，将data里的数据注入节点中,这时已经形成了真实dom。这个函数vue的整个生命周期中只会执行一次，如果还有数据的变化，只会触发updated相关函数。<br><strong>beforeUpdate</strong>: 检测到data发生变化，准备对相应的组件再次渲染。首先重新渲染虚拟dom，再对真实的dom打补丁。<br><strong>updated</strong>: 完成对data发生变化的对应组件渲染<br><strong>beforeDestory</strong>: 实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destoryed</strong>: 在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<br><strong>帖一张官方的生命周期图</strong><br><img src="/zijun.github.io/2019/04/12/interview/vue.png" alt="生命周期"></p>
 </blockquote>
 </li>
+<li><code>vuex</code>的核心概念包括哪些内容。内容比较多，详情看<a href="https://vuex.vuejs.org/zh/guide/modules.html" target="_blank" rel="noopener">vuex官网</a><blockquote>
+<p><code>state</code>:存放状态数据的字段，辅助函数<code>mapState</code><br><code>getter</code>:可以认为是 store 的计算属性,辅助函数<code>mapGetter</code><br><code>mutation</code>:更改store状态的唯一方法，必须是同步操作，辅助函数<code>mapMutation</code><br><code>action</code>:action类似于mutation,不过无法直接变更状态，需要通过提交mutation来更改，可以包含任意的异步操作，辅助函数<code>mapAction</code><br><code>module</code>:store的模块，每个模块拥有自己的state、mutation、action、getter、甚至是嵌套子模块。通过设置<code>namespaced: true</code>的方式使其成为带命名空间的模块，如果需要在带命名空间的模块访问全局内容，<code>rootState</code> 和 <code>rootGetter</code> 会作为第三和第四参数传入 getter，若需要在全局命名空间内分发 <code>action</code> 或提交 <code>mutation</code>，将 <code>{ root: true }</code> 作为第三参数传给 <code>dispatch</code> 或 <code>commit</code> 即可。</p>
+</blockquote>
+</li>
 </ul>
 <h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><h4 id="基础篇-1"><a href="#基础篇-1" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
 <li>说一些与<code>Array</code>相关的api，并且挑几个详细说明它们的作用？<blockquote>
@@ -344,10 +348,20 @@
 <p>String,Boolean,Number,Object,Undefined,Null,Symbol</p>
 </blockquote>
 </li>
+<li><code>var</code>,<code>let</code>,<code>const</code>三种声明变量的方式有什么区别？<blockquote>
+<p><code>var</code> 声明变量有变量提升的功能 能重复声明<br><code>let</code> 声明一个具有块级作用域的变量，不具备变量提升功能，重复声明会报错<br><code>const</code> 声明一个具有块级作用域的常量，并且常用大写字母作为变量名，不具备变量提升功能，重复声明会报错，重新赋值也会报错</p>
+</blockquote>
+</li>
 </ul>
 <h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><h4 id="基础篇-2"><a href="#基础篇-2" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
-<li><code>display:none</code>与<code>visibility:hidden</code>与<code>opacity:0</code>的区别?<blockquote>
+<li><code>display:none</code>与<code>visibility:hidden</code>与<code>opacity:0</code>(兼容写法<code>filter：alpha(opacity=0)</code>)的区别?<blockquote>
 <p>他们都能让元素消失不见。<code>display:none</code>会让元素从渲染树中消失，渲染时不占任何空间，从而达到消失的目的。<code>visibility:hidden</code>与<code>opacity:0</code>只是让元素不可见，元素不会从渲染树消失不见，继续占据空间。<br><code>display:none</code>是非继承属性，元素直接消失了，修改子孙节点属性无法显示。<code>visibility:hidden</code>是继承属性，通过修改子孙属性<code>visibility:visible</code>可以让子孙节点<strong>显示</strong>。<br><code>opacity:0</code>，消失的原理是将元素的透明度设置为0，是继承属性，子孙节点通过设置<code>opacity:1</code><strong>无法显示</strong>，可以继续触发元素上绑定的事件。<br>修改元素的display通常会造成文档的回流，修改visibility与opacity属性只会造成本元素的重绘。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><h4 id="基础篇-3"><a href="#基础篇-3" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
+<li>对手机号做加密处理，将中间四位数字用<code>*</code>代替<blockquote>
+<p><code>replace</code>方法: <code>phone.replace(/(?&lt;=.{3}).(?=.{4})/g,&#39;*&#39;)</code><br><code>substring</code>方法,或<code>substr</code>方法: <code>phone.substring(0,3)+&#39;****&#39;+phone.substring(6,4)</code>,<code>phone.substr(0,3)+&#39;****&#39;+phone.substr(-4)</code><br>数组<code>splice</code>方法: <code>arr=phone.split();arr.splice(3,4,&#39;****&#39;);arr.join(&#39;&#39;)</code></p>
 </blockquote>
 </li>
 </ul>
@@ -530,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">1.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇"><span class="nav-number">1.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">2.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-1"><span class="nav-number">2.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-2"><span class="nav-number">3.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">1.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇"><span class="nav-number">1.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">2.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-1"><span class="nav-number">2.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-2"><span class="nav-number">3.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-3"><span class="nav-number">4.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li></ol></div>
             
 
           </div>
