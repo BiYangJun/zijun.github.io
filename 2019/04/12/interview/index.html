@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/zijun.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/zijun.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/zijun.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zijun.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/zijun.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/zijun.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/zijun.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试">
+<meta property="og:url" content="https://biyangjun.github.io/zijun.github.io/2019/04/12/interview/index.html">
+<meta property="og:site_name" content="子君的个人博客">
+<meta property="og:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/12/interview/vue.png">
+<meta property="og:updated_time" content="2019-04-12T05:39:54.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试">
+<meta name="twitter:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
+<meta name="twitter:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/12/interview/vue.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zijun.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://biyangjun.github.io/zijun.github.io/2019/04/12/interview/">
+
+
+
+
+
+  <title>面试 | 子君的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/zijun.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子君的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/zijun.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/zijun.github.io/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/zijun.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://biyangjun.github.io/zijun.github.io/zijun.github.io/2019/04/12/interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zi Jun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/zijun.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子君的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T09:57:39+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，<strong>基础</strong>，<strong>提升</strong>，<strong>高级</strong>，并且写一些比较冷门的前端知识。<br><a id="more"></a></p>
+<h3 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h3><h4 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
+<li><code>vue-rouer</code>有几种模式，区别是什么？<blockquote>
+<p>两种模式，hash模式与history模式 ，<code>vue-router</code>默认使用hash模式，hash模式的url格式一般为<code>http://.../#/...</code>,history模式则没有<code>/#/</code>，并且history模式需要后端配合，因为vue一般写的是单页面应用，如果后端没有正确的配置，用户直接访问<code>http://oursite.com/user/id</code>则回提示404错误。</p>
+</blockquote>
+</li>
+<li><code>vue-router</code>路由传参有几种方法？<blockquote>
+<p>通过<code>params</code>或<code>query</code>传参，前者参数不在url上显示，刷新页面会丢失参数，后者会在url上显示，刷新页面不会丢失参数。<br>路由的动态传参，这种方式首先要在<code>router.js</code>中配置路由对应的path为<code>{ path: &#39;/user/:id&#39;, component: User }</code>这种格式，在对应得页面可以通过<code>this.$route.params</code>来获取对应的参数。</p>
+</blockquote>
+</li>
+<li><code>vue-router</code>的导航守卫有哪些？<blockquote>
+<p>前置守卫:<code>router.beforeEach</code>(常用)当一个导航触发时，全局前置守卫按照创建顺序调用<br>解析守卫:<code>router.beforeResolve</code>(不常用)与前置守卫相识，区别在于导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用。<br>后置守卫:<code>router.afterEach</code>(不常用)不会接受 next 函数也不会改变导航本身：<br>独享守卫:<code>beforeEnter</code>(不常用)在路由配置里定义，用来对单独的路由作处理<br>守卫一般有三个参数</p>
+<ol>
+<li><code>to:Route</code>:即将要进入的目标 路由对象</li>
+<li><code>from: Route</code>:当前导航正要离开的路由</li>
+<li><code>next: Function</code>:必须调用的跳转方法，否则不会进行路由跳转</li>
+</ol>
+</blockquote>
+</li>
+<li>简单介绍一下vue 的生命周期函数？<blockquote>
+<p><strong>beforeCreate</strong>: 初始化之前的函数，vue实例不可访问，data未定义，一个基本不怎么用的函数<br><strong>created</strong>: 初始化函数，data已被定义，可以访问data里的数据，可以进行绑定，判断是否有<code>el</code>选项，有则继续进行，没有则停止编译(生命周期停止)，直到在该vue实例上调用vm.$mount(el)。接着判断是否有<code>template</code>选项，如果有，则会将<code>template</code>作为模板编译成render函数，如果没有，则将外部HTML作为模板编译。如果同时存在，<code>template</code>模版优先级是高于外部HTML的。同时vue对象中还有一个<code>render</code>函数，以createElement作为参数，然后做渲染操作，而且我们可以直接嵌入JSX，这个优先级是最高的。综上所述，模版优先级：<code>render</code>函数&gt;<code>template</code>模版&gt;外部HTML。<br><strong>beforeMount</strong>: 给vue添加$el成员，并且替换挂载的DOM元素。建立虚拟dom，data还是以参数名的方式挂载在节点中，没有注入数据。<br><strong>mounted</strong>: 第一次对组件进行渲染，将data里的数据注入节点中,这时已经形成了真实dom。这个函数vue的整个生命周期中只会执行一次，如果还有数据的变化，只会触发updated相关函数。<br><strong>beforeUpdate</strong>: 检测到data发生变化，准备对相应的组件再次渲染。首先重新渲染虚拟dom，再对真实的dom打补丁。<br><strong>updated</strong>: 完成对data发生变化的对应组件渲染<br><strong>beforeDestory</strong>: 实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destoryed</strong>: 在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<br><strong>帖一张官方的生命周期图</strong><br><img src="/zijun.github.io/2019/04/12/interview/vue.png" alt="生命周期"></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h3><h4 id="基础篇-1"><a href="#基础篇-1" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
+<li>说一些与<code>Array</code>相关的api，并且挑几个详细说明它们的作用？<blockquote>
+<p><code>concat</code>: 合并两个或多个数组，不会改变原数组，返回一个新数组<br><code>every</code>: 测试数组所有元素是否通过制定函数的测试<br><code>some</code>: 测试数组是否存在元素是否通过制定函数的测试<br><code>forEach</code>: 对数组的每个元素执行一次提供的函数。<br><code>reduce</code>:对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。第一个参数为执行函数，第二个参数为执行函数第一次调用时它第一个参数的值<br><code>map</code>: 创建一个新数组，结果为该数组每个元素调用函数的结果<br><code>filter</code>: 过滤，创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。<br><code>entries</code>: 返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。<br><code>find</code>: 返回数组中满足提供的测试函数第一个元素的值<br><code>findIndex</code>: 返回数组中满足提供的测试函数第一个元素的索引，没有返回-1<br><code>flat</code>: 按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。（IE不支持该方法）<br><code>includes</code>: 判断一个数组是否包含一个指定的值<br><code>concat</code>: 合并两个或多个数组，不会改变原数组，返回一个新数组<br><code>join</code>: 将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。如果数组只有一个项目，那么将返回该项目而不使用分隔符。<br><code>splice</code>: 通过删除或替换现有元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组。三个参数，start(指定下标)，deleteCount(移除的个数),[item1,item2,…]从start位置开始插入的元素。<br><code>slice</code>: 返回一个新的数组对象，这一对象是一个由 begin和 end（不包括end）决定的原数组的浅拷贝。原始数组不会被改变。<br><code>reverse</code>: 倒序<br><code>sort</code>: 排序<br><code>push</code>,<code>pop</code>,<code>shift</code>,<code>unshift</code> 数组堆栈操作</p>
+</blockquote>
+</li>
+<li>js的基础类型有哪些？<blockquote>
+<p>String,Boolean,Number,Object,Undefined,Null,Symbol</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><h4 id="基础篇-2"><a href="#基础篇-2" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
+<li><code>display:none</code>与<code>visibility:hidden</code>与<code>opacity:0</code>的区别?<blockquote>
+<p>他们都能让元素消失不见。<code>display:none</code>会让元素从渲染树中消失，渲染时不占任何空间，从而达到消失的目的。<code>visibility:hidden</code>与<code>opacity:0</code>只是让元素不可见，元素不会从渲染树消失不见，继续占据空间。<br><code>display:none</code>是非继承属性，元素直接消失了，修改子孙节点属性无法显示。<code>visibility:hidden</code>是继承属性，通过修改子孙属性<code>visibility:visible</code>可以让子孙节点<strong>显示</strong>。<br><code>opacity:0</code>，消失的原理是将元素的透明度设置为0，是继承属性，子孙节点通过设置<code>opacity:1</code><strong>无法显示</strong>，可以继续触发元素上绑定的事件。<br>修改元素的display通常会造成文档的回流，修改visibility与opacity属性只会造成本元素的重绘。</p>
+</blockquote>
+</li>
+</ul>
+<p>未完待续…</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>我想吃鸡腿!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="../../../../image/wechatpay.png" alt="Zi Jun WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="../../../../image/alipay.png" alt="Zi Jun Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/zijun.github.io/2019/04/11/blog-comments/" rel="next" title="如何给自己的博客添加评论系统">
+                <i class="fa fa-chevron-left"></i> 如何给自己的博客添加评论系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zi Jun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/zijun.github.io/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">1.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇"><span class="nav-number">1.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">2.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-1"><span class="nav-number">2.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-2"><span class="nav-number">3.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zi Jun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/zijun.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zijun.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zijun.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zijun.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zijun.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zijun.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/zijun.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/zijun.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/zijun.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/zijun.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/zijun.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '7970cb114f22ce2015b3',
+          clientSecret: '41d2b41411abdd7d693f42a526ed03918aae76de',
+          repo: 'blog-comments',
+          owner: 'BiYangJun',
+          admin: ['BiYangJun'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+    </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
