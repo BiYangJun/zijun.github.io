@@ -87,7 +87,7 @@
 <meta property="og:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://biyangjun.github.io/zijun.github.io/2019/04/12/interview/vue.png">
-<meta property="og:updated_time" content="2019-04-12T07:00:03.822Z">
+<meta property="og:updated_time" content="2019-04-17T11:04:48.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试">
 <meta name="twitter:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
@@ -361,11 +361,17 @@
 </ul>
 <h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><h4 id="基础篇-3"><a href="#基础篇-3" class="headerlink" title="基础篇"></a>基础篇</h4><ul>
 <li>对手机号做加密处理，将中间四位数字用<code>*</code>代替<blockquote>
-<p><code>replace</code>方法: <code>phone.replace(/(?&lt;=.{3}).(?=.{4})/g,&#39;*&#39;)</code><br><code>substring</code>方法,或<code>substr</code>方法: <code>phone.substring(0,3)+&#39;****&#39;+phone.substring(6,4)</code>,<code>phone.substr(0,3)+&#39;****&#39;+phone.substr(-4)</code><br>数组<code>splice</code>方法: <code>arr=phone.split();arr.splice(3,4,&#39;****&#39;);arr.join(&#39;&#39;)</code></p>
+<p><code>replace</code>方法: <code>phone.replace(/(?&lt;=.{3}).(?=.{4})/g,&#39;*&#39;)</code>;<br><code>substring</code>方法,或<code>substr</code>方法: <code>phone.substring(0,3)+&#39;****&#39;+phone.substring(6,4)</code>,<code>phone.substr(0,3)+&#39;****&#39;+phone.substr(-4)</code>;<br>数组<code>splice</code>方法: <code>arr=phone.split();arr.splice(3,4,&#39;****&#39;);arr.join(&#39;&#39;)</code>;</p>
 </blockquote>
 </li>
 </ul>
-<p>未完待续…</p>
+<h4 id="提升篇"><a href="#提升篇" class="headerlink" title="提升篇"></a>提升篇</h4><ul>
+<li><p>冒泡排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for(let i=0,l=arr.length;i&lt;l;i++)&#123;</span><br><span class="line">    for(let j=0;j&lt;l-1-i;j++)&#123;</span><br><span class="line">        if(arr[j]&gt;arr[j+1])&#123;</span><br><span class="line">            let tmp = arr[j+1];</span><br><span class="line">            arr[j+1] = arr[j];</span><br><span class="line">            arr[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>未完待续…</p>
+</li>
+</ul>
 
       
     </div>
@@ -544,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">1.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇"><span class="nav-number">1.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">2.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-1"><span class="nav-number">2.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-2"><span class="nav-number">3.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-3"><span class="nav-number">4.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue"><span class="nav-number">1.</span> <span class="nav-text">Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇"><span class="nav-number">1.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS"><span class="nav-number">2.</span> <span class="nav-text">JS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-1"><span class="nav-number">2.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">3.</span> <span class="nav-text">CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-2"><span class="nav-number">3.1.</span> <span class="nav-text">基础篇</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技巧"><span class="nav-number">4.</span> <span class="nav-text">技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础篇-3"><span class="nav-number">4.1.</span> <span class="nav-text">基础篇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升篇"><span class="nav-number">4.2.</span> <span class="nav-text">提升篇</span></a></li></ol></li></ol></div>
             
 
           </div>
