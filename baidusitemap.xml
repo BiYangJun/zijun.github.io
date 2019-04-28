@@ -2,18 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://blog.zijunfe.cn/vuex.html</loc>
-    <lastmod>2019-04-25</lastmod>
-  </url>  <url>
-    <loc>http://blog.zijunfe.cn/first-blog.html</loc>
-    <lastmod>2019-04-25</lastmod>
-  </url>  <url>
-    <loc>http://blog.zijunfe.cn/interview.html</loc>
-    <lastmod>2019-04-25</lastmod>
-  </url>  <url>
-    <loc>http://blog.zijunfe.cn/blog-comments.html</loc>
-    <lastmod>2019-04-20</lastmod>
+    <lastmod>2019-04-28</lastmod>
   </url>  <url>
     <loc>http://blog.zijunfe.cn/nginx.html</loc>
-    <lastmod>2019-04-20</lastmod>
+    <lastmod>2019-04-28</lastmod>
+  </url>  <url>
+    <loc>http://blog.zijunfe.cn/blog-comments.html</loc>
+    <lastmod>2019-04-28</lastmod>
+  </url>  <url>
+    <loc>http://blog.zijunfe.cn/first-blog.html</loc>
+    <lastmod>2019-04-28</lastmod>
+  </url>  <url>
+    <loc>http://blog.zijunfe.cn/interview.html</loc>
+    <lastmod>2019-04-28</lastmod>
   </url>
 </urlset>
