@@ -74,24 +74,32 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="子君的个人博客" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="杨Z君博客" type="application/atom+xml">
 
 
 
 
 
 
-<meta name="description" content="在有了自己的服务器后，不好好玩玩Nginx怎么行呢！毕竟花了钱的正好之前在学习TypeScript的时候，自己在github上有一个项目，所以想把这个项目丢到线上去玩玩～目标: 将github上的项目丢进服务器，并且能够正确访问 www.zijunfe.cn;前端要学习的东西真的很多，不过我们的征途是星辰大海！学习使我秃头">
+<meta name="description" content="想要做一个骚气的博主，没有一个评论系统怎么行呢 打开我的Google复制一下别人的，呸，打开我的Google搜索一下前辈们的经验。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx初体验">
-<meta property="og:url" content="http://blog.zijunfe.cn/2019/04/20/nginx/index.html">
-<meta property="og:site_name" content="子君的个人博客">
-<meta property="og:description" content="在有了自己的服务器后，不好好玩玩Nginx怎么行呢！毕竟花了钱的正好之前在学习TypeScript的时候，自己在github上有一个项目，所以想把这个项目丢到线上去玩玩～目标: 将github上的项目丢进服务器，并且能够正确访问 www.zijunfe.cn;前端要学习的东西真的很多，不过我们的征途是星辰大海！学习使我秃头">
+<meta property="og:title" content="如何给自己的博客添加评论系统">
+<meta property="og:url" content="http://blog.zijunfe.cn/blog-comments.html">
+<meta property="og:site_name" content="杨Z君博客">
+<meta property="og:description" content="想要做一个骚气的博主，没有一个评论系统怎么行呢 打开我的Google复制一下别人的，呸，打开我的Google搜索一下前辈们的经验。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-20T10:03:43.771Z">
+<meta property="og:image" content="http://blog.zijunfe.cn/sao.gif">
+<meta property="og:image" content="http://blog.zijunfe.cn/emm.jpg">
+<meta property="og:image" content="http://blog.zijunfe.cn/laibili.jpg">
+<meta property="og:image" content="http://blog.zijunfe.cn/xianqi.jpg">
+<meta property="og:image" content="http://blog.zijunfe.cn/shangyang.jpg">
+<meta property="og:image" content="http://blog.zijunfe.cn/wufuckshuo.jpg">
+<meta property="og:image" content="http://blog.zijunfe.cn/geyou.gif">
+<meta property="og:updated_time" content="2019-04-20T10:32:16.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx初体验">
-<meta name="twitter:description" content="在有了自己的服务器后，不好好玩玩Nginx怎么行呢！毕竟花了钱的正好之前在学习TypeScript的时候，自己在github上有一个项目，所以想把这个项目丢到线上去玩玩～目标: 将github上的项目丢进服务器，并且能够正确访问 www.zijunfe.cn;前端要学习的东西真的很多，不过我们的征途是星辰大海！学习使我秃头">
+<meta name="twitter:title" content="如何给自己的博客添加评论系统">
+<meta name="twitter:description" content="想要做一个骚气的博主，没有一个评论系统怎么行呢 打开我的Google复制一下别人的，呸，打开我的Google搜索一下前辈们的经验。">
+<meta name="twitter:image" content="http://blog.zijunfe.cn/sao.gif">
 
 
 
@@ -121,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.zijunfe.cn/2019/04/20/nginx/">
+  <link rel="canonical" href="http://blog.zijunfe.cn/blog-comments.html">
 
 
 
 
 
-  <title>Nginx初体验 | 子君的个人博客</title>
+  <title>如何给自己的博客添加评论系统 | 杨Z君博客</title>
   
 
 
@@ -157,7 +165,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">子君的个人博客</span>
+        <span class="site-title">杨Z君博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -286,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2019/04/20/nginx/">
+    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/blog-comments.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zi Jun">
@@ -295,7 +303,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="子君的个人博客">
+      <meta itemprop="name" content="杨Z君博客">
     </span>
 
     
@@ -303,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Nginx初体验</h1>
+          <h1 class="post-title" itemprop="name headline">如何给自己的博客添加评论系统</h1>
         
 
         <div class="post-meta">
@@ -315,8 +323,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T17:48:24+08:00">
-                2019-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T15:48:32+08:00">
+                2019-04-11
               </time>
             
 
@@ -338,8 +346,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
+                  <a href="/categories/博客/" itemprop="url" rel="index">
+                    <span itemprop="name">博客</span>
                   </a>
                 </span>
 
@@ -355,7 +363,7 @@
 
           
           
-             <span id="/2019/04/20/nginx/" class="leancloud_visitors" data-flag-title="Nginx初体验">
+             <span id="/blog-comments.html" class="leancloud_visitors" data-flag-title="如何给自己的博客添加评论系统">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  920
+                  1.8k字
                 </span>
               
 
@@ -405,85 +413,61 @@
       
 
       
-        <p>  在有了自己的服务器后，不好好玩玩Nginx怎么行呢！<del>毕竟花了钱的</del><br>正好之前在学习<code>TypeScript</code>的时候，自己在github上有一个项目，所以想把这个项目丢到线上去玩玩～<br>目标: 将github上的项目丢进服务器，并且能够正确访问 <a href="http://www.zijunfe.cn" target="_blank" rel="noopener">www.zijunfe.cn</a>;<br>前端要学习的东西真的很多，不过我们的征途是星辰大海！<br><del>学习使我秃头</del></p>
-<a id="more"></a>
-<h4 id="如何在CentOS服务器里下载Nginx"><a href="#如何在CentOS服务器里下载Nginx" class="headerlink" title="如何在CentOS服务器里下载Nginx"></a>如何在CentOS服务器里下载Nginx</h4><ol>
-<li><p>下载<code>epel-release</code></p>
+        <p>想要做一个骚气的博主，没有一个评论系统怎么行呢</p>
+<p><div style="width:170px;margin:0 auto;"><img src="/sao.gif" alt="你好骚啊"></div><br>打开我的Google复制一下别人的，<br>呸，<br>打开我的Google搜索一下前辈们的经验。<br><a id="more"></a><br>首先，我了解到的是next官网推荐的几种评论插件，分别是以下这几个哥们<br><code>DISQUS</code> <code>Facebook Comments</code> <code>HyperComments</code> <code>网易云跟帖</code> <code>来必力</code></p>
+<p><div style="width:170px;margin:0 auto;"><img src="/emm.jpg" alt="emm"></div><br>从名字上来说，我选择最后一个试一下(绝对不是我看不懂别人官网，绝对不是!)</p>
+<h4 id="来必力"><a href="#来必力" class="headerlink" title="来必力"></a>来必力</h4><p>来必力(这特喵的居然是个韩文网站) 这款评论系统比较简单，首先要去人家官网注册一个账号，登陆以后根据提示申请一个免费的city版什么鬼的，然后在代码里能得到一串LiveRe UID，在next 的<code>_config.yml</code>文件里编辑<code>livere_uid</code>字段，就完成啦，系不系很简单？效果如下<br><img src="/laibili.jpg" alt="来必力"><br>然后我觉得太丑了，不符合next的黑白简约主题，而且很大概率进入页面后需要重新刷新才能显示出来，所以我就放弃了。</p>
+<p><div style="width:170px;margin:0 auto;"><img src="/xianqi.jpg" alt="嫌弃"></div></p>
+<h4 id="Gitment"><a href="#Gitment" class="headerlink" title="Gitment"></a>Gitment</h4><p>接下来我又在茫茫Google中搜索，然后找到了它，看介绍说是通过github提issue的方式来创建一个评论系统，看到github我嘴角疯狂上扬，符合我的气质，这个我看行，开搞！</p>
+<ul>
+<li><p>首先在<a href="https://github.com/settings/developers" target="_blank" rel="noopener">https://github.com/settings/developers</a>申请一个免费的application，根据提示填写如下内容，</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application name：blog-comments  // 随便写啥，你能记住就好 </span><br><span class="line">Homepage URL：https://网站地址/  // 你的博客地址</span><br><span class="line">Application description：Blog comment system  // 随便写</span><br><span class="line">Authorization callback URL：https://网站地址/  // 你的博客地址</span><br></pre></td></tr></table></figure></div>
+<p> 创建完成后先不要关闭，<code>client_id</code>与<code>client_secret</code>下面要用</p>
+</li>
+<li>接着在你的github新建一个空的仓库来存放评论，比如叫做<code>blog-comments</code></li>
+<li>然后在主题配置文件<code>_config.yml</code>里填写gitment的相关配置<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">gitment:</span><br><span class="line">  enable: true  // 这个改成true</span><br><span class="line">  mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway</span><br><span class="line">  count: true # Show comments count in post meta area</span><br><span class="line">  lazy: false # Comments lazy loading with a button</span><br><span class="line">  cleanly: false # Hide &apos;Powered by ...&apos; on footer, and more</span><br><span class="line">  language: zh-Hans # Force language, or auto switch by theme</span><br><span class="line">  github_user: BiYangJun # MUST HAVE, Your Github ID</span><br><span class="line">  github_repo: blog-comments # MUST HAVE, The repo you use to store Gitment comments 这是你新建的存放评论的库</span><br><span class="line">  client_id: # MUST HAVE, Github client id for the Gitment 刚刚创建application里有的</span><br><span class="line">  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment 刚刚创建application里有的</span><br><span class="line">  proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect</span><br><span class="line">  redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<p>全部配置完后，一切看起来很顺利，页面底部也出来了评论框，就差最后一步登陆自己的github来初始化了，一开始本地登陆不了，我以为是要部署后才能登陆，然后我部署了上去，心里想着这下成了!</p>
+<p><div style="width:170px;margin:0 auto;"><img src="/shangyang.jpg" alt="嘴角上扬"></div><br>部署后，我点击登陆后，一直给我报错<code>[object ProgressEvent]</code>，试了很多次，我还一度怀疑是不是我github密码输错了，纳闷的我去看了一下gitment的issue，最后发现原因大概是gitment的网站证书到期了，gitment需要这个为接口，所以一直报错。<br>辛辛苦苦1小时，我…</p>
+<p><div style="width:170px;margin:0 auto;" center><img src="/wufuckshuo.jpg" alt="无话可说"></div><br>哎，接着在茫茫Google找吧…</p>
+<h4 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a>Gitalk</h4><p>接着，在茫茫博客中，我发现了<a href="https://www.lizhechen.com/" target="_blank" rel="noopener">戳兔专家</a>这位大哥的博文，跟着他的教程开始了安装<code>Gitalk</code>,帖个<a href="https://github.com/gitalk/gitalk" target="_blank" rel="noopener">官网</a>。</p>
+<h5 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h5><p>刚刚申请的application和新建存放评论的仓库不要丢，裹上鸡蛋液，放在油锅里炸一炸，隔壁小孩…<br>住嘴！<br>由于next还没有集成gitalk，所以配置起来相当繁琐</p>
+<ul>
+<li>首先还是要在github上申请一个application和新建一个存放评论的仓库(上面的就可以用)</li>
+<li><p>在 /layout/_third-party/comments/ 目录下新建 gitalk.swig 文件，内容如下：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;&gt;</span><br><span class="line">    &lt;script src=&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: &apos;&#123;&#123; theme.gitalk.ClientID &#125;&#125;&apos;,</span><br><span class="line">          clientSecret: &apos;&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;&apos;,</span><br><span class="line">          repo: &apos;&#123;&#123; theme.gitalk.repo &#125;&#125;&apos;,</span><br><span class="line">          owner: &apos;&#123;&#123; theme.gitalk.owner &#125;&#125;&apos;,</span><br><span class="line">          admin: [&apos;&#123;&#123; theme.gitalk.adminUser &#125;&#125;&apos;],</span><br><span class="line">          id: location.pathname,</span><br><span class="line">          distractionFreeMode: &apos;&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(&apos;gitalk-container&apos;)           </span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>修改 /layout/_partials/comments.swig，在最后一个 elseif 后添加字段，修改后如下：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> &#123;% elseif theme.gitment.enable %&#125;</span><br><span class="line">    &lt;div class=&quot;comments&quot; id=&quot;comments&quot;&gt;</span><br><span class="line">      &#123;% if theme.gitment.lazy %&#125;</span><br><span class="line">        &lt;div onclick=&quot;showGitment()&quot; id=&quot;gitment-display-button&quot;&gt;&#123;&#123; __(&apos;gitmentbutton&apos;) &#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;gitment-container&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;</span><br><span class="line">      &#123;% else %&#125;</span><br><span class="line">        &lt;div id=&quot;gitment-container&quot;&gt;&lt;/div&gt;</span><br><span class="line">      &#123;% endif %&#125;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &#123;% elseif theme.valine.appid and theme.valine.appkey %&#125;</span><br><span class="line">    &lt;div class=&quot;comments&quot; id=&quot;comments&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  </span><br><span class="line">  &#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">    &lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>修改 /layout/_third-party/comments/index.swig，在其末尾添加如下字段：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include &apos;gitalk.swig&apos; %&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>设置 gitalk 的样式，参考1： 在 /source/css/_common/components/third-party/ 目录下新建 gitalk.styl 文件，内容如下：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.gt-header a, .gt-comments a, .gt-popup a</span><br><span class="line">  border-bottom: none;</span><br><span class="line">.gt-container .gt-popup .gt-action.is--active:before</span><br><span class="line">  top: 0.7em;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>修改 /source/css/_common/components/third-party/third-party.styl 文件，在末尾添加如下字段：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;gitalk&quot;;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>最后在主题配置文件 _config.yml 中添加如下项：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gitalk:</span><br><span class="line">  enable: true</span><br><span class="line">  owner: 你的github帐号  # lzcwr  </span><br><span class="line">  repo: 存放评论的仓库名称   # Gitalk-comments</span><br><span class="line">  ClientID: 在申请好application的页面中有</span><br><span class="line">  ClientSecret: 在申请好application的页面中有</span><br><span class="line">  adminUser: 你的github帐号 # 可初始化评论的账户</span><br><span class="line">  distractionFreeMode: true</span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<p>完整无误地完成上述步骤后，在本地可以看到gitalk的按钮，然后通过<code>hexo d</code>部署到线上后，登陆你的github进行初始化就大功告成了啦！</p>
 <blockquote>
-<p>EPEL (Extra Packages for Enterprise Linux)是基于Fedora的一个项目，为“红帽系”的操作系统提供额外的软件包，适用于RHEL、CentOS和Scientific Linux.</p>
+<p>如果你给一篇博文的文件命名有中文的话，你可能会碰到这个报错Error: Validation Failed。哎，真是一波三折啊</p>
 </blockquote>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install epel-release</span><br></pre></td></tr></table></figure></div>
+<h5 id="Error-Validation-Failed-解决方案"><a href="#Error-Validation-Failed-解决方案" class="headerlink" title="Error: Validation Failed 解决方案"></a>Error: Validation Failed 解决方案</h5><ol>
+<li><p>修改前文提到的<code>gitalk.swig</code>，先下载一个<a href="https://github.com/blueimp/JavaScript-MD5/blob/master/js/md5.min.js" target="_blank" rel="noopener">md5.js</a>,更改完毕后的<code>gitalk.swig</code>如下：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/gitalk/dist/gitalk.css&quot;&gt;</span><br><span class="line">    &lt;script src=&quot;/js/md5.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script src=&quot;https://unpkg.com/gitalk/dist/gitalk.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: &apos;&#123;&#123; theme.gitalk.ClientID &#125;&#125;&apos;,</span><br><span class="line">          clientSecret: &apos;&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;&apos;,</span><br><span class="line">          repo: &apos;&#123;&#123; theme.gitalk.repo &#125;&#125;&apos;,</span><br><span class="line">          owner: &apos;&#123;&#123; theme.gitalk.owner &#125;&#125;&apos;,</span><br><span class="line">          admin: [&apos;&#123;&#123; theme.gitalk.adminUser &#125;&#125;&apos;],</span><br><span class="line">          id: md5(location.pathname),</span><br><span class="line">          distractionFreeMode: &apos;&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;&apos;</span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render(&apos;gitalk-container&apos;)           </span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure></div>
 </li>
-<li><p>下载nginx</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure></div>
+<li><p>批量修改博客文件名，例如以时间戳的方式命名md文件，具体可以参考这位<a href="https://blog.lanthora.org/20181229230044/" target="_blank" rel="noopener">大哥的博文</a></p>
 </li>
-<li><p>Nginx 开机启动</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable nginx</span><br></pre></td></tr></table></figure></div>
-<blockquote>
-<p>Systemctl是一个systemd工具，主要负责控制systemd系统和服务管理器。<br>Nginx 关闭开机启动</p>
-</blockquote>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关闭开机启动 Nginx</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>启动 Nginx</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start nginx</span><br></pre></td></tr></table></figure></div>
-</li>
+<li>避免使用中文命名，英文不好咱们就用拼音吧！</li>
 </ol>
-<ol start="5">
-<li><p>检查 Nginx 的运行状态</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status nginx</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>如果你的服务器开启了防火墙，则需要同时打开 80（HTTP）和 443（HTTPS）端口,通过下面的命令来打开这两个端口：</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>验证 Nginx 是否成功启动，可以在浏览器中打开 <a href="http://YOUR_IP，您将看到默认的" target="_blank" rel="noopener">http://YOUR_IP，您将看到默认的</a> Nginx 欢迎页面</p>
-</li>
-<li><p>停止Nginx</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop nginx</span><br></pre></td></tr></table></figure></div>
-</li>
-</ol>
-<ol start="9">
-<li><p>重启Nginx</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>修改 Nginx 配置后，重新加载</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload nginx</span><br></pre></td></tr></table></figure></div>
-</li>
-</ol>
-<h5 id="如何免密登陆服务器"><a href="#如何免密登陆服务器" class="headerlink" title="如何免密登陆服务器"></a>如何免密登陆服务器</h5><ol>
-<li>把自己电脑的私钥复制出来，例如在mac里私钥在<code>～/.ssh/*.pub</code>文件里，如果没有私钥和公钥，可以先生成，如何生成，执行<code>ssh-keygen</code>,一路回车。</li>
-<li>登陆服务器，把刚刚复制的私钥放入 服务器<code>~/.ssh/authorized_keys</code>文件中</li>
-<li>执行命令<code>ssh-add k id_rsa</code>,<code>id_rsa</code>就是那个以<code>.pub</code>结尾的文件名，如果执行报错，则先执行命令<code>ssh-agent bashen</code>,再执行添加命令</li>
-<li>进入服务器只需要执行<code>ssh root@ip地址</code>就能免密登陆啦！</li>
-</ol>
-<h5 id="如何添加nginx代理文件"><a href="#如何添加nginx代理文件" class="headerlink" title="如何添加nginx代理文件"></a>如何添加nginx代理文件</h5><ol>
-<li>在<code>etc/nginx/conf.d</code>中新增以<code>.conf</code>结尾的配置文件，比如你的域名叫做<code>zijunfe.cn</code>，那最好新增的文件名就叫<code>zijunfe-cn.conf</code>作为文件名。</li>
-<li><p><code>vim *.conf</code>进入文件，添加配置，如下：</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line"> listen 80;</span><br><span class="line">	 server_name www.zijunfe.cn;</span><br><span class="line">	 root /www/typescript-project/dist;</span><br><span class="line">	 index index.html;</span><br><span class="line">	 location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|js|pdf|txt)&#123;</span><br><span class="line">	  root /www/typescript-project/dist;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p> 保存退出。</p>
-</li>
-<li>执行命令<code>nginx -t</code>看看配置有没有报错，执行<code>nginx -s reload</code>重启nginx服务。</li>
-<li>如果执行完以上操作后发现访问网址没有变化，可以在访问<code>etc/nginx/nginx.conf</code>文件，找到<code>include /usr/share/nginx/modules/*.conf;</code>,将它放到文件最后，然后重新启动nginx服务。</li>
-</ol>
-<h5 id="如何在服务器上下载nodejs"><a href="#如何在服务器上下载nodejs" class="headerlink" title="如何在服务器上下载nodejs"></a>如何在服务器上下载nodejs</h5><ol>
-<li><p>在服务器上找一个文件夹，比如在<code>/</code>新建<code>app</code>文件夹</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir app &amp;&amp; cd app</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>下载对应版本的nodejs版本，我的服务器系统centos，也就是Linux 64位的，nodejs建议下载稳定版本，在<code>app</code>文件夹里执行命令。</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c https://nodejs.org/dist/v10.14.2/node-v10.14.2-linux-x64.tar.xz</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>解压文件夹</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf node-v10.14.2-linux-x64.tar.xz</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>为了美观，对解压后的文件夹进行改名</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv node-v10.14.2-linux-x64 nodejs</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>建立node,npm软连接</p>
- <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /app/nodejs/bin/node /usr/local/bin/node</span><br><span class="line">sudo ln -s /app/nodejs/bin/npm /usr/local/bin/npm</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p>检查是否安装成功，执行<code>node -v</code>，如果有版本号，则安装成功，如果报错，看一下是不是建立软连接的时候，对应的路径有没有写正确。</p>
-</li>
-</ol>
-<p>未完待续</p>
+<p>忙活了一晚上我的评论系统终于搞定了…</p>
+<p><div style="width:170px;margin:0 auto;"><img src="/geyou.gif" alt="葛优"></div><br>感谢万能的Google和<a href="https://www.lizhechen.com/" target="_blank" rel="noopener">戳兔专家</a>这位大哥。<br>看完的小伙伴记得评论、关注、收藏三连哦～<br>呸、<br>什么坏毛病<br>能给评论就感激不尽啦～</p>
 
       
     </div>
@@ -533,7 +517,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.zijunfe.cn/2019/04/20/nginx/" title="Nginx初体验">http://blog.zijunfe.cn/2019/04/20/nginx/</a>
+    <a href="http://blog.zijunfe.cn/blog-comments.html" title="如何给自己的博客添加评论系统">http://blog.zijunfe.cn/blog-comments.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -555,8 +539,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/12/interview/" rel="next" title="面试">
-                <i class="fa fa-chevron-left"></i> 面试
+              <a href="/first-blog.html" rel="next" title="记录一下搭建第一个博客的经历">
+                <i class="fa fa-chevron-left"></i> 记录一下搭建第一个博客的经历
               </a>
             
           </div>
@@ -565,8 +549,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/24/vuex/" rel="prev" title="加深了解vuex及使用typescript如何搭建store文件夹">
-                加深了解vuex及使用typescript如何搭建store文件夹 <i class="fa fa-chevron-right"></i>
+              <a href="/interview.html" rel="prev" title="面试">
+                面试 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -678,13 +662,13 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
-                    <a href="https://github.com/BiYangJun" target="_blank" title="GitHub">
+                    <a href="https://github.com/BiYangJun" rel="external nofollow" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
                 
                   <span class="links-of-author-item">
-                    <a href="html2014byj@163.com" target="_blank" title="E-Mail">
+                    <a href="html2014byj@163.com" rel="external nofollow" target="_blank" title="E-Mail">
                       
                         <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
@@ -715,7 +699,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在CentOS服务器里下载Nginx"><span class="nav-number">1.</span> <span class="nav-text">如何在CentOS服务器里下载Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如何免密登陆服务器"><span class="nav-number">1.1.</span> <span class="nav-text">如何免密登陆服务器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何添加nginx代理文件"><span class="nav-number">1.2.</span> <span class="nav-text">如何添加nginx代理文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何在服务器上下载nodejs"><span class="nav-number">1.3.</span> <span class="nav-text">如何在服务器上下载nodejs</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#来必力"><span class="nav-number">1.</span> <span class="nav-text">来必力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitment"><span class="nav-number">2.</span> <span class="nav-text">Gitment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitalk"><span class="nav-number">3.</span> <span class="nav-text">Gitalk</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先"><span class="nav-number">3.1.</span> <span class="nav-text">首先</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Error-Validation-Failed-解决方案"><span class="nav-number">3.2.</span> <span class="nav-text">Error: Validation Failed 解决方案</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -743,7 +727,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">子君</span>
+  <span class="author" itemprop="copyrightHolder">杨Z君</span>
 
   
 </div>
