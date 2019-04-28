@@ -90,7 +90,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://blog.zijunfe.cn/2019/04/24/vuex/vuex1.jpg">
 <meta property="og:image" content="http://blog.zijunfe.cn/2019/04/24/vuex/ts1.jpg">
-<meta property="og:updated_time" content="2019-04-25T09:59:57.165Z">
+<meta property="og:updated_time" content="2019-04-25T10:06:34.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加深了解vuex及使用typescript如何搭建store文件夹">
 <meta name="twitter:description" content="自从使用vue作为项目开发框架后，vue的全家桶每天都会与我见面，其中vuex更是常客。对于专门作为vue的状态管理模式，我认为这应该是每一位前端从业者都必须深入掌握的一项技能，可是在这段时间的面试中，我问了一些vuex相关的知识，却很少有人回答全面，即使他们的简历上写了3-4年的从业经验。比如以下这些vuex最基础的问题。">
@@ -211,6 +211,16 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
           </a>
         </li>
       
@@ -373,6 +383,25 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -396,7 +425,7 @@
 <p>大部分人回答的都是以通过<code>this.$store.commit</code>或者<code>this.$store.dispatch</code>这种通过调用vue实例中的<code>$store</code>的方式，而且只知道这一种调用方法。其实还有两种方式:1.通过<code>import store from &#39;store.js&#39;</code>的方式引入文件，通过<code>store.commit</code>和<code>store.dispatch</code>的方式调用。2.使用<code>mapActions</code>,<code>mapMutation</code>等辅助函数将组件的methods映射为store对应的方法名。</p>
 </blockquote>
 </li>
-<li><p>使用过vuex的<code>module</code>概念吗？在<code>.vue</code>文件中如何使用<code>module</code>里的<code>Mutation</code>与<code>Actions</code>里定义的方法？如何在不同<code>module</code></p>
+<li><p>使用过vuex的<code>module</code>概念吗？在<code>.vue</code>文件中如何使用<code>module</code>里的<code>Mutation</code>与<code>Actions</code>里定义的方法？</p>
 <blockquote>
 <p>这个基本上就全军覆没了，仅知道vuex有这么一个概念，但项目中没有用过，所以对于模块化的store不了解。<br>对于vuex的<code>module</code>概念，其实真的不难，个人觉得，即使项目中没有用过，但vuex作为我们日常开发中的老朋友，认真了解一下他5个孩子<code>State,Getter,Mutation,Action,Module</code>，从时间成本上来说，也许一个晚上就可以搞定，即使现在项目中使用不到，那未来的项目再碰到至少不会措手不及吧。</p>
 </blockquote>
