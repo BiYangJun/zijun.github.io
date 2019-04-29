@@ -85,16 +85,16 @@
 <meta name="keywords" content="前端,前端面试,前端知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试">
-<meta property="og:url" content="http://blog.zijunfe.cn/interview.html">
+<meta property="og:url" content="http://blog.zijunfe.cn/2019/04/12/interview/index.html">
 <meta property="og:site_name" content="子君的博客">
 <meta property="og:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://blog.zijunfe.cn/vue.png">
+<meta property="og:image" content="http://blog.zijunfe.cn/2019/04/12/interview/vue.png">
 <meta property="og:updated_time" content="2019-04-29T06:00:53.085Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试">
 <meta name="twitter:description" content="这两天面试了一些前端同行，面试别人同样是宝贵的经验，因为在问别人的同时，自己也会思考，这题的答案是什么，除了这种解法还有没有其他解法呢？所以这篇博文，我把自己问的问题作一个归纳与总结，并分为三个层次，基础，提升，高级，并且写一些比较冷门的前端知识。">
-<meta name="twitter:image" content="http://blog.zijunfe.cn/vue.png">
+<meta name="twitter:image" content="http://blog.zijunfe.cn/2019/04/12/interview/vue.png">
 
 
 
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://blog.zijunfe.cn/interview.html">
+  <link rel="canonical" href="http://blog.zijunfe.cn/2019/04/12/interview/">
 
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/interview.html">
+    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2019/04/12/interview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zi Jun">
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/interview.html" class="leancloud_visitors" data-flag-title="面试">
+             <span id="/2019/04/12/interview/" class="leancloud_visitors" data-flag-title="面试">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -425,7 +425,7 @@
 </ol>
 </blockquote>
 <h5 id="简单介绍一下vue-的生命周期函数？"><a href="#简单介绍一下vue-的生命周期函数？" class="headerlink" title="简单介绍一下vue 的生命周期函数？"></a>简单介绍一下vue 的生命周期函数？</h5><blockquote>
-<p><strong>beforeCreate</strong>: 初始化之前的函数，vue实例不可访问，data未定义，一个基本不怎么用的函数<br><strong>created</strong>: 初始化函数，data已被定义，可以访问data里的数据，可以进行绑定，判断是否有<code>el</code>选项，有则继续进行，没有则停止编译(生命周期停止)，直到在该vue实例上调用vm.$mount(el)。接着判断是否有<code>template</code>选项，如果有，则会将<code>template</code>作为模板编译成render函数，如果没有，则将外部HTML作为模板编译。如果同时存在，<code>template</code>模版优先级是高于外部HTML的。同时vue对象中还有一个<code>render</code>函数，以createElement作为参数，然后做渲染操作，而且我们可以直接嵌入JSX，这个优先级是最高的。综上所述，模版优先级：<code>render</code>函数&gt;<code>template</code>模版&gt;外部HTML。<br><strong>beforeMount</strong>: 给vue添加$el成员，并且替换挂载的DOM元素。建立虚拟dom，data还是以参数名的方式挂载在节点中，没有注入数据。<br><strong>mounted</strong>: 第一次对组件进行渲染，将data里的数据注入节点中,这时已经形成了真实dom。这个函数vue的整个生命周期中只会执行一次，如果还有数据的变化，只会触发updated相关函数。<br><strong>beforeUpdate</strong>: 检测到data发生变化，准备对相应的组件再次渲染。首先重新渲染虚拟dom，再对真实的dom打补丁。<br><strong>updated</strong>: 完成对data发生变化的对应组件渲染<br><strong>beforeDestory</strong>: 实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destoryed</strong>: 在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<br><strong>帖一张官方的生命周期图</strong><br><img src="/vue.png" alt="生命周期"></p>
+<p><strong>beforeCreate</strong>: 初始化之前的函数，vue实例不可访问，data未定义，一个基本不怎么用的函数<br><strong>created</strong>: 初始化函数，data已被定义，可以访问data里的数据，可以进行绑定，判断是否有<code>el</code>选项，有则继续进行，没有则停止编译(生命周期停止)，直到在该vue实例上调用vm.$mount(el)。接着判断是否有<code>template</code>选项，如果有，则会将<code>template</code>作为模板编译成render函数，如果没有，则将外部HTML作为模板编译。如果同时存在，<code>template</code>模版优先级是高于外部HTML的。同时vue对象中还有一个<code>render</code>函数，以createElement作为参数，然后做渲染操作，而且我们可以直接嵌入JSX，这个优先级是最高的。综上所述，模版优先级：<code>render</code>函数&gt;<code>template</code>模版&gt;外部HTML。<br><strong>beforeMount</strong>: 给vue添加$el成员，并且替换挂载的DOM元素。建立虚拟dom，data还是以参数名的方式挂载在节点中，没有注入数据。<br><strong>mounted</strong>: 第一次对组件进行渲染，将data里的数据注入节点中,这时已经形成了真实dom。这个函数vue的整个生命周期中只会执行一次，如果还有数据的变化，只会触发updated相关函数。<br><strong>beforeUpdate</strong>: 检测到data发生变化，准备对相应的组件再次渲染。首先重新渲染虚拟dom，再对真实的dom打补丁。<br><strong>updated</strong>: 完成对data发生变化的对应组件渲染<br><strong>beforeDestory</strong>: 实例销毁之前调用。在这一步，实例仍然完全可用。<br><strong>destoryed</strong>: 在Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<br><strong>帖一张官方的生命周期图</strong><br><img src="/2019/04/12/interview/vue.png" alt="生命周期"></p>
 </blockquote>
 <h5 id="vuex的核心概念包括哪些内容。内容比较多，详情看vuex官网"><a href="#vuex的核心概念包括哪些内容。内容比较多，详情看vuex官网" class="headerlink" title="vuex的核心概念包括哪些内容。内容比较多，详情看vuex官网"></a><code>vuex</code>的核心概念包括哪些内容。内容比较多，详情看<a href="https://vuex.vuejs.org/zh/guide/modules.html" target="_blank" rel="noopener">vuex官网</a></h5><blockquote>
 <p><code>state</code>:存放状态数据的字段，辅助函数<code>mapState</code><br><code>getter</code>:可以认为是 store 的计算属性,辅助函数<code>mapGetter</code><br><code>mutation</code>:更改store状态的唯一方法，必须是同步操作，辅助函数<code>mapMutation</code><br><code>action</code>:action类似于mutation,不过无法直接变更状态，需要通过提交mutation来更改，可以包含任意的异步操作，辅助函数<code>mapAction</code><br><code>module</code>:store的模块，每个模块拥有自己的state、mutation、action、getter、甚至是嵌套子模块。通过设置<code>namespaced: true</code>的方式使其成为带命名空间的模块，如果需要在带命名空间的模块访问全局内容，<code>rootState</code> 和 <code>rootGetter</code> 会作为第三和第四参数传入 getter，若需要在全局命名空间内分发 <code>action</code> 或提交 <code>mutation</code>，将 <code>{ root: true }</code> 作为第三参数传给 <code>dispatch</code> 或 <code>commit</code> 即可。</p>
@@ -550,7 +550,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.zijunfe.cn/interview.html" title="面试">http://blog.zijunfe.cn/interview.html</a>
+    <a href="http://blog.zijunfe.cn/2019/04/12/interview/" title="面试">http://blog.zijunfe.cn/2019/04/12/interview/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -572,7 +572,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog-comments.html" rel="next" title="如何给自己的博客添加评论系统">
+              <a href="/2019/04/11/blog-comments/" rel="next" title="如何给自己的博客添加评论系统">
                 <i class="fa fa-chevron-left"></i> 如何给自己的博客添加评论系统
               </a>
             
@@ -582,7 +582,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/nginx.html" rel="prev" title="Nginx初体验">
+              <a href="/2019/04/20/nginx/" rel="prev" title="Nginx初体验">
                 Nginx初体验 <i class="fa fa-chevron-right"></i>
               </a>
             
