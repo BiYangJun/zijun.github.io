@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zijunfe.cn/2019/04/29/vue-databind/</loc>
+    
+    <lastmod>2019-04-30T07:56:09.183Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zijunfe.cn/2019/04/11/blog-comments/</loc>
     
     <lastmod>2019-04-29T06:00:53.098Z</lastmod>
