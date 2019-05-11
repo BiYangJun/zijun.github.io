@@ -159,7 +159,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
@@ -283,6 +283,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2019/05/07/vue-ts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zi Jun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子君的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/07/vue-ts/" itemprop="url">vue如何与TypeScript搭配使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T17:02:38+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/07/vue-ts/" class="leancloud_visitors" data-flag-title="vue如何与TypeScript搭配使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近真的陷入了TypeScript无法自拔，我甚至有一种感觉ts可能会成为前端必须要掌握的一项技术(就像现在前端从业者必须得掌握三大框架之一一样)。</p>
+<p>但现在使用vue+TypeScript来开发项目的其实还是比较少的，<code>Vue</code>的作者尤雨溪在知乎上回答过这么一个问题<a href="https://www.zhihu.com/question/310485097/answer/591869966" target="_blank" rel="noopener">TypeScript 不适合在 vue 业务开发中使用吗？</a>,根据他本人的回答，现在的vue2.x版本对TS的支持是远不如React和Angular的，所以在即将发布的vue3.0要加强这一块。</p>
+<p>但是因为<code>vue-class-component</code>与<code>vue-property-decorator</code>(前者的升级版本，加入了Vue，Watch，Emit等功能)的存在，现在使用TS+vue来写项目也不是什么问题，虽然还有些稍许的bug，不过无伤大雅</p>
+<p>在前面的博客里我介绍过如何<a href="/2019/04/24/vuex/">使用TypeScript如何搭建store文件夹</a>，所以这篇博文主要做一个用JS与TS编写vue文件的区别。(引入的是<code>vue-property-decorator</code>，全部介绍完基本上是不可能的，这里结束的是平时用的多的)</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/07/vue-ts/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2019/05/05/diary1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,9 +479,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/05/diary1/" itemprop="url">记第一次去深大</a></h1>
+                <a class="post-title-link" href="/2019/05/05/diary1/" itemprop="url">记第一次去深大</a></h2>
         
 
         <div class="post-meta">
@@ -476,9 +655,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/29/vue-databind/" itemprop="url">看懂vue源码-理解数据双向绑定的实现</a></h1>
+                <a class="post-title-link" href="/2019/04/29/vue-databind/" itemprop="url">看懂vue源码-理解数据双向绑定的实现</a></h2>
         
 
         <div class="post-meta">
@@ -652,9 +831,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/24/vuex/" itemprop="url">加深了解vuex及使用typescript如何搭建store文件夹</a></h1>
+                <a class="post-title-link" href="/2019/04/24/vuex/" itemprop="url">加深了解vuex及使用typescript如何搭建store文件夹</a></h2>
         
 
         <div class="post-meta">
@@ -828,9 +1007,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/20/nginx/" itemprop="url">Nginx初体验</a></h1>
+                <a class="post-title-link" href="/2019/04/20/nginx/" itemprop="url">Nginx初体验</a></h2>
         
 
         <div class="post-meta">
@@ -1004,9 +1183,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/12/interview/" itemprop="url">面试</a></h1>
+                <a class="post-title-link" href="/2019/04/12/interview/" itemprop="url">面试</a></h2>
         
 
         <div class="post-meta">
@@ -1180,9 +1359,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/11/blog-comments/" itemprop="url">如何给自己的博客添加评论系统</a></h1>
+                <a class="post-title-link" href="/2019/04/11/blog-comments/" itemprop="url">如何给自己的博客添加评论系统</a></h2>
         
 
         <div class="post-meta">
@@ -1357,9 +1536,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/first-blog/" itemprop="url">记录一下搭建第一个博客的经历</a></h1>
+                <a class="post-title-link" href="/2019/04/10/first-blog/" itemprop="url">记录一下搭建第一个博客的经历</a></h2>
         
 
         <div class="post-meta">
@@ -1554,7 +1733,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
