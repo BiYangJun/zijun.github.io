@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zijunfe.cn/2019/05/11/prototype/</loc>
+    
+    <lastmod>2019-05-13T05:34:57.853Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zijunfe.cn/2019/04/12/interview/</loc>
+    
+    <lastmod>2019-05-12T14:06:42.915Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zijunfe.cn/2019/05/07/vue-ts/</loc>
     
     <lastmod>2019-05-11T09:20:59.254Z</lastmod>
@@ -38,13 +52,6 @@
   
   <url>
     <loc>http://blog.zijunfe.cn/2019/04/20/nginx/</loc>
-    
-    <lastmod>2019-04-29T06:00:53.085Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zijunfe.cn/2019/04/12/interview/</loc>
     
     <lastmod>2019-04-29T06:00:53.085Z</lastmod>
     
