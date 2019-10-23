@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zijunfe.cn/2019/10/22/RegExp/</loc>
+    
+    <lastmod>2019-10-23T10:34:21.492Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zijunfe.cn/2019/10/22/xiumi/</loc>
     
-    <lastmod>2019-10-22T13:10:38.183Z</lastmod>
+    <lastmod>2019-10-22T13:17:55.659Z</lastmod>
     
   </url>
   
@@ -51,6 +58,13 @@
   </url>
   
   <url>
+    <loc>http://blog.zijunfe.cn/2019/04/10/first-blog/</loc>
+    
+    <lastmod>2019-04-29T06:00:53.085Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zijunfe.cn/2019/04/20/nginx/</loc>
     
     <lastmod>2019-04-29T06:00:53.085Z</lastmod>
@@ -59,13 +73,6 @@
   
   <url>
     <loc>http://blog.zijunfe.cn/2019/04/24/vuex/</loc>
-    
-    <lastmod>2019-04-29T06:00:53.085Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zijunfe.cn/2019/04/10/first-blog/</loc>
     
     <lastmod>2019-04-29T06:00:53.085Z</lastmod>
     

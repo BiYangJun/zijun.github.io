@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="前端,JavaScript,正则表达式">
 
 
 
@@ -81,17 +81,20 @@
 
 
 
-<meta name="description" content="123456[].__proto__ === Array.prototypeArray.__proto__ === Function.prototypeArray.prototype.__proto__ === Object.prototypeFunction.__proto__ === Function.prototype // Function.prototype 是个方法，是通过继承Obje">
+<meta name="description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
+<meta name="keywords" content="前端,JavaScript,正则表达式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原型链的理解">
-<meta property="og:url" content="http://blog.zijunfe.cn/2019/05/11/prototype/index.html">
+<meta property="og:title" content="JS中的正则表达式">
+<meta property="og:url" content="http://blog.zijunfe.cn/2019/10/22/RegExp/index.html">
 <meta property="og:site_name" content="子君的个人博客">
-<meta property="og:description" content="123456[].__proto__ === Array.prototypeArray.__proto__ === Function.prototypeArray.prototype.__proto__ === Object.prototypeFunction.__proto__ === Function.prototype // Function.prototype 是个方法，是通过继承Obje">
+<meta property="og:description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-13T05:34:57.853Z">
+<meta property="og:image" content="http://blog.zijunfe.cn/2019/10/22/RegExp/img1.jpg">
+<meta property="og:updated_time" content="2019-10-23T10:34:21.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原型链的理解">
-<meta name="twitter:description" content="123456[].__proto__ === Array.prototypeArray.__proto__ === Function.prototypeArray.prototype.__proto__ === Object.prototypeFunction.__proto__ === Function.prototype // Function.prototype 是个方法，是通过继承Obje">
+<meta name="twitter:title" content="JS中的正则表达式">
+<meta name="twitter:description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
+<meta name="twitter:image" content="http://blog.zijunfe.cn/2019/10/22/RegExp/img1.jpg">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.zijunfe.cn/2019/05/11/prototype/">
+  <link rel="canonical" href="http://blog.zijunfe.cn/2019/10/22/RegExp/">
 
 
 
 
 
-  <title>原型链的理解 | 子君的个人博客</title>
+  <title>JS中的正则表达式 | 子君的个人博客</title>
   
 
 
@@ -286,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2019/05/11/prototype/">
+    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2019/10/22/RegExp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zi Jun">
@@ -303,7 +306,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">原型链的理解</h2>
+          <h2 class="post-title" itemprop="name headline">JS中的正则表达式</h2>
         
 
         <div class="post-meta">
@@ -315,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-11T22:19:22+08:00">
-                2019-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-22T09:57:39+08:00">
+                2019-10-22
               </time>
             
 
@@ -355,7 +358,7 @@
 
           
           
-             <span id="/2019/05/11/prototype/" class="leancloud_visitors" data-flag-title="原型链的理解">
+             <span id="/2019/10/22/RegExp/" class="leancloud_visitors" data-flag-title="JS中的正则表达式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  79字
+                  3.3k字
                 </span>
               
 
@@ -405,7 +408,121 @@
       
 
       
-        <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[].__proto__ === <span class="built_in">Array</span>.prototype</span><br><span class="line"><span class="built_in">Array</span>.__proto__ === <span class="built_in">Function</span>.prototype</span><br><span class="line"><span class="built_in">Array</span>.prototype.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="built_in">Function</span>.__proto__ === <span class="built_in">Function</span>.prototype <span class="comment">// Function.prototype 是个方法，是通过继承Object.prototype而产生的,</span></span><br><span class="line"><span class="built_in">Function</span>.__proto__.__proto__ === <span class="built_in">Object</span>.prototype <span class="comment">// Object.prototype 原型链顶端，是对象，但它不是通过Object函数创建的。是浏览器引擎按照ECMAScript规范创造的一个对象</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.__proto__ === <span class="literal">null</span></span><br></pre></td></tr></table></figure></div>
+        <p>在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！</p>
+<p>学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。</p>
+<p>友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习，你得先记住它，才能灵活运用它。</p>
+<blockquote>
+<p>学一门前端工具，几年就过时了。学正则表达式，受用一辈子。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="小怪：学习正则的语法"><a href="#小怪：学习正则的语法" class="headerlink" title="小怪：学习正则的语法"></a>小怪：学习正则的语法</h4><ol>
+<li><p><strong>弄一个正则出来</strong>：使用字面量, 构造函数和工厂符号都可以写出一个正则表达式。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/pattern/flags</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>(pattern [, flags])</span><br><span class="line"><span class="built_in">RegExp</span>(pattern [, flags])</span><br></pre></td></tr></table></figure></div>
+<p>其中<code>pattern</code>为正则表达式的文本，<code>flags</code>为修饰符，可以为一个，也可以是多个为一组。</p>
+</li>
+<li><p><strong>普通字符</strong>：何为普通字符？就是包括各种人类语言，24个英文字母(包括大小写)，没有特殊含义的符号，甚至emoji表情也算普通字符。普通字符在正则中的含义就是检索它本身，你看:</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;hello 😀 regex&apos;.match(/😀/);</span><br><span class="line">// [&quot;😀&quot;, index: 6, input: &quot;hello 😀 regex&quot;, groups: undefined]</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>元字符</strong>：在正则世界里大部分符号都是作为普通字符的存在，但总是有钉子户的存在，还有几个符号是有自己的特殊含义的，这种符号被称为元字符。</p>
+<hr>
+<p>常用</p>
+<ul>
+<li><code>^</code>:通常匹配输入字符串的开始位置,说通常，因为它在字符组中<code>[^abc]</code>另有含义。</li>
+<li><p><code>$</code>:与上面的相反，匹配输入字符串的结束位置。</p>
+<p>需要注意的几点地方：</p>
+<ul>
+<li>作为匹配文本开始元字符的时候必须是正则主体的第一个符号或者最后一个符号，否则正则无效。</li>
+<li>它匹配的是一个位置，而不是具体的文本</li>
+<li><code>^</code>符号在正则的字符组中有其他含义，<code>$</code>在字符串方法<code>replace</code>中有其他含义。</li>
+</ul>
+</li>
+<li><p><code>\</code>:将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，“n”匹配字符“n”。“\n”匹配一个换行符。串行“\”匹配“\”而“(”则匹配“(”。简单来说，转义符能将一些普通字符提升成元字符，转义符能将任何符号砭为庶民(普通字符)，包括它自己(我狠起来自己都打)，当然普通字符转义后还是转义字符。</p>
+</li>
+<li><p><code>\b</code>:匹配一个单词边界(boundary)，匹配的是一个位置，而不是一个字符。单词和空格之间的位置，就是所谓单词边界，并且对汉字及其他语言是无效的。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'hello regex'</span>.match(<span class="regexp">/\bregex$/</span>); <span class="comment">// ['regex']</span></span><br><span class="line"><span class="string">'hello regex'</span>.match(<span class="regexp">/\b/g</span>); <span class="comment">// ["", "", "", ""] 有4个单词边界，分别为hello前后位置，regex前后位置</span></span><br><span class="line"><span class="string">'窝窝头 一块钱 4个'</span>.match(<span class="regexp">/\b窝窝头\b/</span>); <span class="comment">// null</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>\B</code>:匹配一个非单词边界，匹配的一个不是单词边界的位置。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'1234'</span>.match(<span class="regexp">/1\B2/</span>); <span class="comment">// ['12']</span></span><br><span class="line"><span class="string">'1234'</span>.match(<span class="regexp">/\B/g</span>); <span class="comment">// ["", "", ""] 有3个非单词边界，分别为12，23，34中间的位置</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>\d</code>:匹配一个数字字符，等价于[0-9]，这里的数字不是JS中的Number类型，指字符串中的数字。</p>
+</li>
+<li><code>\D</code>:匹配一个非数字字符，等价于[^0-9]。</li>
+<li><code>\s</code>:匹配一个空白字符，空白字符不单单包括空格，它是一个总集<code>空格\f\n\r\t\v</code>，包括空格，换页符，换行符，回车符，水平制表符，垂直制表符。但是这个总集里大部分符号都是不可打印的符号，只有<code>\n</code>和我们经常接触了，如果你不需要区分空格与换行，可以大胆使用<code>\s</code>，如果你想只匹配一个空格，在正则的写法就是空一格。</li>
+<li><code>\S</code>:匹配任何非空白字符。等价于<code>[^ \f\n\r\t\v]</code>。</li>
+<li><code>\w</code>:匹配一个26个英文字母或者一个数字或者一个下划线，等价于<code>[A-Za-z0-9_]</code>.注意这里会多一个下划线，因为在Javascript中的变量规则中，使用这三种命名是比较合理的。</li>
+<li><code>\W</code>:匹配任何非单词字符。等价于<code>[^A-Za-z0-9_]</code>。</li>
+</ul>
+<hr>
+<p>不常用</p>
+<ul>
+<li><code>\cx</code>:匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的“c”字符。</li>
+<li><code>\f</code>:匹配一个换页符。等价于\x0c和\cL。</li>
+<li><code>\n</code>:匹配一个换行符。等价于\x0a和\cJ。</li>
+<li><code>\r</code>:匹配一个回车符。等价于\x0d和\cM。</li>
+<li><code>\t</code>:匹配一个制表符。等价于\x09和\cI。</li>
+<li><code>\v</code>:匹配一个垂直制表符。等价于\x0b和\cK。</li>
+</ul>
+</li>
+<li><p><strong>量词</strong>：在正则的世界里，一个字符或者元字符也只能匹配对应的一个字符，但是如果需要匹配重复的字符，正则世界里量词就能帮助我们，量词加上元字符的使用，就像是加特林机枪还加上里蓝光，强大并且炫酷。</p>
+<ul>
+<li><code>?</code>：重复零次或者一次。很好记忆，就像我们理解的问号一样，不确定有没有。</li>
+<li><code>+</code>：重复一次或者多次，也就是至少一次。懂的自然懂，为东方长者+1s。</li>
+<li><code>*</code>：重复零次或者多次，也就是任意次数。可以把这个想象成天上的星星，有时候你看不到星星 ，有时候你可以看到数不完的星星。</li>
+<li><code>{n}</code>：重复n次，在正则中<code>{}</code>符号中间要是有个数字或者是数字加<code>,</code>是有特殊含义的，但是如果中间是其他东西是不需要转义的。</li>
+<li><code>{n,}</code>：重复n次或者更多次，<code>{1,}</code>相当于<code>+</code>，<code>{0,}</code>相当于<code>*</code>。</li>
+<li><code>{n,m}</code>：重复n次到m次之间的次数，包含n次和m次，<code>{0,1}</code>相当于<code>?</code>。</li>
+</ul>
+<hr>
+<p>量词虽好，但还是需要注意以下几点：</p>
+<ul>
+<li><code>{n,m}</code>中间不能有空格，空格在正则中是有含义的。</li>
+<li>量词后面跟着量词会报错(有特殊情况)。</li>
+<li><code>/.*/</code>功能强大，常用于匹配对我们没有价值的字符，能匹配<strong>若干除换行符之外的字符</strong>，但是性能不太好。</li>
+<li>正则中不是所有地方的<code>?</code>都是做量词用的，<code>?</code>还有其他含义，在下面的内容我会都列出来。</li>
+</ul>
+</li>
+<li><p><strong>贪婪模式与非贪婪模式</strong>：上面说到了量词后面不能跟量词，但是会有一种特殊情况，那就是通过<code>?</code>切换贪婪模式与非贪婪模式</p>
+<p>正则世界的默认模式是贪婪模式，什么意思呢？比如<code>&#39;Gooooogle&#39;.match(/o+/g)</code>这个正则里，无论你有多少个<code>o</code>我都给你匹配出来。</p>
+<p>当<code>?</code>紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式切换成非贪婪模式。非贪婪模式会尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'https'</span>.match(<span class="regexp">/http(s)?/</span>); <span class="comment">// ['https', 's'] 贪婪模式，我不仅要https，捕获出来的s我也要，我全都要！</span></span><br><span class="line"><span class="string">'https'</span>.match(<span class="regexp">/http(s)??/</span>); <span class="comment">// ['https'] 非贪婪模式，我就要个https，稳定发育，不贪</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>字符组</strong>：在正则的世界里，一个字符只能匹配到它自己，但是如果你只知道这个字符是’abc’中的一种，这时候字符组就能帮助到我们。</p>
+<ul>
+<li><p><code>[]</code>:方括号在正则中表示一个区间,我们称它为字符组,字符组中的字符集合只是所有的可选项，最终它只能匹配一个字符,除了<code>-</code>和<code>^</code>在字符组中有特殊含义，其他字符一律作为普通字符处理。</p>
+<p><code>^</code>在字符组中表示取反，不再是文本开始的位置了。</p>
+<p><code>-</code>本来是一个普通字符，在字符组中摇身一变成为连字符。但是注意，只能连接<strong>大小写英文字母和数字</strong>，比如<code>数字-数字</code>，<code>数字-字母</code>，<code>字母-字母</code>，并且英文字母一定在数字后面，对比想一下扑克牌的顺序就明白了。如果<code>-</code>前后有一个地方是数字或者字母，但是另一边是其他符号，正则会报错哦。</p>
+<p>如果你只需要<code>-</code>和<code>^</code>作为普通字符，前面加<code>/</code>转义即可。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'grey or gray'</span>.match(<span class="regexp">/gr[ae]y/g</span>); <span class="comment">// ['grey','gray']</span></span><br><span class="line"><span class="string">'$'</span>.match(<span class="regexp">/[$&amp;@]/</span>); <span class="comment">// ['$']</span></span><br><span class="line"><span class="string">'xyz-3'</span>.match(<span class="regexp">/[0-c]/</span>); <span class="comment">// ['3']</span></span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+</li>
+</ol>
+<ol start="7">
+<li><p><strong>捕获组与非捕获组</strong>：前面我们知道了普通字符加量词的组合，能够匹配出单个字符重复很多次的字符串，那么我要匹配一个重复的字符串呢？此时捕获组来了，它跨着大马步向我们走来。</p>
+<p>在正则中<code>()</code>俩个圆括号代表着将它其中的字符集合打包成一个整体，然后量词就可以操作这个整体了。并且<code>()</code>的匹配结果默认是可以捕获的。如果你不想将括号内的字符捕获出来，只要在圆括号内最前面加上<code>?:</code>标识，像这样<code>(?:)</code>。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'窝窝头 一块钱 一块钱 一块钱 4个'</span>.match(<span class="regexp">/窝窝头 (一块钱 )+4个/</span>); <span class="comment">// ['窝窝头 一块钱 一块钱 一块钱 4个', '一块钱'] 默认情况下，括号内的内容也会匹配出来</span></span><br><span class="line"><span class="string">'窝窝头 一块钱 一块钱 一块钱 4个'</span>.match(<span class="regexp">/窝窝头 (?:一块钱 )+4个/</span>); <span class="comment">// ['窝窝头 一块钱 一块钱 一块钱 4个'] ‘一块钱’没有了</span></span><br></pre></td></tr></table></figure></div>
+<p>捕获分为正则内捕获和正则外捕获</p>
+<ul>
+<li>正则内捕获，正则内捕获使用<code>\数字</code>的形式，分别对应前面的圆括号捕获的内容。这种捕获的引用也叫反向引用。比如我们把html所有非自闭合标签都匹配出来，非自闭合标签的特性就是前后有对应的标签名，像<code>&lt;div&gt;&lt;/div&gt;</code>。如果在括号内使用了<code>?:</code>标示，<code>\数字</code>的方式就会失效。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'&lt;App&gt;hello regex&lt;/App&gt;'</span>.match(<span class="regexp">/&lt;([a-zA-Z]+)&gt;.*&lt;\/\1&gt;/</span>); <span class="comment">// ['&lt;App&gt;hello regex&lt;/App&gt;'] 这里的\1就是前面()捕获到的内容</span></span><br><span class="line"><span class="string">'&lt;App&gt;hello regex&lt;/App&gt;'</span>.match(<span class="regexp">/&lt;(?:[a-zA-Z]+)&gt;.*&lt;\/\1&gt;/</span>); <span class="comment">// null</span></span><br></pre></td></tr></table></figure></div>
+<p>同时，括号内是可以继续加括号的，那么<code>\数字</code>是如何一一对应前面的括号的，记住一点深度优先的原则，同级捕获按前后顺序，同一个捕获内最外面一层优先(就像剥洋葱),比如下面的栗子：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'&lt;App&gt;hello regex&lt;/App&gt;&lt;p&gt;A&lt;/p&gt;&lt;p&gt;hello regex&lt;/p&gt;'</span>.match(<span class="regexp">/&lt;((A|a)pp)&gt;(hello regex)+&lt;\/\1&gt;&lt;p&gt;\2&lt;\/p&gt;&lt;p&gt;\3&lt;\/p&gt;/</span>);</span><br><span class="line"><span class="comment">// ["&lt;App&gt;hello regex&lt;/App&gt;&lt;p&gt;A&lt;/p&gt;&lt;p&gt;hello regex&lt;/p&gt;", "App", "A", "hello regex"]</span></span><br><span class="line"><span class="comment">// \1对应的是((A|a)pp)这个捕获，</span></span><br><span class="line"><span class="comment">// \2对应的是(A|a)这个捕获，</span></span><br><span class="line"><span class="comment">// \3对应的是(hello regex)这个捕获</span></span><br></pre></td></tr></table></figure></div>
+<p><img src="/2019/10/22/RegExp/img1.jpg" alt></p>
+<p>这个确实有点绕，如果你还没整明白，你可以尝试使用<strong>ES2018的新特性——捕获命名</strong>。在捕获组内部最前面加上<code>?&lt;key&gt;</code>，它就被命名了。使用<code>\k&lt;key&gt;</code>语法就可以引用已经命名的捕获组。捕获命名只在正则内捕获生效哦，对上面的代码该改造如下。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'&lt;App&gt;hello regex&lt;/App&gt;&lt;p&gt;A&lt;/p&gt;&lt;p&gt;hello regex&lt;/p&gt;'</span>.match(<span class="regexp">/&lt;(?&lt;bar&gt;(?&lt;foo&gt;A|a)pp)&gt;(?&lt;tob&gt;hello regex)+&lt;\/\k&lt;bar&gt;&gt;&lt;p&gt;\k&lt;foo&gt;&lt;\/p&gt;&lt;p&gt;\k&lt;tob&gt;&lt;\/p&gt;/</span>);</span><br><span class="line"><span class="comment">// ["&lt;App&gt;hello regex&lt;/App&gt;&lt;p&gt;A&lt;/p&gt;&lt;p&gt;hello regex&lt;/p&gt;", "App", "A", "hello regex"]</span></span><br><span class="line"><span class="comment">// \k&lt;bar&gt;对应的是((A|a)pp)这个捕获，</span></span><br><span class="line"><span class="comment">// \k&lt;foo&gt;对应的是(A|a)这个捕获，</span></span><br><span class="line"><span class="comment">// \k&lt;tob&gt;对应的是(hello regex)这个捕获</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>正则外捕获，我们先看下面这个栗子。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'@abc'</span>.match(<span class="regexp">/@(abc)/</span>);</span><br><span class="line"><span class="comment">// ["@abc", "abc", index: 0, input: "@abc", groups: undefined]</span></span><br><span class="line"><span class="built_in">RegExp</span>.$<span class="number">1</span>;</span><br><span class="line"><span class="comment">// "abc"</span></span><br></pre></td></tr></table></figure></div>
+<p> 没错，<code>RegExp</code>就是构造正则的构造函数。如果有捕获组，它的实例属性<code>$数字</code>会显示对应的引用。如果有多个正则，<code>RegExp</code>构造函数的引用只显示最后一个正则的捕获。</p>
+<p> 其实正则外的捕获更加常用的是字符串的方法<code>replace</code>，<code>replace</code>是我们日常开发中比较常用的。在精英怪中会详细介绍它。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'hello **regex**'</span>.replace(<span class="regexp">/\*&#123;2&#125;(.*)\*&#123;2&#125;/</span>, <span class="string">'&lt;strong&gt;$1&lt;/strong&gt;'</span>);</span><br><span class="line"><span class="comment">// "hello &lt;strong&gt;regex&lt;/strong&gt;"</span></span><br></pre></td></tr></table></figure></div>
+</li>
+</ol>
+<h4 id="精英怪：能写出正确的正则"><a href="#精英怪：能写出正确的正则" class="headerlink" title="精英怪：能写出正确的正则"></a>精英怪：能写出正确的正则</h4><p>还在写…</p>
+<h4 id="boss：能看懂复杂的正则-amp-理解正则的运行模式"><a href="#boss：能看懂复杂的正则-amp-理解正则的运行模式" class="headerlink" title="boss：能看懂复杂的正则&amp;理解正则的运行模式"></a>boss：能看懂复杂的正则&amp;理解正则的运行模式</h4><p>还在写…</p>
+
       
     </div>
     
@@ -454,7 +571,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.zijunfe.cn/2019/05/11/prototype/" title="原型链的理解">http://blog.zijunfe.cn/2019/05/11/prototype/</a>
+    <a href="http://blog.zijunfe.cn/2019/10/22/RegExp/" title="JS中的正则表达式">http://blog.zijunfe.cn/2019/10/22/RegExp/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -476,8 +593,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/07/vue-ts/" rel="next" title="vue如何与TypeScript搭配使用">
-                <i class="fa fa-chevron-left"></i> vue如何与TypeScript搭配使用
+              <a href="/2019/10/22/xiumi/" rel="next" title="秀米集成到UEditor的配置过程">
+                <i class="fa fa-chevron-left"></i> 秀米集成到UEditor的配置过程
               </a>
             
           </div>
@@ -485,10 +602,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/22/xiumi/" rel="prev" title="秀米集成到UEditor的配置过程">
-                秀米集成到UEditor的配置过程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,8 +656,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -617,6 +739,22 @@
       
       <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=133998&height=32"></iframe>
       
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#小怪：学习正则的语法"><span class="nav-number">1.</span> <span class="nav-text">小怪：学习正则的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精英怪：能写出正确的正则"><span class="nav-number">2.</span> <span class="nav-text">精英怪：能写出正确的正则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boss：能看懂复杂的正则-amp-理解正则的运行模式"><span class="nav-number">3.</span> <span class="nav-text">boss：能看懂复杂的正则&amp;理解正则的运行模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
