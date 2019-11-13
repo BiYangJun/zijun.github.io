@@ -90,7 +90,7 @@
 <meta property="og:description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://blog.zijunfe.cn/2019/10/22/RegExp/img1.jpg">
-<meta property="og:updated_time" content="2019-10-23T10:34:21.492Z">
+<meta property="og:updated_time" content="2019-10-30T09:34:52.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的正则表达式">
 <meta name="twitter:description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.3k字
+                  5.1k字
                 </span>
               
 
@@ -437,6 +437,8 @@
 </ul>
 </li>
 <li><p><code>\</code>:将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，“n”匹配字符“n”。“\n”匹配一个换行符。串行“\”匹配“\”而“(”则匹配“(”。简单来说，转义符能将一些普通字符提升成元字符，转义符能将任何符号砭为庶民(普通字符)，包括它自己(我狠起来自己都打)，当然普通字符转义后还是转义字符。</p>
+</li>
+<li><p><code>|</code>:<code>|</code>就代表<code>或者</code>。字符组其实也是一个多选结构，但是它们俩有本质区别。字符组最终只能匹配一个字符，而分支匹配的是左边所有的字符或者右边所有的字符。经常在<code>()</code>中使用。</p>
 </li>
 <li><p><code>\b</code>:匹配一个单词边界(boundary)，匹配的是一个位置，而不是一个字符。单词和空格之间的位置，就是所谓单词边界，并且对汉字及其他语言是无效的。</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'hello regex'</span>.match(<span class="regexp">/\bregex$/</span>); <span class="comment">// ['regex']</span></span><br><span class="line"><span class="string">'hello regex'</span>.match(<span class="regexp">/\b/g</span>); <span class="comment">// ["", "", "", ""] 有4个单词边界，分别为hello前后位置，regex前后位置</span></span><br><span class="line"><span class="string">'窝窝头 一块钱 4个'</span>.match(<span class="regexp">/\b窝窝头\b/</span>); <span class="comment">// null</span></span><br></pre></td></tr></table></figure></div>
@@ -519,9 +521,60 @@
 <p> 其实正则外的捕获更加常用的是字符串的方法<code>replace</code>，<code>replace</code>是我们日常开发中比较常用的。在精英怪中会详细介绍它。</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'hello **regex**'</span>.replace(<span class="regexp">/\*&#123;2&#125;(.*)\*&#123;2&#125;/</span>, <span class="string">'&lt;strong&gt;$1&lt;/strong&gt;'</span>);</span><br><span class="line"><span class="comment">// "hello &lt;strong&gt;regex&lt;/strong&gt;"</span></span><br></pre></td></tr></table></figure></div>
 </li>
+<li><p><strong>修饰符</strong>：正则和我们写<code>vue</code>的指令一样，也有修饰符，它像小尾巴一样跟在正则主体后面。</p>
+<ul>
+<li><p><code>g</code>修饰符(常用):<code>g</code>是<code>global</code>的缩写。默认情况下，正则从左向右匹配，只要匹配到了结果就会收工。<code>g</code>修饰符会开启全局匹配模式，找到所有匹配的结果。</p>
+</li>
+<li><p><code>i</code>修饰符(常用):<code>i</code>是<code>ignoreCase</code>的缩写。在正则世界里，大小写字母是有区别的,<code>/z/</code>小写的是无法匹配到大写的<code>Z</code>,<code>i</code>修饰符可以全局忽略大小写。</p>
+</li>
+<li><p><code>m</code>修饰符(常用):<code>m</code>是<code>multiline</code>的缩写。这个修饰符有特定起作用的场景：它要和<code>^</code>和<code>$</code>搭配起来使用。默认情况下，<code>^</code>和<code>$</code>匹配的是文本的开始和结束，加上<code>m</code>修饰符，它们的含义就变成了行的开始和结束。在匹配换行文本的时候很有用</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span><br><span class="line"><span class="string">abc</span></span><br><span class="line"><span class="string">xyz</span></span><br><span class="line"><span class="string">`</span>.match(<span class="regexp">/^xyz$/</span>);</span><br><span class="line"><span class="comment">// 匹配结果为null。如果不加m，这里^和$还是代表文本的开始与结束，这里文本的开始和结束相邻的字符都是换行符，所以匹配不到东西</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="string">abc</span></span><br><span class="line"><span class="string">xyz</span></span><br><span class="line"><span class="string">`</span>.match(<span class="regexp">/^xyz$/m</span>); </span><br><span class="line"><span class="comment">// 匹配结果为['xyz']。加了m，这里^和$还是代表行的开始与结束，其中xyz就为一行。</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>y</code>修饰符(ES2015新特性，不常用):<code>y</code>是<code>sticky</code>的缩写。<code>y</code>修饰符有和<code>g</code>修饰符重合的功能，它们都是全局匹配。所以重点在<code>sticky</code>上，怎么理解这个粘连呢？<code>g</code>修饰符不挑食，匹配完一个接着匹配下一个，对于文本的位置没有要求。但是<code>y</code>修饰符要求必须从文本的开始实施匹配，因为它会开启全局匹配，匹配到的文本的下一个字符就是下一次文本的开始。这就是所谓的粘连。</p>
+</li>
+<li><p><code>s</code>修饰符(ES2018新特性，不常用):<code>s</code>是<code>singleline</code>的缩写。<code>s</code>修饰符要和<code>.</code>搭配使用，默认情况下，<code>.</code>匹配除了换行符之外的任意单个字符，然而它还没有强大到无所不能的地步，所以正则索性给它开个挂。<code>s</code>修饰符的作用就是让<code>.</code>可以匹配任意单个字符。</p>
+</li>
+<li><p><code>u</code>修饰符(ES2015新特性，不常用):<code>u</code>是<code>unicode</code>的缩写。有一些<code>Unicode</code>字符超过一个字节，正则就无法正确的识别它们。<code>u</code>修饰符就是用来处理这些不常见的情况的。</p>
+</li>
+</ul>
+</li>
 </ol>
-<h4 id="精英怪：能写出正确的正则"><a href="#精英怪：能写出正确的正则" class="headerlink" title="精英怪：能写出正确的正则"></a>精英怪：能写出正确的正则</h4><p>还在写…</p>
-<h4 id="boss：能看懂复杂的正则-amp-理解正则的运行模式"><a href="#boss：能看懂复杂的正则-amp-理解正则的运行模式" class="headerlink" title="boss：能看懂复杂的正则&amp;理解正则的运行模式"></a>boss：能看懂复杂的正则&amp;理解正则的运行模式</h4><p>还在写…</p>
+<h4 id="精英怪：能写出正确的正则"><a href="#精英怪：能写出正确的正则" class="headerlink" title="精英怪：能写出正确的正则"></a>精英怪：能写出正确的正则</h4><p>经过前面一番小怪的历练，相信你对正则世界也有点了解了，接下来我们用所学的知识尝试一下写一些比较简单的正则表达式。</p>
+<p>但是在挑战精英怪前，我们得现解决一个给精英怪看门的小怪物——<code>零宽断言</code>;</p>
+<h5 id="看门小怪物——零宽断言"><a href="#看门小怪物——零宽断言" class="headerlink" title="看门小怪物——零宽断言"></a>看门小怪物——零宽断言</h5><p>在前面的元字符环节，我们了解到，正则里有一些元字符只匹配位置，不匹配字符。比如<code>^</code>,<code>$</code>,<code>\b</code>,<code>\B</code>等。当然正则还有一些比较高级的匹配位置的语法，它匹配的是：在这个位置之前或之后应该有什么内容。</p>
+<p>所谓<code>零宽</code>指的就是它匹配一个位置，本身没有宽度。所谓<code>断言</code>指的是一种判断，断言之前或之后应该有什么或应该没有什么。</p>
+<ul>
+<li><p><code>零宽肯定先行断言</code>:所谓的肯定就是判断有什么，而不是判断没有什么。而先行指的是向前看(lookahead)，断言的这个位置是为前面的规则服务的。语法很简单：圆括号内最左边加上<code>?=</code>标识。看下面这个栗子：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`CoffeeScript JavaScript Typescript`</span>.match(<span class="regexp">/\b\w&#123;4&#125;(?=Script\b)/</span>); <span class="comment">// ["Java"]</span></span><br></pre></td></tr></table></figure></div>
+<p>这句正则什么意思呢？匹配4个字母，这4个字母最前面是一个单词边界，并且后面符合一个规则，这个规则为一个结尾位置为单词边界的<code>Script</code>字符串。在<code>CoffeeScript JavaScript Typescript</code>里，满足这个规则的只有前面俩个<code>CoffeeScript JavaScript</code>，其中<code>CoffeeScript</code>的<code>Script</code>前面为<code>\b\w{6}</code>，所以不符合正则要求，只有<code>JavaScript</code>符合，并且牢记断言是没有宽度的这个特性，所以只匹配出里<code>Java</code>出来。</p>
+<p>为了说明没有宽度这个特性，我们接着看这个栗子：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'CoffeeScript JavaScript javascript'</span>.match(<span class="regexp">/\b\w&#123;4&#125;(?=Script\b)\w+/</span>); <span class="comment">// ['JavaScript']</span></span><br></pre></td></tr></table></figure></div>
+<p>我们在<code>(?=Script\b)</code>后面新添里正则<code>\w+</code>，根据前面的解释，<code>\b\w{4}(?=Script\b)</code>依旧匹配的是<code>Java</code>，然后<code>\w+</code>匹配到里<code>Script</code>，所以匹配结果为<code>JavaScript</code>。</p>
+</li>
+<li><p><code>零宽否定先行断言</code>:肯定是判断有什么，那么否定就是判断没有什么，语法是圆括号内最左边加上<code>?!</code>标识。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'TypeScript Perl JavaScript'</span>.match(<span class="regexp">/\b\w&#123;4&#125;(?!Script\b)/</span>); <span class="comment">// ['Perl']</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>零宽肯定后行断言</code>:前面说的先行是向前看，那么后行就是向后看(lookbehind)，断言的这个位置是为后面的规则服务的。语法很简单：圆括号内最左边加上<code>?&lt;=</code>标识。<strong>有一点要注意，后行断言是ES2018的新特性，目前桌面浏览器只有Chrome62和Opera49以上的版本才支持，其他浏览器都不支持，会报错</strong></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'演员高圆圆 将军霍去病 演员霍思燕'</span>.match(<span class="regexp">/(?&lt;=演员)霍\S+/</span>);</span><br><span class="line"><span class="comment">// 匹配结果为['霍思燕']。我们先看`霍\S+`这个正则的意思，霍开头并且后面有一个或者无数个为非空字符的字符组，满足这个正则条件的是`霍去病`和`霍思燕`，而后行断言是为后面的规则服务的，`(?&lt;=演员)`的意思就是谁前面的字符串为演员，很明显`霍思燕`是满足这个条件的。</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>零宽否定先行断言</code>:同理，肯定是判断有什么，那么否定就是判断没有什么，语法是圆括号内最左边加上<code>?&lt;!</code>标识。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'演员高圆圆 将军霍去病 演员霍思燕'</span>.match(<span class="regexp">/(?&lt;!演员)霍\S+/</span>);</span><br><span class="line"><span class="comment">// 匹配结果为['霍去病']</span></span><br></pre></td></tr></table></figure></div>
+</li>
+</ul>
+<h5 id="正则世界的武器——方法"><a href="#正则世界的武器——方法" class="headerlink" title="正则世界的武器——方法"></a>正则世界的武器——方法</h5><p>  到这里，我们就把这个看门的小怪物<code>零宽断言</code>打败了，但是我们想要在正则的世界里为所欲为，还需要几把趁手的武器，即配合正则使用的方法。因为正则是用来处理字符串的，所以大部分方法也与JS中的String类型有关，在上面的栗子中，我们使用的都是<code>match</code>方法，这就是一个String的API。我把所有和正则有关的的方法集结如下(有些MDN上标明已废弃的就列出了)。</p>
+<ul>
+<li><p><code>String</code>类型:</p>
+<ol>
+<li><p><code>match</code>: 检索返回一个字符串匹配正则表达式的的结果。</p>
+<blockquote>
+<p>语法</p>
+</blockquote>
+<p><code>str.match(regexp)</code></p>
+<h4 id="boss：能看懂复杂的正则-amp-理解正则的运行模式"><a href="#boss：能看懂复杂的正则-amp-理解正则的运行模式" class="headerlink" title="boss：能看懂复杂的正则&amp;理解正则的运行模式"></a>boss：能看懂复杂的正则&amp;理解正则的运行模式</h4></li>
+</ol>
+</li>
+</ul>
+<p>还在写…</p>
 
       
     </div>
@@ -593,8 +646,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/22/xiumi/" rel="next" title="秀米集成到UEditor的配置过程">
-                <i class="fa fa-chevron-left"></i> 秀米集成到UEditor的配置过程
+              <a href="/2019/05/11/prototype/" rel="next" title="原型链的理解">
+                <i class="fa fa-chevron-left"></i> 原型链的理解
               </a>
             
           </div>
@@ -602,6 +655,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/22/xiumi/" rel="prev" title="秀米集成到UEditor的配置过程">
+                秀米集成到UEditor的配置过程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -749,7 +806,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#小怪：学习正则的语法"><span class="nav-number">1.</span> <span class="nav-text">小怪：学习正则的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精英怪：能写出正确的正则"><span class="nav-number">2.</span> <span class="nav-text">精英怪：能写出正确的正则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boss：能看懂复杂的正则-amp-理解正则的运行模式"><span class="nav-number">3.</span> <span class="nav-text">boss：能看懂复杂的正则&amp;理解正则的运行模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#小怪：学习正则的语法"><span class="nav-number">1.</span> <span class="nav-text">小怪：学习正则的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#精英怪：能写出正确的正则"><span class="nav-number">2.</span> <span class="nav-text">精英怪：能写出正确的正则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#看门小怪物——零宽断言"><span class="nav-number">2.1.</span> <span class="nav-text">看门小怪物——零宽断言</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正则世界的武器——方法"><span class="nav-number">2.2.</span> <span class="nav-text">正则世界的武器——方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#boss：能看懂复杂的正则-amp-理解正则的运行模式"><span class="nav-number">3.</span> <span class="nav-text">boss：能看懂复杂的正则&amp;理解正则的运行模式</span></a></li></ol></div>
             
 
           </div>
@@ -832,8 +889,6 @@
   
 
 
-  
-
 
 
 
@@ -872,11 +927,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

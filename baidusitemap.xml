@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://blog.zijunfe.cn/2019/10/22/RegExp/</loc>
-    <lastmod>2019-10-23</lastmod>
+    <lastmod>2019-10-30</lastmod>
   </url>  <url>
     <loc>http://blog.zijunfe.cn/2019/10/22/xiumi/</loc>
     <lastmod>2019-10-22</lastmod>
@@ -25,13 +25,13 @@
     <loc>http://blog.zijunfe.cn/2019/04/11/blog-comments/</loc>
     <lastmod>2019-04-29</lastmod>
   </url>  <url>
-    <loc>http://blog.zijunfe.cn/2019/04/20/nginx/</loc>
-    <lastmod>2019-04-29</lastmod>
-  </url>  <url>
     <loc>http://blog.zijunfe.cn/2019/04/10/first-blog/</loc>
     <lastmod>2019-04-29</lastmod>
   </url>  <url>
     <loc>http://blog.zijunfe.cn/2019/04/24/vuex/</loc>
+    <lastmod>2019-04-29</lastmod>
+  </url>  <url>
+    <loc>http://blog.zijunfe.cn/2019/04/20/nginx/</loc>
     <lastmod>2019-04-29</lastmod>
   </url>
 </urlset>
