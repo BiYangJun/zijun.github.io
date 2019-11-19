@@ -90,7 +90,7 @@
 <meta property="og:description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://blog.zijunfe.cn/2019/10/22/RegExp/img1.jpg">
-<meta property="og:updated_time" content="2019-10-30T09:34:52.040Z">
+<meta property="og:updated_time" content="2019-11-19T09:38:33.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中的正则表达式">
 <meta name="twitter:description" content="在我们的日常开发中，如果碰到需要处理字符串的问题，我们可以使用String的api来处理，但是如果你对正则表达式略有研究的话，处理起来字符串会更加顺手。当然如果你对正则表达式不是很了解，这篇博客正好对你有帮助！ 学习知识就如同打怪升级一样，我根据自己对正则的理解，将正则的知识分为了小怪，精英怪，boss三种模式。 友情提示：学习正则表达式对新手来说并不是很友好，一些基础的知识需要通过死记硬背来学习">
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.1k字
+                  5.9k字
                 </span>
               
 
@@ -418,7 +418,14 @@
 <h4 id="小怪：学习正则的语法"><a href="#小怪：学习正则的语法" class="headerlink" title="小怪：学习正则的语法"></a>小怪：学习正则的语法</h4><ol>
 <li><p><strong>弄一个正则出来</strong>：使用字面量, 构造函数和工厂符号都可以写出一个正则表达式。</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/pattern/flags</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">RegExp</span>(pattern [, flags])</span><br><span class="line"><span class="built_in">RegExp</span>(pattern [, flags])</span><br></pre></td></tr></table></figure></div>
-<p>其中<code>pattern</code>为正则表达式的文本，<code>flags</code>为修饰符，可以为一个，也可以是多个为一组。</p>
+<p>其中<code>pattern</code>为正则表达式的文本，<code>flags</code>为修饰符，可以为一个，也可以是多个为一组。<br>一般来说需要动态构造正则的时候才会用到构造函数的方式。因为字面量写法的正则性能更好一些。<br>当一个正则实例创建出来以后，它都会有以下的实例属性：</p>
+<ul>
+<li><code>lastIndex</code>属性。它的作用是全局匹配时标记下一次匹配开始的位置，全局匹配的抓手就是它。</li>
+<li><code>source</code>属性。它的作用是存储正则模式的主体。比如<code>/abc/gi</code>中的abc。</li>
+<li>对应的修饰符属性。目前有<code>global</code>、<code>ignoreCase</code>、<code>multiline</code>、<code>sticky</code>、<code>dotAll</code>、<code>unicode</code>属性，返回布尔值表明是否开启对应修饰符。</li>
+<li><code>flags</code>属性。返回所有的修饰符。比如<code>/abc/gi</code>中的gi。</li>
+</ul>
+<p>ps:如果<code>pattern</code>中定义了修饰符，但<code>flags</code>中又有值，则以<code>flags</code>定义的修饰符为准，这是ES2015的新特性。</p>
 </li>
 <li><p><strong>普通字符</strong>：何为普通字符？就是包括各种人类语言，24个英文字母(包括大小写)，没有特殊含义的符号，甚至emoji表情也算普通字符。普通字符在正则中的含义就是检索它本身，你看:</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;hello 😀 regex&apos;.match(/😀/);</span><br><span class="line">// [&quot;😀&quot;, index: 6, input: &quot;hello 😀 regex&quot;, groups: undefined]</span><br></pre></td></tr></table></figure></div>
@@ -561,7 +568,7 @@
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'演员高圆圆 将军霍去病 演员霍思燕'</span>.match(<span class="regexp">/(?&lt;!演员)霍\S+/</span>);</span><br><span class="line"><span class="comment">// 匹配结果为['霍去病']</span></span><br></pre></td></tr></table></figure></div>
 </li>
 </ul>
-<h5 id="正则世界的武器——方法"><a href="#正则世界的武器——方法" class="headerlink" title="正则世界的武器——方法"></a>正则世界的武器——方法</h5><p>  到这里，我们就把这个看门的小怪物<code>零宽断言</code>打败了，但是我们想要在正则的世界里为所欲为，还需要几把趁手的武器，即配合正则使用的方法。因为正则是用来处理字符串的，所以大部分方法也与JS中的String类型有关，在上面的栗子中，我们使用的都是<code>match</code>方法，这就是一个String的API。我把所有和正则有关的的方法集结如下(有些MDN上标明已废弃的就列出了)。</p>
+<h5 id="正则世界的武器——方法"><a href="#正则世界的武器——方法" class="headerlink" title="正则世界的武器——方法"></a>正则世界的武器——方法</h5><p>  到这里，我们徒手就把这个看门的小怪物<code>零宽断言</code>打败了，但是我们想要在正则的世界里为所欲为，还需要几把趁手的武器，即配合正则使用的方法。因为正则是用来处理字符串的，所以大部分方法也与JS中的String类型有关，在上面的栗子中，我们使用的都是<code>match</code>方法，这就是一个String的API。我把所有和正则有关的的方法集结如下(有些MDN上标明已废弃的就不列出了)。</p>
 <ul>
 <li><p><code>String</code>类型:</p>
 <ol>
@@ -570,11 +577,71 @@
 <p>语法</p>
 </blockquote>
 <p><code>str.match(regexp)</code></p>
-<h4 id="boss：能看懂复杂的正则-amp-理解正则的运行模式"><a href="#boss：能看懂复杂的正则-amp-理解正则的运行模式" class="headerlink" title="boss：能看懂复杂的正则&amp;理解正则的运行模式"></a>boss：能看懂复杂的正则&amp;理解正则的运行模式</h4></li>
+<p>它接受一个正则表达式作为唯一参数，但是你传一个字符串进去，会隐式的将其转换为一个正则实例。<br><code>match</code>的返回值可以分为三种情况</p>
+<ul>
+<li>匹配失败的时候返回<code>null</code>。</li>
+<li>非全局匹配：返回一个数组，数组的第一项为匹配结果，如果你没有传任何参数给<code>match</code>,匹配结果为空字符串，如果正则里有捕获组并且没有设置<code>?:</code>，那么从第二项开始依次排列捕获的结果。并且数组里有三个属性:<code>index</code>,<code>input</code>,<code>groups</code>。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'i love gridsum'</span>.match(<span class="regexp">/\blo(v)(?&lt;key&gt;e)/</span>)</span><br><span class="line"><span class="comment">//  ["love", "v", "e", index: 2, input: "i love gridsum", groups: &#123;key: "e"&#125;]</span></span><br><span class="line"><span class="comment">// index属性，标明匹配结果在文本中的起始位置。</span></span><br><span class="line"><span class="comment">// input属性，显示源文本。</span></span><br><span class="line"><span class="comment">// groups属性，它存储的不是捕获组的信息，而是捕获命名的信息。</span></span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>全局匹配：返回一个数组，匹配的结果会依次在数组列出，但是其他信息都不会列出来。</li>
+</ul>
+</li>
+<li><p><code>replace</code>: 根据给定的字符串或者正则替换匹配结果，并返回新的替换后的文本。源文本不会改变。它有俩个参数，第一个参数为 字符串或者正则表达式，作用为匹配（字符串只能替换一次，不如正则的表达能力强）。第二个参数为字符串或者一个函数，作用为替换。</p>
+<blockquote>
+<p>语法</p>
+</blockquote>
+ <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abca'</span>.replace(<span class="string">'a'</span>, <span class="string">'A'</span>); <span class="comment">// 'Abca'</span></span><br><span class="line"><span class="string">'abca'</span>.replace(<span class="regexp">/a/g</span>, <span class="string">'A'</span>); <span class="comment">// 'AbcA'</span></span><br><span class="line"><span class="string">'abca'</span>.replace(<span class="regexp">/a(b)ca/g</span>, (match, p1) =&gt; <span class="string">`<span class="subst">$&#123;p1&#125;</span>`</span>); <span class="comment">// 'b'</span></span><br></pre></td></tr></table></figure></div>
+<p>我们在正则小怪中的捕获中埋了一个坑，说正则外捕获大部分与<code>replace</code>有关，现在我们就讲讲为啥与<code>replace</code>有关。</p>
+<p>在替换字符串中，<code>replace</code>提供了一些特殊的变量名。</p>
+</li>
 </ol>
 </li>
 </ul>
-<p>还在写…</p>
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>代表的值</th>
+<th>示例</th>
+<th>示例结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$$</code></td>
+<td>插入一个 “$”。</td>
+<td><code>&#39;-abcd-&#39;.replace(/-/g, &#39;$$&#39;)</code></td>
+<td>‘$abcd$’</td>
+</tr>
+<tr>
+<td><code>$&amp;</code></td>
+<td>插入匹配的子串</td>
+<td><code>&#39;-abcd-&#39;.replace(/-abcd-/g, &#39;{$&amp;}&#39;)</code></td>
+<td>‘{-abcd-}’</td>
+</tr>
+<tr>
+<td>$`</td>
+<td>插入当前匹配的子串左边的内容。</td>
+<td><code>&#39;-abcd-&#39;.replace(/-/g, &#39;{$</code>}’)`</td>
+<td>‘{}abcd{-abcd}’</td>
+</tr>
+<tr>
+<td><code>$&#39;</code></td>
+<td>插入当前匹配的子串右边的内容。</td>
+<td><code>&#39;-abcd-&#39;.replace(/-/g, &quot;{$&#39;}&quot;)</code></td>
+<td>‘{abcd-}abcd{}’</td>
+</tr>
+<tr>
+<td><code>$n</code></td>
+<td>假如负责匹配的参数是一个正则，<code>$n</code>代表的是第n个括号匹配到的字符串(同样为内部没有<code>?:</code>的括号)，n是从1开始并且小于100的非负整数。</td>
+<td><code>&#39;-abcd-&#39;.replace(/(-)(a)bcd-/g, &#39;$1$2&#39;)</code></td>
+<td>‘-a’</td>
+</tr>
+</tbody>
+</table>
+<pre><code>其中用的最多的还是`$n`这种方式。
+</code></pre><h4 id="boss：能看懂复杂的正则-amp-理解正则的运行模式"><a href="#boss：能看懂复杂的正则-amp-理解正则的运行模式" class="headerlink" title="boss：能看懂复杂的正则&amp;理解正则的运行模式"></a>boss：能看懂复杂的正则&amp;理解正则的运行模式</h4><p>还在写…</p>
 
       
     </div>
