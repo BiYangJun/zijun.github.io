@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="GSVm-ROoUXGd1x-vWTSEqgMaa3wgf7KtEm3Q3YUIuDE">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/zi128.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/zi128.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/zi128.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="子君的个人博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="作为一名日常使用Vue开发的前端开发，Vue的源码是有意义去了解的。今天的分享主要是Vue2.x源码的部分概念，包括以下三个内容：Vue的初始化、挂载与渲染流程、响应式系统的构建。 1. Vue的初始化在所有以Vue为开发框架的项目里，都必定会执行new Vue语句来形成Vue的根实例。那么在源码里都干了些什么事呢？ 在源码里，Vue是一个非常简单的以Function实现的类。在src/core/">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue源码分析">
+<meta property="og:url" content="http://blog.zijunfe.cn/2020/06/24/vue-code/index.html">
+<meta property="og:site_name" content="子君的个人博客">
+<meta property="og:description" content="作为一名日常使用Vue开发的前端开发，Vue的源码是有意义去了解的。今天的分享主要是Vue2.x源码的部分概念，包括以下三个内容：Vue的初始化、挂载与渲染流程、响应式系统的构建。 1. Vue的初始化在所有以Vue为开发框架的项目里，都必定会执行new Vue语句来形成Vue的根实例。那么在源码里都干了些什么事呢？ 在源码里，Vue是一个非常简单的以Function实现的类。在src/core/">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blog.zijunfe.cn/2020/06/24/vue-code/img1.png">
+<meta property="og:image" content="http://blog.zijunfe.cn/2020/06/24/vue-code/img2.png">
+<meta property="og:image" content="http://blog.zijunfe.cn/2020/06/24/vue-code/img3.png">
+<meta property="og:image" content="http://blog.zijunfe.cn/2020/06/24/vue-code/img4.png">
+<meta property="og:updated_time" content="2021-02-26T10:21:11.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue源码分析">
+<meta name="twitter:description" content="作为一名日常使用Vue开发的前端开发，Vue的源码是有意义去了解的。今天的分享主要是Vue2.x源码的部分概念，包括以下三个内容：Vue的初始化、挂载与渲染流程、响应式系统的构建。 1. Vue的初始化在所有以Vue为开发框架的项目里，都必定会执行new Vue语句来形成Vue的根实例。那么在源码里都干了些什么事呢？ 在源码里，Vue是一个非常简单的以Function实现的类。在src/core/">
+<meta name="twitter:image" content="http://blog.zijunfe.cn/2020/06/24/vue-code/img1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.zijunfe.cn/2020/06/24/vue-code/">
+
+
+
+
+
+  <title>Vue源码分析 | 子君的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子君的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2020/06/24/vue-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zi Jun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子君的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Vue源码分析</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-24T14:49:41+08:00">
+                2020-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/06/24/vue-code/" class="leancloud_visitors" data-flag-title="Vue源码分析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作为一名日常使用Vue开发的前端开发，Vue的源码是有意义去了解的。今天的分享主要是Vue2.x源码的部分概念，包括以下三个内容：Vue的初始化、挂载与渲染流程、响应式系统的构建。</p>
+<h3 id="1-Vue的初始化"><a href="#1-Vue的初始化" class="headerlink" title="1. Vue的初始化"></a>1. Vue的初始化</h3><p>在所有以Vue为开发框架的项目里，都必定会执行new Vue语句来形成Vue的根实例。那么在源码里都干了些什么事呢？</p>
+<p>在源码里，Vue是一个非常简单的以Function实现的类。在<code>src/core/instance/index.js</code>里定义了它。并且在这里执行了初始化所需要的所有方法函数。</p>
+<a id="more"></a>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vue</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">'production'</span> &amp;&amp;</span><br><span class="line">    !(<span class="keyword">this</span> <span class="keyword">instanceof</span> Vue)</span><br><span class="line">  ) &#123;</span><br><span class="line">    warn(<span class="string">'Vue is a constructor and should be called with the `new` keyword'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>._init(options)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">initMixin(Vue)</span><br><span class="line">stateMixin(Vue)</span><br><span class="line">eventsMixin(Vue)</span><br><span class="line">lifecycleMixin(Vue)</span><br><span class="line">renderMixin(Vue)</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>Vue源码都在src目录下，并且它的目录结构是非常清晰的，概括如下。<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">    ├── compiler        # 编译相关 </span><br><span class="line">    ├── core            # 核心代码 </span><br><span class="line">    ├── platforms       # 不同平台的支持</span><br><span class="line">    ├── server          # 服务端渲染</span><br><span class="line">    ├── sfc             # .vue 文件解析</span><br><span class="line">    ├── shared          # 共享代码</span><br></pre></td></tr></table></figure></div></p>
+</blockquote>
+<p>这里可以看出，代码保证了Vue只能通过new关键字进行初始化，一系列的mixin方法分别定义了原型上与数据，事件，生命周期，渲染相关的静态属性与方法，也就是以$开头的那些属性与方法。而_init方法来自initMixin中，其内部也是进行一系列初始化操作，包括选项的规范校验与合并，初始化生命周期，初始化事件中心，构建数据响应式系统等。最后最关键的根据我们填写的el参数，来进行模版的渲染与挂载。</p>
+<blockquote>
+<p>选项的合并是一个很关键的点，因为我们平时写的组件代码都是通过配置的方式传入并且执行Vue内部的方法Vue.extend去创建一个子类的，那么子类的选项必定会与父类的选项产生合并行为，大致分为常规选项合并，自带资源的合并(‘compoent’,’directive’,’filter’),生命周期函数的合并。其中，为什么在new Vue里data选项能写成Object形式，组件里要写成Functino的原因也在这里。(因为源代码里写死了，不是Function就会报错，哈哈，当然最终目的还是为了保证组件的复用，数据不互相影响)</p>
+</blockquote>
+<p>在所有配置初始化完成后，如果我们配置el参数存在，会执行Vue的内部方法$mount。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (vm.$options.el) &#123;</span><br><span class="line">  vm.$mount(vm.$options.el)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>而$mount函数定义的地方会与我们选择的平台和构建版本有关。比如在platforms文件夹里有web和weex俩个平台，web里有一些入口文件js，为了保证性能以及代码体积更小，我们使用的都是runtime only的构建版本(基本上就是除去编译器外的完整代码)，而编译的工作都交给了webpack的vue-loader了。但是为了更好分析Vue源码，我们要看runtime + compiler的版本，所以这时候我们要找的$mount方法在<code>src/platforms/web/entry-runtime-with-compiler</code>里，但是$mount的核心方法是mountComponent方法。</p>
+<p>mountComponent方法定义在<code>src/core/instance/lifecycle.js</code>里，其主要作用就是进行模版的挂载、执行beforeMount,mounted生命周期函数、实例化一个组件只有一个的渲染Watcher。</p>
+<h3 id="2-挂载与渲染流程"><a href="#2-挂载与渲染流程" class="headerlink" title="2. 挂载与渲染流程"></a>2. 挂载与渲染流程</h3><p>在Vue的内部方法$mount里有着挂载和渲染过程的一切，大概流程图如下。</p>
+<p><img src="/2020/06/24/vue-code/img1.png" alt></p>
+<p>根据流程图我们可以得知以下这么几个点：</p>
+<ol>
+<li>确定挂载的DOM，这个DOM不能是boyd，html标签</li>
+<li>template模版的写法会被编译，首先会被编译成字符串模板会转换为抽象的语法树(AST)，最终被编译成render函数。(在runtime-only版本中这一步交给插件了)</li>
+<li>无论是template模板还是手写render函数，最终都将进入mountComponent过程,这个阶段会实例化一个渲染watcher。</li>
+<li>渲染wathcer的莫一个参数是updateComponent函数，其内部通过_render方法将render函数生成为虚拟DOM树(一个以VNode类生成的Virtual Dom)，_update方将虚拟DOM生成真实的DOM。</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">updateComponent = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  vm._update(vm._render(), hydrating)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>其中编译的过程Vue源码里有一个名为compiler的文件夹来处理，不用去看懂，我们只需要知道编译的流程是怎样的即可。compiler的入口为一个名为createCompiler的函数。</p>
+<ol>
+<li>因为不同平台对Vue的编译过程是不一样的，所以传给createCompiler的配置是不一样的，比如Vue内置的只有web和weex俩个平台，像市场上比较流行Vue跨端开源项目，如mpVue，uni-app等都会在platform下添加一个对应的文件夹。</li>
+<li>内部经过一系列的处理会生成三种东西。<ul>
+<li>AST抽象树，一个对象，里面放了各种属性，方法的描述</li>
+<li>render 一个以函数封装好的with语句</li>
+<li>staticRenderFns 以数组形式存在的静态render</li>
+</ul>
+</li>
+</ol>
+<p>有了render函数后，接下来就是将它解析成虚拟DOM，在Vue中，就是用VNode这个构造函数去描述一个真实DOM节点，但并不会把真实DOM所有的东西都描述出来，因为真实DOM包括了自身的属性描述，大小位置，浏览器事件等，东西太多了。源码中VNode定义了的属性差不多有20个左右。定义的路径为<code>src/core/vdom/vnode</code>。在Vue2.x的版本中，VNode有三中类型：注释节点，普通节点，文本节点。</p>
+<p>_render()生成虚拟DOM的过程中，代码里也会做很多事情，比如：数据的规范性检测、特殊属性key的规范性检测、子节点children的规范化、遇到用户自定义组件对其进行组件初始化。</p>
+<p>有了虚拟DOM后，最后就是执行_update方法将其渲染成真实DOM，其中核心内容就是通过调用操作真实DOM的方法来生成真实DOM，比如调用createElm方法创建节点，插入子节点，经过递归创建后成为一个完整的DOM树并插入body中，并且在发生了数据变化影响真实DOM的阶段，会有diff算法来判断前后VNode的差异，以求最小化变化改变真实DOM。</p>
+<blockquote>
+<p>当响应式数据发生了频繁的修改，会引起整个DOM树的频繁的重绘和重排，这是及其消耗性能的，如何优化这一渲染过程，Vue源码中给出俩个思路。</p>
+<ol>
+<li>将多次修改推到一个队列中，在下一个tick去执行视图更新。</li>
+<li>使用diff算法，将需要修改的数据进行比较，并只渲染必要的DOM。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>而diff算法本质上就是进行新旧节点的对比，如果新旧节点的根节点不是同一个节点，则直接替换节点。(只进行同层节点的比较，节点不一致，直接用新节点及其子节点替换旧节点)，如果是同一节点会进行如下的比较</p>
+<ol>
+<li>节点相同，且节点除了拥有文本节点外没有其他子节点，直接替换文本内容。</li>
+<li>新节点没有子节点，旧节点有子节点，则删除旧节点所有子节点。</li>
+<li>旧节点没有子节点，新节点有子节点，则用新的所有子节点去更新旧节点。</li>
+<li>新旧都存在子节点，则对比子节点内容做操作(最复杂的一步)。</li>
+</ol>
+</blockquote>
+<p>在_update执行的过程中，如果碰到了自定义组件时，会去调用子组件init方法，开始进行该组件的合并配置，初始化生命周期，初始化事件中心，初始化渲染的过程。实例挂载又会执行$mount过程。</p>
+<p><img src="/2020/06/24/vue-code/img2.png" alt></p>
+<h3 id="3-响应式系统的构建"><a href="#3-响应式系统的构建" class="headerlink" title="3. 响应式系统的构建"></a>3. 响应式系统的构建</h3><p>Vue作为数据驱动为特点的一个框架，响应式系统是其非常核心的一个概念。</p>
+<p>首先我们要先了解，Vue源码中和响应式系统的构建相关的类为以下三种：</p>
+<ol>
+<li>Observer类，实例化一个Observer类会通过Object.defineProperty对数据的getter,setter方法进行改写，在getter阶段进行依赖的收集,在数据发生更新阶段，触发setter方法进行依赖的更新。</li>
+<li>Watcher类，实例化Watcher类相当于创建一个依赖，简单的理解是数据在哪里被使用就需要产生了一个依赖。当数据发生改变时，会通知到每个依赖进行更新。</li>
+<li>Dep类，既然Watcher理解为每个数据需要监听的依赖，那么对这些依赖的收集和通知则需要另一个类来管理，这个类便是Dep,Dep需要做的只有两件事，收集依赖和派发更新依赖。</li>
+</ol>
+<p>在这张图里我们可以看到这三个类的关系<br><img src="/2020/06/24/vue-code/img3.png" alt></p>
+<p>在最前面的初始化的时候，执行_init函数的时候，响应式系统的构建也已经同步开始了。经过初始化后的数据，我们在控制台打印<code>this._data</code>或者引用类型的数据时，我们会发现在其原型里会有一个不可枚举的<code>__ob__</code>字段，标示这是经过Observer类实例化后。</p>
+<h4 id="3-1-数据初始化"><a href="#3-1-数据初始化" class="headerlink" title="3.1 数据初始化"></a>3.1 数据初始化</h4><ol>
+<li>data初始化：对data进行Observer类实例化，添加响应式对象标志<code>__ob__</code>, 执行walk函数(其核心内容为defineReactive函数)，该函数主要作用是对每个属性实例化一个Dep类，即为每个数据都创建一个依赖的管理，如果遇到深层次对象(属性为一个对象)，则会递归调用实例化Observer类，让其也转换为响应式对象。defineReactive函数就是利用Object.defineProperty重写getter，setter方法。数据被访问时，通过dep.depend收集被访问时的依赖Watcher。数据被修改时，通过dep.notify通知收集到的Watcher进行相应的更新。</li>
+<li>computed初始化：computed初始化和data类似，但是computed是直接通过Object.defineProperty设置set与get的，还有几点不同之处。1、如果我们写的computed是function类型的时候，set函数是为空函数的。2、与computed涉及的data会收集当前computed的watcher，方便后面data更改时，来通知computed的更新。3、computedWatcher的标志为{lazy: true}，并且不会立刻执行依赖的更新操作，通过一个dirty设置为true进行标记，访问computed的时候如果dirty为true会重新计算值。4、computed不会收集渲染watcher，computed更新的时候视图会更新是为其涉及的data收集了渲染watcher。</li>
+<li>props初始化：遍历定义的props配置。遍历的过程主要做两件事情：一是调用Observer类里的defineReactive方法把每个prop对应的值变成响应式，二是使用Proxy为props做了一层代理，用户通过vm.XXX可以代理访问到vm._props上的值。</li>
+<li>watch初始化：当传入的选项里有watch选项时，会执行watch的初始化内容，其核心为createWatcher，无论传入watch是什么形式最终都会调用实例的$watch方法，$watch的核心是创建一个user watcher，其中{user: true}是当前用户定义watcher的标志。</li>
+</ol>
+<h4 id="3-2-依赖收集"><a href="#3-2-依赖收集" class="headerlink" title="3.2 依赖收集"></a>3.2 依赖收集</h4><p>既然数据的初始化完成以后，就是等待数据被访问，收集当前的依赖了，我们可以先看下Watcher的定义，和上面几种类型Watcher实例化时传了哪些参数。</p>
+<p>Watcher基本定义</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Watcher</span> </span>&#123;</span><br><span class="line">    ... </span><br><span class="line">      <span class="keyword">constructor</span> (</span><br><span class="line">        vm: Component, // vue实例</span><br><span class="line">        expOrFn: string | Function, // 用于收集依赖的方法</span><br><span class="line">        cb: Function, // 回调函数</span><br><span class="line">        options?: ?Object, // 自定义参数，比如自定义watch传入的depp，immediate</span><br><span class="line">        isRenderWatcher?: boolean // 是否为渲染Watcher</span><br><span class="line">      )</span><br><span class="line">     ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>渲染Watcher实例化<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Watcher(</span><br><span class="line">  vm,</span><br><span class="line">  updateComponent, <span class="comment">// 渲染模版更新DOM的方法</span></span><br><span class="line">  noop, <span class="comment">// 没有回调，空函数</span></span><br><span class="line">  &#123;</span><br><span class="line">  before () &#123;</span><br><span class="line">    <span class="comment">// 数据更新之前执行beforeUpdate生命周期</span></span><br><span class="line">    <span class="keyword">if</span> (vm._isMounted &amp;&amp; !vm._isDestroyed) &#123;</span><br><span class="line">      callHook(vm, <span class="string">'beforeUpdate'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, <span class="literal">true</span> <span class="comment">/* isRenderWatcher */</span>)</span><br></pre></td></tr></table></figure></div></p>
+<p>计算属性Watcher实例化<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">watchers[key] = <span class="keyword">new</span> Watcher(</span><br><span class="line">  vm,</span><br><span class="line">  getter || noop, <span class="comment">// getter是我们写的computed函数或者是自定义的get函数</span></span><br><span class="line">  noop, <span class="comment">// 空函数</span></span><br><span class="line">  computedWatcherOptions <span class="comment">// &#123; lazy: true &#125; 标示自己是计算属性Watcher</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></div></p>
+<p>用户自定义Watcher实例化<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> watcher = <span class="keyword">new</span> Watcher(</span><br><span class="line">    vm, </span><br><span class="line">    expOrFn, <span class="comment">// watch key值</span></span><br><span class="line">    cb, <span class="comment">// 用户写的函数</span></span><br><span class="line">    options <span class="comment">// depp，immediate之类的</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></div></p>
+<p>在Watcher类定义的地方，构造函数内有这么一段逻辑<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> expOrFn === <span class="string">'function'</span>) &#123;</span><br><span class="line">  <span class="keyword">this</span>.getter = expOrFn</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.getter = parsePath(expOrFn) <span class="comment">// parsePath是一个工具函数，返回一个访问vm.expOrFn的执行函数</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.getter) &#123;</span><br><span class="line">    <span class="keyword">this</span>.getter = noop</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">this</span>.value = <span class="keyword">this</span>.lazy</span><br><span class="line">  ? <span class="literal">undefined</span></span><br><span class="line">  : <span class="keyword">this</span>.get();</span><br><span class="line"></span><br><span class="line"><span class="comment">// get 函数内部</span></span><br><span class="line">value = <span class="keyword">this</span>.getter.call(vm, vm)</span><br></pre></td></tr></table></figure></div></p>
+<p>意味着expOrFn参数是否为函数，都会在Watcher实例化的时候执行。所以可以解释各个依赖都是在哪些地方第一次被收集的。</p>
+<ol>
+<li>渲染Watcher：updateComponent作为expOrFn参数传入的，也就是进行模版渲染的过程中有地方访问到了写在模版里的数据，更详细的讲是_render方法中，生成的render渲染函数<code>fuction(){width(){}}</code>的width语句中访问到了相应数据，该数据就会收集到渲染Watcher。</li>
+<li>计算属性Watcher：执行我们写入的computed函数，访问到了相关数据，相关数据收集计算属性Watcher。</li>
+<li>用户自定义Watcher：expOrFn传入的是我们写的watch key，在执行this.getter的时候会访问到vm.[key],所以是在被定义的时候就被对应的数据收集了。</li>
+</ol>
+<h4 id="3-3-更新视图"><a href="#3-3-更新视图" class="headerlink" title="3.3 更新视图"></a>3.3 更新视图</h4><p>无论是在哪收集到的watcher，数据更新的时候最终的目的还是要更新视图。</p>
+<p>比如我们data里的数据被更新了，会触发set方法，其主要干了以下几件事：</p>
+<ol>
+<li>判断数据更改前后是否一致，如果数据相等则不进行任何派发更新操作。</li>
+<li>新值为对象时，会对该值的属性进行依赖收集过程</li>
+<li>通知该数据收集的watcher依赖，遍历每个watcher进行数据更新(调用dep.notify方法进行更新的派发，该方法内通过调用watcher类的update方法进行更新数据操作)</li>
+<li>更新时将每个watcher推到队列中，等待下一个tick(事件循环)到来时取出每个watcher进行run操作。</li>
+</ol>
+<p>update函数执行的过程很复杂，其内部会执行Vue自定义的nextTick函数，nextTick会缓冲多个数据处理过程，等到下一个事件循环tick中再去执行DOM操作，原理是利用事件循环的微任务队列实现异步更新。当tick到来时，还会对各个依赖进行排序，因为依赖有优先级关系(自定义watcher优先于渲染watcher)，组件也有父子关系(父的渲染watcher优先于子的渲染watcher更新)。</p>
+<p>对于渲染Watcher来说，run函数就是更新DOM的地方，也是执行我们执行实例化Watcher时传入的expOrFn参数。<br><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">run () &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.active) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">this</span>.get() <span class="comment">// 重新求值</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      value !== <span class="keyword">this</span>.value ||</span><br><span class="line">      isObject(value) ||</span><br><span class="line">      <span class="keyword">this</span>.deep</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="comment">// set new value</span></span><br><span class="line">      <span class="keyword">const</span> oldValue = <span class="keyword">this</span>.value</span><br><span class="line">      <span class="keyword">this</span>.value = value</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.user) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">this</span>.cb.call(<span class="keyword">this</span>.vm, value, oldValue)</span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">          handleError(e, <span class="keyword">this</span>.vm, <span class="string">`callback for watcher "<span class="subst">$&#123;<span class="keyword">this</span>.expression&#125;</span>"`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.cb.call(<span class="keyword">this</span>.vm, value, oldValue)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
+<p>根据依赖收集的地方我们得知，thi.get内会执行this.getter,而此时的getter就是updateComponent方法。</p>
+<h4 id="3-4-思考"><a href="#3-4-思考" class="headerlink" title="3.4 思考"></a>3.4 思考</h4><blockquote>
+<p>为什么Vue官方文档中提到以下几种方式的赋值是构不成响应式数据的呢？又为什么通过数组的splice、push、shift等方法，或者通过this.$set的方法进行赋值就能构成响应式数据了呢？</p>
+</blockquote>
+<p>在Vue2.x的文档中有提到如果给直接修改数组的length属性，或者利用索引修改数组长度时，对象属性的添加或者删除，Vue不能检测到变动。这些都是与Object.defineProperty的特新有关。</p>
+<ol>
+<li><p>首先Object.defineProperty的get，set方法只能检测到对象属性的变化，对数组的变化无能为力。之所以能通过数组方法进行更改，是因为Vue在保留原数组功能的前提下，重新定义了数组部分方法(主要是增删改查的方法，push,pop,shift,unshift,splice,sort,reverse)。在<code>src/core/observer/array.js</code>里放这数组改写的相关代码。</p>
+ <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arrayProto = <span class="built_in">Array</span>.prototype;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> arrayMethods = <span class="built_in">Object</span>.create(arrayProto);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> methodsToPatch = [</span><br><span class="line">  <span class="string">'push'</span>,</span><br><span class="line">  <span class="string">'pop'</span>,</span><br><span class="line">  <span class="string">'shift'</span>,</span><br><span class="line">  <span class="string">'unshift'</span>,</span><br><span class="line">  <span class="string">'splice'</span>,</span><br><span class="line">  <span class="string">'sort'</span>,</span><br><span class="line">  <span class="string">'reverse'</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Intercept mutating methods and emit events</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">methodsToPatch.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">method</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// cache original method</span></span><br><span class="line">  <span class="keyword">const</span> original = arrayProto[method]</span><br><span class="line">  <span class="comment">// def函数用于快捷设置属性为不可枚举</span></span><br><span class="line">  def(arrayMethods, method, <span class="function"><span class="keyword">function</span> <span class="title">mutator</span> (<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result = original.apply(<span class="keyword">this</span>, args)</span><br><span class="line">    <span class="keyword">const</span> ob = <span class="keyword">this</span>.__ob__</span><br><span class="line">    <span class="keyword">let</span> inserted</span><br><span class="line">    <span class="keyword">switch</span> (method) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'push'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'unshift'</span>:</span><br><span class="line">        inserted = args</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'splice'</span>:</span><br><span class="line">        inserted = args.slice(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (inserted) ob.observeArray(inserted)</span><br><span class="line">    <span class="comment">// notify change</span></span><br><span class="line">    ob.dep.notify()</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+<p> 首先先会调用原始的数组方法进行运算，保证与原始数组类型的方法一致。之后取出<strong>ob</strong>(Observer实例)，调用ob.dep.notiify()进行依赖的派发更新。通过inserted来标志数组是否增加了元素，如果增加的元素时候数组对象类型，则触发observeArray方法对每个元素进行依赖收集。</p>
+</li>
+<li><p>Vue在对对象进行依赖收集的时候，会为对象的每个属性都进行收集依赖，而直接通过object.key添加的新属性并没有依赖收集的过程，因此当之后数据key发生改变时也不会进行依赖的更新。$set的方法定义在<code>src/core/observer/index.js</code>里。</p>
+ <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">set</span> (<span class="params">target, key, val</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//target必须为非空对象</span></span><br><span class="line">    <span class="keyword">if</span> (isUndef(target) || isPrimitive(target)</span><br><span class="line">    ) &#123;</span><br><span class="line">      warn((<span class="string">"Cannot set reactive property on undefined, null, or primitive value: "</span> + ((target))));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 数组场景，调用重写的splice方法，对新添加属性收集依赖。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(target) &amp;&amp; isValidArrayIndex(key)) &#123;</span><br><span class="line">      target.length = <span class="built_in">Math</span>.max(target.length, key);</span><br><span class="line">      target.splice(key, <span class="number">1</span>, val);</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 新增对象的属性存在时，直接返回新属性，触发依赖收集</span></span><br><span class="line">    <span class="keyword">if</span> (key <span class="keyword">in</span> target &amp;&amp; !(key <span class="keyword">in</span> <span class="built_in">Object</span>.prototype)) &#123;</span><br><span class="line">      target[key] = val;</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 拿到目标源的Observer 实例</span></span><br><span class="line">    <span class="keyword">var</span> ob = (target).__ob__;</span><br><span class="line">    <span class="comment">// _isVue为Vue实例的标志</span></span><br><span class="line">    <span class="keyword">if</span> (target._isVue || (ob &amp;&amp; ob.vmCount)) &#123;</span><br><span class="line">      warn(</span><br><span class="line">        <span class="string">'Avoid adding reactive properties to a Vue instance or its root $data '</span> +</span><br><span class="line">        <span class="string">'at runtime - declare it upfront in the data option.'</span></span><br><span class="line">      );</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 目标源对象本身不是一个响应式对象，则不需要处理</span></span><br><span class="line">    <span class="keyword">if</span> (!ob) &#123;</span><br><span class="line">      target[key] = val;</span><br><span class="line">      <span class="keyword">return</span> val</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 手动调用defineReactive，为新属性设置getter,setter</span></span><br><span class="line">    defineReactive(ob.value, key, val);</span><br><span class="line">    ob.dep.notify();</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
+<p> 主要做了以下几点事。</p>
+<ul>
+<li>目标对象必须为非空的对象，可以是数组，否者抛出异常</li>
+<li>如果目标对象是数组时，调用数组的splice方法，进而调用ob.observeArray(inserted)对数组新增的元素收集依赖</li>
+<li>新增的属性值在原对象已经存在，则手动的访问该属性值，此操作会触发依赖收集</li>
+<li>新的属性值在原对象不存在时，手动定义新属性的getter，setter方法，并通过notify触发依赖更新。</li>
+</ul>
+</li>
+</ol>
+<p>如果你觉得以上知识点还不过瘾～附赠本人学习时画的思维导图，希望对你有帮助^_^</p>
+<p><img src="/2020/06/24/vue-code/img4.png" alt></p>
+<blockquote>
+<p><a href="vue源码解析思维导图.xmind">vue源码解析思维导图.xmind</a></p>
+</blockquote>
+<blockquote>
+<p>参考资料: <a href="https://book.penblog.cn/" target="_blank" rel="noopener">深入剖析Vue源码</a></p>
+</blockquote>
+<blockquote>
+<p>参考资料: <a href="https://ustbhuangyi.github.io/vue-analysis/v2/prepare/" target="_blank" rel="noopener">Vue.js技术揭秘</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>我想吃鸡腿!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="../../../../image/wechatpay.png" alt="Zi Jun 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="../../../../image/alipay.png" alt="Zi Jun 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Zi Jun
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.zijunfe.cn/2020/06/24/vue-code/" title="Vue源码分析">http://blog.zijunfe.cn/2020/06/24/vue-code/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/10/http-cache/" rel="next" title="Http缓存总结">
+                <i class="fa fa-chevron-left"></i> Http缓存总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/24/webpack/" rel="prev" title="Webpack优化总结">
+                Webpack优化总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/header.jpeg" alt="Zi Jun">
+            </a>
+            
+              <p class="site-author-name" itemprop="name">Zi Jun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BiYangJun" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="html2014byj@163.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=133998&height=32"></iframe>
+      
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Vue的初始化"><span class="nav-number">1.</span> <span class="nav-text">1. Vue的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-挂载与渲染流程"><span class="nav-number">2.</span> <span class="nav-text">2. 挂载与渲染流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-响应式系统的构建"><span class="nav-number">3.</span> <span class="nav-text">3. 响应式系统的构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-数据初始化"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 数据初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-依赖收集"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 依赖收集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-更新视图"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 更新视图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-思考"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 思考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    
+
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子君</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '7970cb114f22ce2015b3',
+          clientSecret: '41d2b41411abdd7d693f42a526ed03918aae76de',
+          repo: 'blog-comments',
+          owner: 'BiYangJun',
+          admin: ['BiYangJun'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+    </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("tbYVvp36AjgSJbdUs6djQfB1-gzGzoHsz", "vrB9RiCPWFJ9mw3gdjSvX4iR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

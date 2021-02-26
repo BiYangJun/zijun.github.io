@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="GSVm-ROoUXGd1x-vWTSEqgMaa3wgf7KtEm3Q3YUIuDE">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/zi128.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/zi128.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/zi128.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="自问自答">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="子君的个人博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？自答： 要明白key的作用，首先我们要知道列表组件带key与不带key会有什么区别。 前提我们需要知道vue如何更新列表组件的。 在vue的diff函数中。经过交叉对比后，当新节点跟旧节点头尾交叉对比没有结果时，会根据新节点的key去对比旧节点数组中的key，从而找到相应旧节点（这里对应的是一个key =&amp;gt;">
+<meta name="keywords" content="自问自答">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自问自答系列(持续更新！2-26)">
+<meta property="og:url" content="http://blog.zijunfe.cn/2021/02/26/qustion-answer/index.html">
+<meta property="og:site_name" content="子君的个人博客">
+<meta property="og:description" content="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？自答： 要明白key的作用，首先我们要知道列表组件带key与不带key会有什么区别。 前提我们需要知道vue如何更新列表组件的。 在vue的diff函数中。经过交叉对比后，当新节点跟旧节点头尾交叉对比没有结果时，会根据新节点的key去对比旧节点数组中的key，从而找到相应旧节点（这里对应的是一个key =&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%AC%BA%E9%AA%97.png">
+<meta property="og:image" content="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7.png">
+<meta property="og:image" content="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E4%B8%80%E6%AC%A1%E5%8F%AF%E9%9D%A0%E7%9A%84%E9%80%9A%E4%BF%A1.png">
+<meta property="og:updated_time" content="2021-02-26T10:09:06.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自问自答系列(持续更新！2-26)">
+<meta name="twitter:description" content="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？自答： 要明白key的作用，首先我们要知道列表组件带key与不带key会有什么区别。 前提我们需要知道vue如何更新列表组件的。 在vue的diff函数中。经过交叉对比后，当新节点跟旧节点头尾交叉对比没有结果时，会根据新节点的key去对比旧节点数组中的key，从而找到相应旧节点（这里对应的是一个key =&amp;gt;">
+<meta name="twitter:image" content="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%AC%BA%E9%AA%97.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.zijunfe.cn/2021/02/26/qustion-answer/">
+
+
+
+
+
+  <title>自问自答系列(持续更新！2-26) | 子君的个人博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子君的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.zijunfe.cn/2021/02/26/qustion-answer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zi Jun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子君的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">自问自答系列(持续更新！2-26)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-26T18:01:02+08:00">
+                2021-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自问自答/" itemprop="url" rel="index">
+                    <span itemprop="name">自问自答</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2021/02/26/qustion-answer/" class="leancloud_visitors" data-flag-title="自问自答系列(持续更新！2-26)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  10.6k字
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><a href="#1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？" class="headerlink" title="1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？"></a>1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</h4><p>自答：</p>
+<p>要明白key的作用，首先我们要知道列表组件带key与不带key会有什么区别。</p>
+<p>前提我们需要知道vue如何更新列表组件的。</p>
+<p>在vue的diff函数中。经过交叉对比后，当新节点跟旧节点头尾交叉对比没有结果时，会根据新节点的key去对比旧节点数组中的key，从而找到相应旧节点（这里对应的是一个key =&gt; index 的map映射）。如果没找到就认为是一个新增节点。而如果没有key，那么就会采用遍历查找的方式去找到对应的旧节点。</p>
+<a id="more"></a>
+<p><strong>不带key：</strong></p>
+<ul>
+<li><p>就地复用组件：当 Vue 用 v-for 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。比如绑定的数据项发生了改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，这个默认的模式是高效的，但是只适用于<strong>不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出</strong>。以上是vue官网的说法。当不带key时，在比较新旧两个组件是否是同一个组件的过程中会判断成新旧两个组件是同一个组件，因为 old.key 和 new.key 都是 undefined。所以不会重新创建组件和删除组件，只会在组件的属性层面上进行比较和更新。所以可能在某种程度上（创建和删除组件方面）会有渲染性能上的提升。</p>
+</li>
+<li><p>无法维持组件的状态：因为时就地复用组件，可能在维持组件状态方面会导致不可预知的错误，比如无法维持改组件的动画效果、开关等状态，在现实业务场景中会有更多不可预知的问题。</p>
+</li>
+<li><p>也有可能带来性能下降：因为是直接就地复用节点，如果修改的组件，需要复用的很多节点，顺序又和原来的完全不同的话，那么创建和删除的节点数量就会比带 key 的时候增加很多，(为什么会很多)，性能就会有所下降；</p>
+</li>
+</ul>
+<p><strong>带key：</strong></p>
+<ul>
+<li><p>维持组件的状态：保证组件的复用：因为有 key 唯一标识了组件，在进行新旧节点比较的时候，会在接下来的节点中找到 key 相同的节点去比较，能找到相同的 key 的话就复用节点，不能找到的话就增加或者删除节点。</p>
+</li>
+<li><p>查找性能上的提升：有 key 的时候，会生成 hash（即对应关系），这样在查找的时候就是 hash 查找了，基本上就是 O(1) 的复杂度。</p>
+</li>
+<li><p>节点复用带来的性能提升：因为有 key 唯一标识了组件，所以会尽可能多的对组件进行复用（尽管组件顺序不同），那么创建和删除节点数量就会变少，这方面的消耗就会下降，带来性能的提升。</p>
+</li>
+</ul>
+<p>衍生问题：为什么不推荐使用数组的index作为列表组件的key？</p>
+<p>官网推荐推荐的使用key，应该理解为“使用唯一id作为key”。因为index作为key，和不带key的效果是一样的。index作为key时，每个列表项的index在变更前后也是一样的，都是直接判断为sameVnode然后复用。</p>
+<h4 id="2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why"><a href="#2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why" class="headerlink" title="2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?"></a>2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?</h4><p>自答：</p>
+<p>像此类的问题只需要逐个分析函数的参数即可，map函数第一个参数是时候一个callback，而这里相当于parseInt这个函数，callback有三个参数，第一个参数元素本身，第二个参数是下标，第三个参数为执行数组。parseInt第一个参数是需要取整的字符串，第二个参数radix是解析时的基数，是一个介于2-36之间的整数，默认是10。</p>
+<p>那么执行’1’的过程就是，<code>parseInt(&#39;1&#39;,0) === 1</code> 为啥为1呢？因为radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1</p>
+<p>那么执行’2’的过程就是，<code>parseInt(&#39;2&#39;,1) === NaN</code> radix是一个介于2-36之间的整数</p>
+<p>那么执行’3’的过程就是，<code>parseInt(&#39;3&#39;,2) === NaN</code> 没有数的二进制能用3来表示。</p>
+<p>返回的结果为<code>[1,NaN,NaN]</code>。</p>
+<h4 id="3、什么是防抖和节流？有什么区别？如何实现？"><a href="#3、什么是防抖和节流？有什么区别？如何实现？" class="headerlink" title="3、什么是防抖和节流？有什么区别？如何实现？"></a>3、什么是防抖和节流？有什么区别？如何实现？</h4><p>自答：</p>
+<p><strong>防抖：</strong></p>
+<blockquote>
+<p>指定时间内，方法只能执行一次。而这个时间的计算，是从最后一次触发监听事件开始算起。</p>
+<p>自己的理解：无数次请求执行方法，如果最后一次请求在规定时间内没有再发生请求，那么以最后一次为准</p>
+<p>一般表现为，在一段连续触发的事件中，最终会转化为一次方法执行，就像防止抖动一样，你做一个事，防止你手抖不小心重复干了</p>
+</blockquote>
+<p>场景：如在一个输入框内输入文字，你想在输入停止一段时间过后再去获取数据（如过滤），而不是每输入一个文字就去请求一次，那么这时候你就可以利用防抖，指定<code>keyup</code>事件不断触发的过程中不要重复发请求，到最后一次停止输入再去请求。</p>
+<p>函数实现</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 防抖函数</span></span><br><span class="line"><span class="comment"> * @param &#123;Function&#125; fn - 实际要执行的函数</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; wait - 规定在什么时间内执行一次函数，单位是秒</span></span><br><span class="line"><span class="comment"> * @param &#123;Boolean&#125; immediate - 是否立即执行，true为立即执行，立即执行指触发监听事件是先执行</span></span><br><span class="line"><span class="comment"> * @return &#123;Function&#125; 经过防抖处理后的要执行的函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, wait, immediate</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timerId = <span class="literal">null</span>; <span class="comment">// 记录定时器id</span></span><br><span class="line">    wait = +wait || <span class="number">0</span>; <span class="comment">// 如果wait没有传，那么初始化0值</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'debounce的第一个参数请传入函数'</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 防抖后的执行函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">debounced</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        timerId &amp;&amp; clearTimeout(timerId);</span><br><span class="line">        <span class="comment">// 如果是立即执行</span></span><br><span class="line">        <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">            <span class="comment">// 如果已经过了规定时间，则执行函数 或 第一次触发监听事件</span></span><br><span class="line">            !timerId &amp;&amp; fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">            <span class="comment">// 规定时间后情况定时器id，表明到达了规定时间</span></span><br><span class="line">            timerId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                timerId = <span class="literal">null</span>;</span><br><span class="line">            &#125;, wait);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 延后执行</span></span><br><span class="line">            <span class="comment">// 只有到达了规定时间后才会执行fn函数</span></span><br><span class="line">            timerId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">                timerId = <span class="literal">null</span>;</span><br><span class="line">            &#125;, wait);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 手动取消该次设定的防抖时间，取消后当成是“第一次触发”一样</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">cancel</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timerId);</span><br><span class="line">        timerId = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    debounced.cancel = cancel;</span><br><span class="line">    <span class="keyword">return</span> debounced;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>节流：</strong></p>
+<blockquote>
+<p>指定时间内，方法只能执行一次。而这个时间的计算，是从上次执行方法开始算起。</p>
+<p>自己的理解：立马执行第一请求，在一次执行方法请求后的规定时间内，不能再次发出请求，规定时间结束后可再次请求，如果规定时间内再次发出，则重置规定时间。</p>
+<p>一般表现为，在一段连续触发的事件中，根据你设定的时间间隔，降低触发频率，重复执行。</p>
+</blockquote>
+<p>场景：如你需要做无限加载，监听到滚动条到达底部就加载更多数据，这时候其实你不必要时时刻刻都执行<code>scroll</code>事件绑定的函数，这样没必要，只要把执行频率降低点同样可以达到效果，节约资源。这就是利用节流。</p>
+<p>函数实现</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 节流函数</span></span><br><span class="line"><span class="comment"> * @param &#123;Function&#125; fn - 实际要执行的函数，对其进行节流处理</span></span><br><span class="line"><span class="comment"> * @param &#123;Number&#125; wait - 规定的执行时间间隔</span></span><br><span class="line"><span class="comment"> * @param &#123;Object&#125; option - 用于设置节流的函数的触发时机，</span></span><br><span class="line"><span class="comment"> *                        - 默认是&#123;leading: true, trailing: true&#125;，表示第一次触发监听事件马上执行，停止后最后也执行一次</span></span><br><span class="line"><span class="comment"> *                        - leading为false时，表示第一次触发不马上执行</span></span><br><span class="line"><span class="comment"> *                        - trailing为false时，表示最后停止触发后不执行</span></span><br><span class="line"><span class="comment"> * @return &#123;Function&#125; 返回经过节流处理后的函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, wait, option</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> timerId = <span class="literal">null</span>; <span class="comment">// 用于记录定时器的id</span></span><br><span class="line">    <span class="keyword">let</span> lastTime = <span class="number">0</span>; <span class="comment">// 上次触发fn的时间戳</span></span><br><span class="line">    wait = +wait || <span class="number">0</span>; <span class="comment">// 如果wait没有传，那么初始化0值</span></span><br><span class="line">    option = option || &#123;&#125;; <span class="comment">// 如果option没有传，那么初始化&#123;&#125;值</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> fn !== <span class="string">'function'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'throttle的第一个参数请传入函数'</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (option.leading === <span class="literal">false</span> &amp;&amp; option.trailing === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'option的leading 和 trailing不能同时为false'</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 节流后的执行函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">throttled</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">// 获取当前时间</span></span><br><span class="line">        <span class="comment">// 如果没有上次触发执行时间（即第一次运行），以及leading设置为false</span></span><br><span class="line">        !lastTime &amp;&amp; option.leading === <span class="literal">false</span> &amp;&amp; (lastTime = now);</span><br><span class="line">        <span class="comment">// 距离到达规定的wait时间剩余时间</span></span><br><span class="line">        <span class="keyword">let</span> remainingTime = wait - (now - lastTime);</span><br><span class="line">        <span class="comment">// 条件①：如果到达了规定的间隔时间或用户自己设定了系统时间导致的不合理时间差，则立刻执行一次触发函数</span></span><br><span class="line">        <span class="keyword">if</span> (remainingTime &lt;= <span class="number">0</span> || remainingTime &gt; wait) &#123;</span><br><span class="line">            fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">            lastTime = now;</span><br><span class="line">            <span class="keyword">if</span> (timerId) &#123;</span><br><span class="line">                clearTimeout(timerId);</span><br><span class="line">                timerId = <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 条件②：如果未达到规定时间，以及要求停止后延迟执行（trailing=false）</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(!timerId &amp;&amp; option.trailing !== <span class="literal">false</span>) &#123;</span><br><span class="line">            timerId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                timerId = <span class="literal">null</span>;</span><br><span class="line">                fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">                lastTime = option.leading === <span class="literal">false</span> ? <span class="number">0</span> : +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">            &#125;, remainingTime);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 手动提前终止节流时间，恢复初始状态</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">cancel</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(timerId);</span><br><span class="line">        timerId = <span class="literal">null</span>;</span><br><span class="line">        lastTime = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    throttled.cancel = cancel;</span><br><span class="line">    <span class="keyword">return</span> throttled;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="4、介绍下-Set、Map、WeakSet-和-WeakMap-的区别？"><a href="#4、介绍下-Set、Map、WeakSet-和-WeakMap-的区别？" class="headerlink" title="4、介绍下 Set、Map、WeakSet 和 WeakMap 的区别？"></a>4、介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</h4><p>自答：</p>
+<p>Set(集合)</p>
+<p>Set 是一种叫做集合的数据结构，成员是唯一且无序的，没有重复的值。<br><strong>Set 本身是一种构造函数，用来生成 Set 数据结构。</strong>，Set 对象允许你储存任何类型的唯一值，Set 内部判断两个值是否不同的判断类似于精确相等运算符（===），主要的区别是在Set内NaN和NaN是相同的，但是<code>NaN === NaN =&gt; false</code>。</p>
+<p>Set的实例方法：add(value)，delete(value)，has(value)，clear()，keys()，values()，entries()，forEach(callbackFn, thisArg)，map()，filter()</p>
+<p>WeakSet</p>
+<p>WeakSet 对象允许你将<strong>弱引用对象</strong>储存在一个集合中。</p>
+<p>WeakSet 与 Set 的区别：</p>
+<ul>
+<li>WeakSet 只能储存对象引用，不能存放值，而 Set 对象都可以</li>
+<li>WeakSet 对象中储存的对象值都是被弱引用的，即垃圾回收机制不考虑 WeakSet 对该对象的引用，如果没有其他的变量或属性引用这个对象值，则这个对象将会被垃圾回收掉（不考虑该对象还存在于 WeakSet 中），所以，WeakSet 对象里有多少个成员元素，取决于垃圾回收机制有没有运行，运行前后成员个数可能不一致，遍历结束之后，有的成员可能取不到了（被垃圾回收了），WeakSet 对象是无法被遍历的（ES6 规定 WeakSet 不可遍历），也没有办法拿到它包含的所有元素。</li>
+</ul>
+<p>WeakSet实例方法：add(value)，has(value)，delete(value)</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foos = <span class="keyword">new</span> <span class="built_in">WeakSet</span>()</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    foos.add(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  method () &#123;</span><br><span class="line">    <span class="keyword">if</span> (!foos.has(<span class="keyword">this</span>)) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Foo.prototype.method 只能在Foo的实例上调用！'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>上面代码保证了Foo的实例方法，只能在Foo的实例上调用。这里使用 WeakSet 的好处是，foos对实例的引用，不会被计入内存回收机制，所以删除实例的时候，不用考虑foos，也不会出现内存泄漏。</p>
+<p>Map(字典)</p>
+<p>集合 与 字典 的区别：</p>
+<ul>
+<li>共同点：集合、字典 可以储存不重复的值（Map里的key如果是引用类型，看上去像”重复”了一样，实际上不重复是指内存地址的不重复）</li>
+<li>不同点：集合 是以 [value, value]的形式储存元素，字典 是以 [key, value] 的形式储存</li>
+</ul>
+<p>任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构(即<code>[[key,value],[key,value]]</code>)都可以当作Map构造函数的参数，例如：</p>
+<p>Map 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键。这就解决了同名属性碰撞（clash）的问题，我们扩展别人的库的时候，如果使用对象作为键名，就不用担心自己的属性与原作者的属性同名。</p>
+<p>如果 Map 的键是一个简单类型的值（数字、字符串、布尔值），则只要两个值严格相等（===），Map 将其视为一个键，比如<code>0</code>和<code>-0</code>就是一个键，布尔值<code>true</code>和字符串<code>&#39;true&#39;</code>则是两个不同的键。另外，<code>undefined</code>和<code>null</code>也是两个不同的键。虽然<code>NaN</code>不严格相等于自身，但 Map 将其视为同一个键（这个点和Set是一样的）。</p>
+<p>实例方法：set(key, value)，get(key)，has(key)，delete(key)，clear()，keys()，values()，entries()，forEach(callback(value,key,map),thisArg)</p>
+<p>WeakMap</p>
+<p>WeakMap 对象是一组键值对的集合，其中的键是弱引用对象，而值可以是任意。注意，WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用。</p>
+<p>WeakMap 中，每个键对自己所引用对象的引用都是弱引用，在没有其他引用和该键引用同一对象，这个对象将会被垃圾回收（相应的key则变成无效的），所以，WeakMap 的 key 是不可枚举的。</p>
+<p>实例方法：has(key)，get(key)，set(key)，delete(key)</p>
+<p>总结：</p>
+<ul>
+<li>Set<ul>
+<li>成员唯一、无序且不重复</li>
+<li>[value, value]，键值与键名是一致的（或者说只有键值，没有键名）</li>
+<li>可以遍历，方法有：add、delete、has</li>
+</ul>
+</li>
+<li>WeakSet<ul>
+<li>成员都是对象</li>
+<li>成员都是弱引用，可以被垃圾回收机制回收，可以用来保存DOM节点，不容易造成内存泄漏</li>
+<li>不能遍历，方法有add、delete、has</li>
+</ul>
+</li>
+<li>Map<ul>
+<li>本质上是键值对的集合，类似集合</li>
+<li>可以遍历，方法很多可以跟各种数据格式转换</li>
+</ul>
+</li>
+<li>WeakMap<ul>
+<li>只接受对象作为键名（null除外），不接受其他类型的值作为键名</li>
+<li>键名是弱引用，键值可以是任意的，键名所指向的对象可以被垃圾回收，此时键名是无效的</li>
+<li>不能遍历，方法有get、set、has、delete</li>
+</ul>
+</li>
+</ul>
+<h4 id="5、介绍下深度优先遍历和广度优先遍历，如何实现？"><a href="#5、介绍下深度优先遍历和广度优先遍历，如何实现？" class="headerlink" title="5、介绍下深度优先遍历和广度优先遍历，如何实现？"></a>5、介绍下深度优先遍历和广度优先遍历，如何实现？</h4><p>自答：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">parent= &#123;</span><br><span class="line">	child_1: &#123;</span><br><span class="line">		child_1_1: &#123;</span><br><span class="line">			child_1_1_1</span><br><span class="line">		&#125;,</span><br><span class="line">		child_1_2: &#123;</span><br><span class="line">			child_1_2_1</span><br><span class="line">		&#125;,</span><br><span class="line">		child_1_3</span><br><span class="line">	&#125;,</span><br><span class="line">	child_2: &#123;</span><br><span class="line">		child_2_1,</span><br><span class="line">		chhild_2_2,</span><br><span class="line">	&#125;,</span><br><span class="line">	child_3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><strong>深度优先遍历DFS：</strong>深度优先遍历 与树的先序遍历比较类似。从某个顶点出发，首先访问该顶点然后依次从它的各个未被访问的邻接点出发深度优先搜索遍历图，直至图中所有和v有路径相通的顶点都被访问到。若此时尚有其他顶点未被访问到，则另选一个未被访问的顶点作起始点，重复上述过程。有点类似正则中的嵌套捕获，捕获内容以深度优先。</p>
+<p>遍历结果为</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">child_1,</span><br><span class="line">child_1_1,</span><br><span class="line">child_1_1_1,</span><br><span class="line">child_1_2,</span><br><span class="line">child_1_2_1,</span><br><span class="line">child_1_3,</span><br><span class="line">child_2,</span><br><span class="line">child_2_1,</span><br><span class="line">child_2_2,</span><br><span class="line">child_3</span><br><span class="line">]</span><br></pre></td></tr></table></figure></div>
+<p><strong>广度优先遍历 BFS:</strong>从某顶点v出发，在访问了v之后依次访问v的各个未曾访问过的<strong>邻接点</strong>，然后分别从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。 如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程。</p>
+<p>遍历结果为</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">child_1,</span><br><span class="line">child_2,</span><br><span class="line">child_3,</span><br><span class="line">child_1_1,</span><br><span class="line">child_1_2,</span><br><span class="line">child_1_3,</span><br><span class="line">child_2,</span><br><span class="line">child_2_1,</span><br><span class="line">child_2_2,</span><br><span class="line">child_1_1_1,</span><br><span class="line">child_1_2_1</span><br><span class="line">]</span><br></pre></td></tr></table></figure></div>
+<p>深度优先与广度优先经常用在<strong>二叉树</strong>的搜索上。</p>
+<p>二叉树：一种每个节点不能多于有两个儿子的非线性的数据结构。</p>
+<h4 id="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数。"><a href="#6、请分别用深度优先思想和广度优先思想实现一个拷贝函数。" class="headerlink" title="6、请分别用深度优先思想和广度优先思想实现一个拷贝函数。"></a>6、请分别用深度优先思想和广度优先思想实现一个拷贝函数。</h4><h4 id="7、setTimeout、Promise、Async-Await-的区别"><a href="#7、setTimeout、Promise、Async-Await-的区别" class="headerlink" title="7、setTimeout、Promise、Async/Await 的区别"></a>7、setTimeout、Promise、Async/Await 的区别</h4><p>事件循环中分为宏任务队列和微任务队列。<a href="https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/7" target="_blank" rel="noopener">参考文章</a></p>
+<p>在事件循环中，每进行一次循环操作称为 tick，每一次 tick 的任务处理模型是比较复杂的，但关键步骤如下：</p>
+<ul>
+<li>执行一个宏任务（栈中没有就从事件队列中获取）</li>
+<li>执行过程中如果遇到微任务，就将它添加到微任务的任务队列中</li>
+<li>宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）</li>
+<li>当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染</li>
+<li>渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）</li>
+</ul>
+<p><strong>宏任务</strong>主要包含：script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)。</p>
+<p><strong>微任务</strong>主要包含：Promise.then、MutaionObserver、process.nextTick(Node.js 环境)</p>
+<p>其中settimeout的回调函数放到宏任务队列里，等到执行栈清空以后执行；</p>
+<blockquote>
+<p>浏览器和Node 事件循环的区别，主要区别在node10:</p>
+<p>Node 10以前：node会先执行完一个阶段的所有任务,将同源的宏任务队列执行完毕后再去清空微任务队列。</p>
+<p>Node 11以后：，node与浏览器统一，执行完一个宏任务就会去清空微任务队列</p>
+</blockquote>
+<p>promise本身是同步的立即执行函数，promise.then里的回调函数会放到相应宏任务的微任务队列里，等宏任务里面的同步代码执行完再执行；</p>
+<p>async函数表示函数里面可能会有异步方法，await是一个让出线程的标志。await后面的表达式会先执行一遍，将await后面的代码加入到microtask中，然后就会跳出整个async函数来执行后面的代码。</p>
+<p>由于因为async await 本身就是promise+generator的语法糖。所以await后面的代码是微任务。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">	<span class="keyword">await</span> async2();</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*等价于*/</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">	<span class="built_in">Promise</span>.resolve(async2()).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>相关例子</p>
+</blockquote>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>);</span><br><span class="line">    <span class="keyword">await</span> async2();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'async2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line">async1();</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">    resolve();</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 运行顺序</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">script start</span></span><br><span class="line"><span class="comment">async1 start</span></span><br><span class="line"><span class="comment">async2</span></span><br><span class="line"><span class="comment">promise1</span></span><br><span class="line"><span class="comment">script end</span></span><br><span class="line"><span class="comment">async1 end</span></span><br><span class="line"><span class="comment">promise2</span></span><br><span class="line"><span class="comment">setTimeout</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">a1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a1 start'</span>)</span><br><span class="line">    <span class="keyword">await</span> a2()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a1 end'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">a2</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'a2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">&#125;, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">a1()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promise2 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="string">'promise2.then'</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">promise2.then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res)</span><br><span class="line">    <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'promise3'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">script start</span><br><span class="line">a1 start</span><br><span class="line">a2</span><br><span class="line">promise2</span><br><span class="line">script end</span><br><span class="line">promise1</span><br><span class="line">a1 end</span><br><span class="line">promise2.then</span><br><span class="line">promise3</span><br><span class="line">setTimeout</span><br></pre></td></tr></table></figure></div>
+<h4 id="8、JS-异步解决方案的发展历程以及优缺点。"><a href="#8、JS-异步解决方案的发展历程以及优缺点。" class="headerlink" title="8、JS 异步解决方案的发展历程以及优缺点。"></a>8、JS 异步解决方案的发展历程以及优缺点。</h4><blockquote>
+<p>回调函数（callback)</p>
+</blockquote>
+<p>缺点：回调地狱，不能用 try catch 捕获错误，不能 return</p>
+<p>优点：解决了同步的问题（只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。这是所有异步解决方案的共同问题）</p>
+<blockquote>
+<p>Promise</p>
+</blockquote>
+<p>Promise就是为了解决callback的问题而产生的，本质上感觉还是个回调函数，只是代码顺序让人看着舒服。<br>Promise 实现了链式调用，也就是说每次 then 后返回的都是一个全新 Promise，如果我们在 then 中 return ，return 的结果会被 Promise.resolve() 包装 </p>
+<p>优点：解决了回调地狱的问题</p>
+<p>缺点：无法取消 Promise ，错误需要通过回调函数来捕获</p>
+<blockquote>
+<p>Generator 生成器函数</p>
+</blockquote>
+<p>特点：可以控制函数的执行，可以配合 co 函数库使用</p>
+<p>缺点：不够普及，需要自行调用next方法继续执行。</p>
+<blockquote>
+<p>Async/await</p>
+</blockquote>
+<p>优点：代码清晰，以同步的方式解决了异步请求，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题</p>
+<p>缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低。</p>
+<h4 id="9、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><a href="#9、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？" class="headerlink" title="9、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？"></a>9、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</h4><p>Promise 构造函数是同步的，then方法也是同步的，只是then里的回电函数callback是异步的。</p>
+<h4 id="10、使用-sort-对数组-3-15-8-29-102-22-进行排序，输出结果"><a href="#10、使用-sort-对数组-3-15-8-29-102-22-进行排序，输出结果" class="headerlink" title="10、使用 sort() 对数组 [3, 15, 8, 29, 102, 22] 进行排序，输出结果"></a>10、使用 sort() 对数组 [3, 15, 8, 29, 102, 22] 进行排序，输出结果</h4><p><code>[102, 15, 22, 29, 3, 8]</code>,根据MDN上对Array.sort()的解释，默认的排序方法会将数组元素转换为字符串，然后比较字符串中字符的UTF-16编码顺序来进行排序。所以’102’ 会排在 ‘15’ 前面</p>
+<h4 id="11、new关键词的作用，如何实现一个new"><a href="#11、new关键词的作用，如何实现一个new" class="headerlink" title="11、new关键词的作用，如何实现一个new"></a>11、new关键词的作用，如何实现一个new</h4><ul>
+<li>不用创建临时对象，因为 new 会帮你做（你使用「this」就可以访问到临时对象）；</li>
+<li>不用绑定原型，因为 new 会帮你做（new 为了知道原型在哪，所以指定原型的名字为 prototype）；</li>
+<li>不用 return 临时对象，因为 new 会帮你做；</li>
+<li>不要给原型想名字了，因为 new 指定名字为 prototype。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_new</span>(<span class="params">fn, ...arg</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> obj = <span class="built_in">Object</span>.create(fn.prototype);</span><br><span class="line">    <span class="keyword">const</span> ret = fn.apply(obj, arg);</span><br><span class="line">    <span class="keyword">return</span> ret <span class="keyword">instanceof</span> <span class="built_in">Object</span> ? ret : obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="12、介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化"><a href="#12、介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化" class="headerlink" title="12、介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化"></a>12、介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化</h4><p>重绘：由于节点的几何属性发生改变或者由于样式发生改变而不会影响布局的，称为重绘，例如outline, visibility, color、background-color等，重绘的代价是高昂的，因为浏览器必须验证DOM树上其他节点元素的可见性。</p>
+<p>回流：回流是布局或者几何属性需要改变就称为回流。回流是影响浏览器性能的关键因素，因为其变化涉及到部分页面（或是整个页面）的布局更新。一个元素的回流可能会导致了其所有子元素以及DOM中紧随其后的节点、祖先节点元素的随后的回流。</p>
+<p>回流必定会发生重绘，重绘不一定会引发回流。</p>
+<h4 id="13、改造下面的代码，使之输出0-9，写出你能想到的所有解法。"><a href="#13、改造下面的代码，使之输出0-9，写出你能想到的所有解法。" class="headerlink" title="13、改造下面的代码，使之输出0 - 9，写出你能想到的所有解法。"></a>13、改造下面的代码，使之输出0 - 9，写出你能想到的所有解法。</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>利用 setTimeout 函数的第三个参数，会作为回调函数的第一个参数传入</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码1</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;, <span class="number">1000</span>, i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代码2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="built_in">console</span>.log, <span class="number">1000</span>, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>利用 bind 函数部分执行的特性</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="built_in">console</span>.log.bind(<span class="built_in">Object</span>.create(<span class="literal">null</span>), i), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>利用 let 变量的特性 — 在每一次 for 循环的过程中，let 声明的变量会在当前的块级作用域里面（for 循环的 body 体，也即两个花括号之间的内容区域）创建一个文法环境（Lexical Environment），该环境里面包括了当前 for 循环过程中的 i</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>利用函数自执行的方式，把当前 for 循环过程中的 i 传递进去，构建出块级作用域。IIFE (自运行函数)其实并不属于闭包的范畴。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码1</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  (<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;)(i)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代码2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(i);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (&#123;</span><br><span class="line">    message: i</span><br><span class="line">  &#125;) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>很多其它的方案只是把 console.log(i) 放到一个函数里面，因为 setTimeout 函数的第一个参数只接受函数以及字符串，如果是 js 语句的话，js 引擎应该会自动在该语句外面包裹一层函数。</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="built_in">console</span>.log(i), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="function">(<span class="params">(</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;)(), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout((<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;)(i), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout((<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;).call(<span class="built_in">Object</span>.create(<span class="literal">null</span>), i), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ul>
+<li>利用 eval 或者 new Function 执行字符串</li>
+</ul>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="built_in">eval</span>(<span class="string">'console.log(i)'</span>), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  setTimeout(<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'i'</span>, <span class="string">'console.log(i)'</span>)(i), <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="14、下面代码中-a-在什么情况下会打印-1？"><a href="#14、下面代码中-a-在什么情况下会打印-1？" class="headerlink" title="14、下面代码中 a 在什么情况下会打印 1？"></a>14、下面代码中 a 在什么情况下会打印 1？</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = ?;</span><br><span class="line"><span class="keyword">if</span>(a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>)&#123;</span><br><span class="line"> 	<span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>引用类型在比较运算符时候,隐式转换会调用本类型toString或valueOf方法，所以要将a设置为引用类型，并且重写toString或者valueOf方法。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">  i: <span class="number">1</span>,</span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> a.i++;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span> ) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">num</span>:<span class="number">0</span>&#125;;</span><br><span class="line">a.valueOf = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ++a.num</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(a == <span class="number">1</span> &amp;&amp; a == <span class="number">2</span> &amp;&amp; a == <span class="number">3</span>)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="15、介绍下-BFC-及其应用。"><a href="#15、介绍下-BFC-及其应用。" class="headerlink" title="15、介绍下 BFC 及其应用。"></a>15、介绍下 BFC 及其应用。</h4><p>BFC全场Block Formatting context(格式化上下文) 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。</p>
+<p>具有 BFC 特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素，并且 BFC 具有普通容器所没有的一些特性。</p>
+<p>只要元素满足下面任一条件即可触发 BFC 特性：</p>
+<ul>
+<li>body 根元素</li>
+<li>浮动元素：float 除 none 以外的值</li>
+<li>绝对定位元素：position (absolute、fixed)</li>
+<li>display 为 inline-block、table-cells、flex</li>
+<li>overflow 除了 visible 以外的值 (hidden、auto、scroll)</li>
+</ul>
+<h4 id="16、HTTPS为什么比HTTP安全"><a href="#16、HTTPS为什么比HTTP安全" class="headerlink" title="16、HTTPS为什么比HTTP安全"></a>16、HTTPS为什么比HTTP安全</h4><p>HTTP传输为明文传输，相当于在网络世界裸奔，容易被hacker劫持并且串改传输内容，比如一些微信网页会被当地电信商劫持并且插入广告。</p>
+<p>而加密传输就是将传输内容经过一种可逆的数学计算后发送给接受方，接受方通过逆计算获得原数据。</p>
+<p>把操作数A作为明文，操作数B作为密钥，结果C作为密文。可以看到加密解密运用同一个密钥B，把这种加解密都用同一个密钥的方式叫做<strong>对称加密（AES）</strong>。但是对称加密有一个问题，这个对称加密用到的密钥怎么互相告知呢？如果在传输真正的数据之前，先把密钥传过去，那Hacker还是能嗅探到，那之后就了无秘密了。</p>
+<p>所以有一种更安全的<strong>非对称加密（RSA）</strong>方式:任何人都可以通过拿到A公开的公钥对内容进行加密，然后只A自己私有的钥匙才能解密还原出原来内容。但是非对称加密由于要经过更多的计算，所以会被认为性能更低，因此我们用它来先协商<strong>对称加密的密钥</strong>即可，后续真正通信的内容还是用对称加密的手段，提高整体的性能。</p>
+<p>上边虽然解决了密钥配送的问题，但是中间人还是可以欺骗双方，只要在Alice像Bob要公钥的时候，Hacker把自己公钥给了Alice，而Alice是不知道这个事情的，以为一直都是Bob跟她在通信。</p>
+<p><img src="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%AC%BA%E9%AA%97.png" alt></p>
+<p>为了解决这个问题，我们需要证明这个公钥就是Bob给的，所以我们要看Bob的“身份证”。这个身份证就是一个数字证书。数字证书是一个权威组织CA颁发给Bob的，前边说到用公钥进行加密，只有拥有私钥的人才能解密。数字证书有点反过来：用私钥进行加密，用公钥进行解密。CA用自己的私钥对Bob的信息（包含Bob公钥）进行加密，由于Alice无条件信任CA，所以已经提前知道CA的公钥，当她收到Bob证书的时候，只要用CA的公钥对Bob证书内容进行解密，发现能否成功解开（还需要校验完整性），此时说明Bob就是Bob，那之后用证书里边的Bob公钥来走之前的流程，就解决了中间人欺骗这个问题了。</p>
+<p>最后还要解决传输的完整性，单向Hash函数可以把输入变成一个定长的输出串，其特点就是无法从这个输出还原回输入内容，并且不同的输入几乎不可能产生相同的输出，即便你要特意去找也非常难找到这样的输入（抗碰撞性），因此Alice只要将明文内容做一个Hash运算得到一个Hash值，并一起加密传递过去给Bob。Hacker即便篡改了内容，Bob解密之后发现拿到的内容以及对应计算出来的Hash值与传递过来的不一致，说明这个包的完整性被破坏了。</p>
+<p><img src="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7.png" alt></p>
+<p>一次安全可靠的通信包括以下几点：</p>
+<ol>
+<li>对称加密以及非对称加密来解决：保密性</li>
+<li>数字签名：认证、不可抵赖</li>
+<li>单向Hash算法：完整性</li>
+</ol>
+<p><img src="http://rapheal-wordpress.stor.sinaapp.com/uploads/2015/09/%E4%B8%80%E6%AC%A1%E5%8F%AF%E9%9D%A0%E7%9A%84%E9%80%9A%E4%BF%A1.png" alt></p>
+<p><a href="https://developers.weixin.qq.com/community/develop/article/doc/000046a5fdc7802a15f7508b556413" target="_blank" rel="noopener">参考文章</a></p>
+<p>所以HTTPS握手过程为：</p>
+<p>1、客户端通过https的url访问服务端要求建立ssh连接</p>
+<p>2、服务端收到消息后，把自己的公钥和网站证书(证书里一般有数字签名)打包发给客户端。</p>
+<p>3、客户端使收到后，会检查证书的颁发机构以及过期时间, 如果没有问题就随机产生一个会话秘钥。</p>
+<p>4、客户端用服务端发过来的的公钥对这个随机产生的会话密钥进行加密发给服务端，服务端再用自己的密钥对其解密获得客户端发过来的会话密钥。(这一步即为非对称加密传输过程)</p>
+<p>5、接下来客户端与服务端就可以通过这个会话密钥进行加密传输了(这一步即为对称加密传输过程)。</p>
+<p>HTTPS 握手过程中，客户端如何验证证书的合法性？</p>
+<p>浏览器都会有内置的根证书，根据证书上写的CA签发机构，找到对应的证书公钥，用此公钥解开数字签名，得到摘要（digest,证书内容的hash值），据此验证证书的合法性。</p>
+<h4 id="17、为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？"><a href="#17、为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？" class="headerlink" title="17、为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？"></a>17、为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？</h4><p>够完成整个 HTTP 请求+响应（尽管不需要响应内容）,请求图片资源不会造成跨域的问题，gif相比其他图片资源又是最小的，一般埋点操作后单不需要做响应(响应码为204，即接受到请求但不做响应)，相比XMLHttpRequest 对象发送 GET 请求，性能上更好，因为不会对dom产生影响，所以不会阻塞页面加载，影响用户的体验，只要new Image对象就好了,一般情况下也不需要append到DOM中，通过它的onerror和onload事件来检测发送状态；</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"> <span class="keyword">var</span> thisPage = location.href;</span><br><span class="line"> <span class="keyword">var</span> referringPage = (<span class="built_in">document</span>.referrer) ? <span class="built_in">document</span>.referrer : <span class="string">"none"</span>;</span><br><span class="line"> <span class="keyword">var</span> beacon = <span class="keyword">new</span> Image();</span><br><span class="line"> beacon.src = <span class="string">"http://www.example.com/logger/beacon.gif?page="</span> + <span class="built_in">encodeURI</span>(thisPage)</span><br><span class="line"> + <span class="string">"&amp;ref="</span> + <span class="built_in">encodeURI</span>(referringPage);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="18、模拟实现一个-Promise-finally"><a href="#18、模拟实现一个-Promise-finally" class="headerlink" title="18、模拟实现一个 Promise.finally"></a>18、模拟实现一个 Promise.finally</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.protptype.finally = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> P = <span class="keyword">this</span>.constructor;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.then(</span><br><span class="line">		value =&gt; P.resolve(callback()).then(<span class="function"><span class="params">()</span>=&gt;</span>value),</span><br><span class="line">		reason =&gt; P.reject(callback()).then(<span class="function"><span class="params">()</span>=&gt;</span>&#123; <span class="keyword">throw</span>.reason&#125; )</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p><code>in</code>运算符会检查到原型链上，hasOwnProperty方法只会检查到实例上</p>
+<h4 id="19、用已有的promise实现-Prmoise-all方法"><a href="#19、用已有的promise实现-Prmoise-all方法" class="headerlink" title="19、用已有的promise实现 Prmoise.all方法"></a>19、用已有的promise实现 Prmoise.all方法</h4><p>首先需要将输入数组中的所有 Promise 对象均运行起来； 2. 在有 Promise 对象 resolve 后，判断是否所有对象均已 resolve，当所有 Promise 均被 resolve 后进行整体的 resolve；此外，当任何一个 Promise 对象出现 reject 后，直接 reject。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">promiseAll</span>(<span class="params">promises</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!isArray(promises)) &#123;</span><br><span class="line">      <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'arguments must be an array'</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> resolvedCounter = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> promiseNum = promises.length;</span><br><span class="line">    <span class="keyword">var</span> resolvedValues = <span class="keyword">new</span> <span class="built_in">Array</span>(promiseNum);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; promiseNum; i++) &#123;</span><br><span class="line">      (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">Promise</span>.resolve(promises[i]).then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">          resolvedCounter++</span><br><span class="line">          resolvedValues[i] = value</span><br><span class="line">          <span class="keyword">if</span> (resolvedCounter == promiseNum) &#123;</span><br><span class="line">            <span class="keyword">return</span> resolve(resolvedValues)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> reject(reason)</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)(i)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="20、用已有的promise实现-Prmoise-race方法"><a href="#20、用已有的promise实现-Prmoise-race方法" class="headerlink" title="20、用已有的promise实现 Prmoise.race方法"></a>20、用已有的promise实现 Prmoise.race方法</h4><p>上面的修改一下，不用resolvedCounter == promiseNum判断。</p>
+<h4 id="21、闭包的理解"><a href="#21、闭包的理解" class="headerlink" title="21、闭包的理解"></a>21、闭包的理解</h4><p>你不知道的JS摘抄：当函数可以记住并访问所在的词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行。(无论通过何种手段将内部函数传递到所在的词法作用域以外，它都会持有对原始定义作用域的引用，无论在何处执行这个函数都会使用闭包)。本质上无论何时何地，如果将(访问它们各自词法作用域的)函数当作第一 级的值类型并到处传递，你就会看到闭包在这些函数中的应用。在定时器、事件监听器、 Ajax 请求、跨窗口通信、Web Workers 或者任何其他的异步(或者同步)任务中，只要使 用了回调函数，实际上就是在使用闭包!</p>
+<h4 id="22、精度问题"><a href="#22、精度问题" class="headerlink" title="22、精度问题"></a>22、精度问题</h4><p>如何判断0.1+0.2和0.3是否相等？最常见的方法是设置一个误差范围值，通常称为“机器精度”，对于JavaScript来说，这个值通常是2^-52。在ES6开始，该值定义在Number.EPSILON中，ES6之前的版本可以写polyfill:Math.pow(2, -52)。可是使用Number.EPSILON来比较俩个数字是否相等。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numbersCloseEnoughToEqual</span>(<span class="params">n1,n2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.abs( n1 - n2 ) &lt; <span class="built_in">Number</span>.EPSILON;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">0.3</span>;</span><br><span class="line">numbersCloseEnoughToEqual( a, b );</span><br></pre></td></tr></table></figure></div>
+<h4 id="23、原型链"><a href="#23、原型链" class="headerlink" title="23、原型链"></a>23、原型链</h4><p>[[Prototype]] 机制就是存在于对象中的一个内部链接，它会引用其他对象，通常来说，这个链接的作用是:如果在对象上没有找到需要的属性或者方法引用，引擎就 会继续在[[Prototype]]关联的对象上进行查找。同理，如果在后者中也没有找到需要的引用就会继续查找它的[[Prototype]]，以此类推。这一系列对象的链接被称为“原型链”。</p>
+<h4 id="24、Promise"><a href="#24、Promise" class="headerlink" title="24、Promise"></a>24、Promise</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise.resolve // 返回一个Promise，状态为fulfilled</span></span><br><span class="line"><span class="comment">// Promise.reject // 返回一个Promise，状态为rekected</span></span><br><span class="line"><span class="comment">// Promise.all // 所有都成功=&gt;fulfilled 有一个失败=&gt;rejected</span></span><br><span class="line"><span class="comment">// Promise.race // 有一个率先改变，就跟着它的状态</span></span><br><span class="line"><span class="comment">// Promise.any // 有一个成功=&gt;fulfilled 全部失败=&gt;rejected</span></span><br><span class="line"><span class="comment">// Promise.allSettled // 无论成功失败，等所有都改变了状态，返回为一个数组包含了每个Promise的值和状态</span></span><br><span class="line"><span class="comment">// Promise.try // 如果是同步代码执行同步的，异步的就返回Promise，和async 函数相似</span></span><br></pre></td></tr></table></figure></div>
+<p>手写实现一个简单版的Promise</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pending = <span class="string">'pending'</span>;</span><br><span class="line"><span class="keyword">let</span> reject = <span class="string">'reject'</span>;</span><br><span class="line"><span class="keyword">let</span> resolve = <span class="string">'resolve'</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.status = pending;</span><br><span class="line">    <span class="keyword">this</span>.value = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">this</span>.reason = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">this</span>.resolveCbs = [];</span><br><span class="line">    <span class="keyword">this</span>.rejectCbs = [];</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.status !== pending) <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">this</span>.status = resolve;</span><br><span class="line">      <span class="keyword">this</span>.value = value;</span><br><span class="line">      <span class="keyword">this</span>.resolveCbs.map(<span class="function"><span class="params">fn</span> =&gt;</span> fn(<span class="keyword">this</span>.value));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.status !== pending) <span class="keyword">return</span>;</span><br><span class="line">      <span class="keyword">this</span>.status = reject;</span><br><span class="line">      <span class="keyword">this</span>.reason = reason;</span><br><span class="line">      <span class="keyword">this</span>.rejectCbs.map(<span class="function"><span class="params">fn</span> =&gt;</span> fn(<span class="keyword">this</span>.reason));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fn(resolve.bind(<span class="keyword">this</span>), reject.bind(<span class="keyword">this</span>))</span><br><span class="line">  &#125;</span><br><span class="line">  then(onResolve, onReject) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.status === resolve) &#123;</span><br><span class="line">      onResolve(<span class="keyword">this</span>.value)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.status === reject) &#123;</span><br><span class="line">      onReject(<span class="keyword">this</span>.reason)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.status === pending) &#123;</span><br><span class="line">      <span class="keyword">this</span>.resolveCbs.push(onResolve);</span><br><span class="line">      <span class="keyword">this</span>.rejectCbs.push(onReject);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="25、async-await"><a href="#25、async-await" class="headerlink" title="25、async await"></a>25、async await</h4><p>async函数的返回值是 Promise 对象，async函数内部return语句返回的值，会成为then方法回调函数的参数。async函数内部抛出错误，会导致返回的 Promise 对象变为reject状态。抛出的错误对象会被catch方法回调函数接收到。只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</p>
+<p>async函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而await命令就是内部then命令的语法糖。</p>
+<p>任何一个await语句后面的 Promise 对象变为reject状态，那么整个async函数都会中断执行。有时，我们希望即使前一个异步操作失败，也不要中断后面的异步操作。这时可以将第一个await放在try…catch结构里面，这样不管这个异步操作是否成功，第二个await都会执行。另一种方法是await后面的 Promise 对象再跟一个catch方法，处理前面可能出现的错误。</p>
+<h4 id="26、http2"><a href="#26、http2" class="headerlink" title="26、http2"></a>26、http2</h4><p>二进制分帧： HTTP/2 采用二进制格式传输数据，而非 HTTP 1.x 的文本格式，二进制协议解析起来更高效。HTTP / 1 的请求和响应报文，都是由起始行，首部和实体正文（可选）组成，各部分之间以文本换行符分隔。HTTP/2 将请求和响应数据分割为更小的帧，并且它们采用二进制编码。HTTP/2 中，同域名下所有通信都在单个连接上完成，该连接可以承载任意数量的双向数据流</p>
+<p>多路复用：多路复用，代替原来的序列和阻塞机制。所有就是请求的都是通过一个 TCP连接并发完成。 HTTP 1.x 中，如果想并发多个请求，必须使用多个 TCP 链接，且浏览器为了控制资源，还会对单个域名有 6-8个的TCP链接请求限制，如下图，红色圈出来的请求就因域名链接数已超过限制，而被挂起等待了一段时间。</p>
+<p>服务器推送：服务端可以在发送页面HTML时主动推送其它资源，而不用等到浏览器解析到相应位置，发起请求再响应。例如服务端可以主动把JS和CSS文件推送给客户端，而不需要客户端解析HTML时再发送这些请求。服务端可以主动推送，客户端也有权利选择是否接收。</p>
+<p>头部压缩：HTTP 1.1请求的大小变得越来越大，有时甚至会大于TCP窗口的初始大小，因为它们需要等待带着ACK的响应回来以后才能继续被发送。HTTP/2对消息头采用HPACK（专为http/2头部设计的压缩格式）进行压缩传输，能够节省消息头占用的网络的流量。</p>
+<h4 id="27、JS继承的方式"><a href="#27、JS继承的方式" class="headerlink" title="27、JS继承的方式"></a>27、JS继承的方式</h4><ol>
+<li>原型链继承</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">Cat.prototype = <span class="keyword">new</span> Animal()</span><br><span class="line">Cat.prototype = <span class="string">'cat'</span></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();</span><br></pre></td></tr></table></figure></div>
+<ol start="2">
+<li>构造继承</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	Animal.call(<span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">this</span>.name = name || <span class="string">'cat'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> Cat();</span><br></pre></td></tr></table></figure></div>
+<ol start="3">
+<li>实例继承</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> instance = <span class="keyword">new</span> Animal();</span><br><span class="line">	instance.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">	<span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ol start="4">
+<li>拷贝继承</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> animal = <span class="keyword">new</span> Animal();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> p <span class="keyword">in</span> animal)&#123;</span><br><span class="line">		Cat.prototype[p]=animal[p];</span><br><span class="line">	&#125;</span><br><span class="line">	Cat.prototype.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<ol start="5">
+<li>组合继承</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	Animal.call(<span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">this</span>.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype = <span class="keyword">new</span> Animal();</span><br></pre></td></tr></table></figure></div>
+<ol start="6">
+<li>寄生组合继承</li>
+</ol>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Cat</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	Animal.call(<span class="keyword">this</span>);</span><br><span class="line">	<span class="keyword">this</span>.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Super = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">	Super.prototype = Animal.prototype;</span><br><span class="line">	Cat.prototype = <span class="keyword">new</span> Super();</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></div>
+<h4 id="28、三次握手，四次挥手"><a href="#28、三次握手，四次挥手" class="headerlink" title="28、三次握手，四次挥手"></a>28、三次握手，四次挥手</h4><p>TCP提供了一种可靠、面向连接、字节流、传输层的服务，采用三次握手建立一个连接，采用四次挥手关闭一个连接。</p>
+<p>三次握手的作用就是双方都能明确自己和对方的收、发能力是正常的。需要三次握手才能确认双方的接收与发送能力是否正常</p>
+<p>第一次握手：客户端发送网络包。服务端收到，服务端得出结论：客户端的发送能力、服务端的接受能力是正常的。</p>
+<p>第二次握手：服务端发包，客户端收到了，这样客户端得出结论：服务端的接收、发送能留，客户端的接收、发送能力是正常的。</p>
+<p>第三次握手：客户端发包，服务端收到了。这样服务端就能得出结论：客户端的接收、发送能力，服务端的发送、接收能力是正常的。</p>
+<p>经历了上面三次握手过程，客户端和服务端都确认了自己的接收、发送能力是正常的，之后就可以正常通信了。</p>
+<p>四次挥手，TCP连接是双向传输的对等模式，就是说双方都可以同时向对方发送或接收数据，当有一方要关闭连接时，会发送指令告知对方。为什么是四次，是由于TCP的半关闭照成的，半关闭就是TCP提供了连接的一端在结束它的发送后还能接受来自另一段数据的能力。</p>
+<p>为什么挥手需要四次：当服务端收到客服端SYN连接请求报文后，可以直接发送SYN+ACK报文。其中ACK报文是用来应答的，SYN报文是用来同步的。但是关闭连接时，当服务端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉客户端，”你发的FIN报文我收到了”。只有等到我服务端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四次挥手。</p>
+<p>29、快速排序</p>
+<p>先找到一个基准点（一般指数组的中部），然后数组被该基准点分为两部分，依次与该基准点数据比较，如果比它小，放左边；反之，放右边。左右分别用一个空数组去存储比较后的数据，最后递归执行上述操作，直到数组长度 &lt;= 1。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JS"><figure class="iseeu highlight /js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSort</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (list.length &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">let</span> minInd = <span class="built_in">Math</span>.floor(list.length / <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">let</span> left = [];</span><br><span class="line">	<span class="keyword">let</span> right = [];</span><br><span class="line">	<span class="keyword">let</span> minVal = list.splice(minInd,<span class="number">1</span>)[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> i =<span class="number">0</span>; i &lt; list.length; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (list[i] &lt; minVal) &#123;</span><br><span class="line">			left.push(list[i])</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			right.push(list[i])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> [...quickSort(left), minVal, ...quickSort(right)]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>我想吃鸡腿!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="../../../../image/wechatpay.png" alt="Zi Jun 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="../../../../image/alipay.png" alt="Zi Jun 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Zi Jun
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.zijunfe.cn/2021/02/26/qustion-answer/" title="自问自答系列(持续更新！2-26)">http://blog.zijunfe.cn/2021/02/26/qustion-answer/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/26/leetcode/" rel="next" title="LeeCode常见算法系列(持续更新！2-26)">
+                <i class="fa fa-chevron-left"></i> LeeCode常见算法系列(持续更新！2-26)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/header.jpeg" alt="Zi Jun">
+            </a>
+            
+              <p class="site-author-name" itemprop="name">Zi Jun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/BiYangJun" rel="external nofollow" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="html2014byj@163.com" rel="external nofollow" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=133998&height=32"></iframe>
+      
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、写-React-Vue-项目时为什么要在列表组件中写-key，其作用是什么？"><span class="nav-number">1.</span> <span class="nav-text">1、写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、-‘1’-‘2’-‘3’-map-parseInt-what-amp-why"><span class="nav-number">2.</span> <span class="nav-text">2、[‘1’, ‘2’, ‘3’].map(parseInt) what &amp; why ?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、什么是防抖和节流？有什么区别？如何实现？"><span class="nav-number">3.</span> <span class="nav-text">3、什么是防抖和节流？有什么区别？如何实现？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、介绍下-Set、Map、WeakSet-和-WeakMap-的区别？"><span class="nav-number">4.</span> <span class="nav-text">4、介绍下 Set、Map、WeakSet 和 WeakMap 的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、介绍下深度优先遍历和广度优先遍历，如何实现？"><span class="nav-number">5.</span> <span class="nav-text">5、介绍下深度优先遍历和广度优先遍历，如何实现？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、请分别用深度优先思想和广度优先思想实现一个拷贝函数。"><span class="nav-number">6.</span> <span class="nav-text">6、请分别用深度优先思想和广度优先思想实现一个拷贝函数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、setTimeout、Promise、Async-Await-的区别"><span class="nav-number">7.</span> <span class="nav-text">7、setTimeout、Promise、Async/Await 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、JS-异步解决方案的发展历程以及优缺点。"><span class="nav-number">8.</span> <span class="nav-text">8、JS 异步解决方案的发展历程以及优缺点。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9、Promise-构造函数是同步执行还是异步执行，那么-then-方法呢？"><span class="nav-number">9.</span> <span class="nav-text">9、Promise 构造函数是同步执行还是异步执行，那么 then 方法呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10、使用-sort-对数组-3-15-8-29-102-22-进行排序，输出结果"><span class="nav-number">10.</span> <span class="nav-text">10、使用 sort() 对数组 [3, 15, 8, 29, 102, 22] 进行排序，输出结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11、new关键词的作用，如何实现一个new"><span class="nav-number">11.</span> <span class="nav-text">11、new关键词的作用，如何实现一个new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12、介绍下重绘和回流（Repaint-amp-Reflow），以及如何进行优化"><span class="nav-number">12.</span> <span class="nav-text">12、介绍下重绘和回流（Repaint &amp; Reflow），以及如何进行优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13、改造下面的代码，使之输出0-9，写出你能想到的所有解法。"><span class="nav-number">13.</span> <span class="nav-text">13、改造下面的代码，使之输出0 - 9，写出你能想到的所有解法。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14、下面代码中-a-在什么情况下会打印-1？"><span class="nav-number">14.</span> <span class="nav-text">14、下面代码中 a 在什么情况下会打印 1？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15、介绍下-BFC-及其应用。"><span class="nav-number">15.</span> <span class="nav-text">15、介绍下 BFC 及其应用。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16、HTTPS为什么比HTTP安全"><span class="nav-number">16.</span> <span class="nav-text">16、HTTPS为什么比HTTP安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17、为什么通常在发送数据埋点请求的时候使用的是-1x1-像素的透明-gif-图片？"><span class="nav-number">17.</span> <span class="nav-text">17、为什么通常在发送数据埋点请求的时候使用的是 1x1 像素的透明 gif 图片？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18、模拟实现一个-Promise-finally"><span class="nav-number">18.</span> <span class="nav-text">18、模拟实现一个 Promise.finally</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19、用已有的promise实现-Prmoise-all方法"><span class="nav-number">19.</span> <span class="nav-text">19、用已有的promise实现 Prmoise.all方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20、用已有的promise实现-Prmoise-race方法"><span class="nav-number">20.</span> <span class="nav-text">20、用已有的promise实现 Prmoise.race方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21、闭包的理解"><span class="nav-number">21.</span> <span class="nav-text">21、闭包的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22、精度问题"><span class="nav-number">22.</span> <span class="nav-text">22、精度问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23、原型链"><span class="nav-number">23.</span> <span class="nav-text">23、原型链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24、Promise"><span class="nav-number">24.</span> <span class="nav-text">24、Promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25、async-await"><span class="nav-number">25.</span> <span class="nav-text">25、async await</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26、http2"><span class="nav-number">26.</span> <span class="nav-text">26、http2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27、JS继承的方式"><span class="nav-number">27.</span> <span class="nav-text">27、JS继承的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28、三次握手，四次挥手"><span class="nav-number">28.</span> <span class="nav-text">28、三次握手，四次挥手</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+
+    
+
+  </aside>
+
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子君</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '7970cb114f22ce2015b3',
+          clientSecret: '41d2b41411abdd7d693f42a526ed03918aae76de',
+          repo: 'blog-comments',
+          owner: 'BiYangJun',
+          admin: ['BiYangJun'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+    </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("tbYVvp36AjgSJbdUs6djQfB1-gzGzoHsz", "vrB9RiCPWFJ9mw3gdjSvX4iR");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
