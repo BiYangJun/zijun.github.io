@@ -325,6 +325,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -383,10 +405,15 @@
 
       
         
-          DllPlugin优化探究
+          <p>webpack版本：4.43.0</p>
+<ol>
+<li>手动配置DllPlugin</li>
+</ol>
+<p>DllPlugin是webapck内置的一款可以加快构建速度的插件，其主要优化思想就是用空间换取时间，对于某些不常更新依赖内容，如:vue、vuex、vue-router，UI库等，可以提前打包好，取名为’dll.js’为后缀的打包文件，后面再打包的时候就跳过原来的未打包代码，直接使用之前打包好的文件，依次减少构建速度。</p>
+<p>首先要写一个dll的webpack配置文件，放在根目录或者自己新建一个build文件夹都行。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/16/dllplugin/">
+            <a class="btn" href="/2021/03/16/dllplugin/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2074,15 +2101,6 @@
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
             
 
           </nav>

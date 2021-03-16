@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="DllPlugin优化探究">
+<meta name="description" content="webpack版本：4.43.0  手动配置DllPlugin  DllPlugin是webapck内置的一款可以加快构建速度的插件，其主要优化思想就是用空间换取时间，对于某些不常更新依赖内容，如:vue、vuex、vue-router，UI库等，可以提前打包好，取名为’dll.js’为后缀的打包文件，后面再打包的时候就跳过原来的未打包代码，直接使用之前打包好的文件，依次减少构建速度。 首先要写一">
 <meta name="keywords" content="webpack, Dllplugin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DllPlugin优化探究">
 <meta property="og:url" content="http://blog.zijunfe.cn/2021/03/16/dllplugin/index.html">
 <meta property="og:site_name" content="子君的个人博客">
-<meta property="og:description" content="DllPlugin优化探究">
+<meta property="og:description" content="webpack版本：4.43.0  手动配置DllPlugin  DllPlugin是webapck内置的一款可以加快构建速度的插件，其主要优化思想就是用空间换取时间，对于某些不常更新依赖内容，如:vue、vuex、vue-router，UI库等，可以提前打包好，取名为’dll.js’为后缀的打包文件，后面再打包的时候就跳过原来的未打包代码，直接使用之前打包好的文件，依次减少构建速度。 首先要写一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-16T09:43:47.257Z">
+<meta property="og:updated_time" content="2021-03-16T09:45:23.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DllPlugin优化探究">
-<meta name="twitter:description" content="DllPlugin优化探究">
+<meta name="twitter:description" content="webpack版本：4.43.0  手动配置DllPlugin  DllPlugin是webapck内置的一款可以加快构建速度的插件，其主要优化思想就是用空间换取时间，对于某些不常更新依赖内容，如:vue、vuex、vue-router，UI库等，可以提前打包好，取名为’dll.js’为后缀的打包文件，后面再打包的时候就跳过原来的未打包代码，直接使用之前打包好的文件，依次减少构建速度。 首先要写一">
 
 
 
@@ -327,6 +327,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -369,10 +391,6 @@
             </div>
           
 
-          
-              <div class="post-description">
-                  DllPlugin优化探究
-              </div>
           
 
         </div>
@@ -484,12 +502,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Webpack/" rel="tag"># Webpack</a>
-          
-        </div>
-      
 
       
       
@@ -599,15 +611,6 @@
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
             
 
           </nav>
